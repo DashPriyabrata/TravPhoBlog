@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>@ViewBag.Title - My Travel Blog</title>
+    @Styles.Render("~/Content/css", "~/Content/ThirdParty")
+
+    <!-- Modernizr for browser compatibility. All other JS at the end of file. -->
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/Angular")
+
+
+</head>
+<body ng-app="app">
+    <!-- Body inner start -->
+    <div class="body-inner">
+        <!--/ Topbar start -->
+        <div id="top-bar" class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-bar-inner">
+                            <ul class="top-menu title-font unstyled">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Advertise</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+
+                            <div class="top-search">
+                                <button class="fa fa-search"></button>
+                            </div>
+                            <div class="site-search">
+                                <div class="container">
+                                    <input type="text" placeholder="type what you want and enter">
+                                    <span class="close">&times;</span>
+                                </div>
+                            </div><!-- Search end -->
+                        </div><!-- top bar inner end -->
+                    </div><!-- Col end -->
+                </div><!--/ Content row end -->
+            </div><!--/ Container end -->
+        </div>
+        <!--/ Topbar end -->
+        <!-- Header start -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <ul class="top-social unstyled">
+                            <li>
+                                <a title="Facebook" href="#">
+                                    <span class="social-icon"><i class="fa fa-facebook"></i></span>
+                                </a>
+                                <a title="Twitter" href="#">
+                                    <span class="social-icon"><i class="fa fa-twitter"></i></span>
+                                </a>
+                                <a title="Google+" href="#">
+                                    <span class="social-icon"><i class="fa fa-google-plus"></i></span>
+                                </a>
+                                <a title="behance" href="#">
+                                    <span class="social-icon"><i class="fa fa-instagram"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--Social col end -->
+
+                    <div class="col-md-4 col-xs-12">
+                        <div class="logo text-center">
+                            <a href="index.html">
+                                <img src="~/Images/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div><!-- Logo col end -->
+
+                    <div class="col-md-4 col-xs-12">
+                        <div class="top-ad">
+                            <img src="~/Images/Ad/top-ad.png" alt="">
+                        </div>
+                    </div><!-- Ad col end -->
+
+                </div><!-- Content row end -->
+            </div><!-- Container end -->
+        </header>
+        <!--/ Header end -->
+        <!--/ Navigation start -->
+        <nav class="site-navigation navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="site-nav-inner">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse navbar-responsive-collapse">
+
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown active">
+                                        <a href="@Url.Action("Index", "Home")" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                    </li>
+
+                                    <li><a href="@Url.Action("Travel", "Category")">Travel</a></li>
+                                    <li><a href="@Url.Action("Biking", "Category")">Biking</a></li>
+                                    <li><a href="@Url.Action("Photos", "Category")">Photos</a></li>
+                                    <li><a href="@Url.Action("About", "Home")">About Me</a></li>
+                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+
+                                </ul><!--/ Nav ul end -->
+
+                            </div><!--/ Collapse end -->
+                        </div>
+                    </div><!--/ Cold end -->
+                </div><!--/ Row end -->
+            </div><!--/ Container end -->
+        </nav>
+        <!--/ Navigation end -->
+        @RenderBody()
+
+        <!-- Instagram start -->
+        <section class="no-padding">
+            <div class="container-fluid">
+                <h2 class="title-classic text-center">Instagram</h2>
+
+                <div id="instagram-carousel" class="owl-carousel owl-theme instagram-carousel">
+                    <div class="item clearfix">
+                        <a href="#"><img src="~/Images/Instagram/instagram1.jpg" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="#"><img src="~/Images/Instagram/instagram2.jpg" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="#"><img src="~/Images/Instagram/instagram3.jpg" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="#"><img src="~/Images/Instagram/instagram4.jpg" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="#"><img src="~/Images/Instagram/instagram5.jpg" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="#"><img src="~/Images/Instagram/instagram6.jpg" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="#"><img src="~/Images/Instagram/instagram7.jpg" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="#"><img src="~/Images/Instagram/instagram8.jpg" alt="img"></a>
+                    </div>
+                </div><!-- Carousel end -->
+
+            </div><!-- Container end -->
+        </section>
+        <!-- Instagram end -->
+        <!-- Footer start -->
+        <footer id="footer" class="footer">
+            <div class="container">
+
+                <div class="newsletter text-center">
+                    <h3 class="title-normal">Subscribe To Our Newsletter</h3>
+                    <form action="#" method="post" id="newsletter-form" class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" name="email" id="newsletter-form-email" class="form-control form-control-lg" placeholder="Your Email Here" autocomplete="off">
+                            <button class="btn btn-primary">Subscribe</button>
+                        </div>
+                    </form>
+                </div><!-- Newsletter end -->
+
+                <div class="footer-social text-center">
+                    <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
+                    <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+                    <a href="#"><i class="fa fa-heart"></i> Bloglovin</a>
+                    <a href="#"><i class="fa fa-pinterest"></i> Pinterest</a>
+                    <a href="#"><i class="fa fa-google-plus"></i> Google +</a>
+                    <a href="#"><i class="fa fa-instagram"></i> Instagram</a>
+                </div><!-- Footer social end -->
+
+                <ul class="footer-menu title-font">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Lifestyle</a></li>
+                    <li><a href="#">Travel</a></li>
+                    <li><a href="#">Fashion</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul><!-- Footer menu end -->
+
+                <div class="copyright-info">
+                    <p>Copyright &copy; @DateTime.Now.Year - My Travel Blog. All Rights Reserved.</p>
+                </div><!-- Copyright end -->
+
+            </div><!-- Container end -->
+        </footer>
+        <!-- Footer end -->
+    </div>
+    <!-- Body inner end -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/ThirdParty")
+    @*@RenderSection("scripts", required: false*@)
+</body>
+</html>

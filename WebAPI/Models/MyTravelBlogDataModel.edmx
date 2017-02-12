@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Models.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="blogger">
+          <Key>
+            <PropertyRef Name="BloggerId" />
+          </Key>
+          <Property Name="BloggerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="45" />
+          <Property Name="AboutMe" Type="text" Nullable="false" />
+          <Property Name="Slogan" Type="varchar" MaxLength="100" />
+          <Property Name="Photo" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bloginfo">
+          <Key>
+            <PropertyRef Name="BlogId" />
+          </Key>
+          <Property Name="BlogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostDate" Type="date" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tags" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bool" Nullable="false" />
+          <Property Name="BloggerId" Type="int" />
+        </EntityType>
+        <Association Name="FK_BloggerId">
+          <End Role="blogger" Type="Self.blogger" Multiplicity="0..1" />
+          <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blogger">
+              <PropertyRef Name="BloggerId" />
+            </Principal>
+            <Dependent Role="bloginfo">
+              <PropertyRef Name="BloggerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="blogger" EntityType="Self.blogger" Schema="mytravelblog" store:Type="Tables" />
+          <EntitySet Name="bloginfo" EntityType="Self.bloginfo" Schema="mytravelblog" store:Type="Tables" />
+          <AssociationSet Name="FK_BloggerId" Association="Self.FK_BloggerId">
+            <End Role="blogger" EntitySet="blogger" />
+            <End Role="bloginfo" EntitySet="bloginfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="blogger">
+          <Key>
+            <PropertyRef Name="BloggerId" />
+          </Key>
+          <Property Name="BloggerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AboutMe" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Slogan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="bloginfoes" Relationship="Self.fk_BloggerId" FromRole="blogger" ToRole="bloginfo" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="bloginfo">
+          <Key>
+            <PropertyRef Name="BlogId" />
+          </Key>
+          <Property Name="BlogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tags" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="BloggerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="blogger" Relationship="Self.fk_BloggerId" FromRole="bloginfo" ToRole="blogger" />
+        </EntityType>
+        <Association Name="fk_BloggerId">
+          <End Role="blogger" Type="Self.blogger" Multiplicity="1" />
+          <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blogger">
+              <PropertyRef Name="BloggerId" />
+            </Principal>
+            <Dependent Role="bloginfo">
+              <PropertyRef Name="BloggerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyTravelBlogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bloggers" EntityType="Self.blogger" />
+          <EntitySet Name="bloginfoes" EntityType="Self.bloginfo" />
+          <AssociationSet Name="fk_BloggerId" Association="Self.fk_BloggerId">
+            <End Role="blogger" EntitySet="bloggers" />
+            <End Role="bloginfo" EntitySet="bloginfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="MyTravelBlogEntities">
+          <EntitySetMapping Name="bloggers">
+            <EntityTypeMapping TypeName="Models.blogger">
+              <MappingFragment StoreEntitySet="blogger">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BloggerId" ColumnName="BloggerId" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bloginfoes">
+            <EntityTypeMapping TypeName="Models.bloginfo">
+              <MappingFragment StoreEntitySet="bloginfo">
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BloggerId" ColumnName="BloggerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
