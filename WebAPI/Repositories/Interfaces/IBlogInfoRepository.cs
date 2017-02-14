@@ -7,9 +7,9 @@ using WebAPI.Models;
 
 namespace WebAPI.Repositories.Interfaces
 {
-    interface IBloggerRepository : IDisposable
+    interface IBlogInfoRepository : IDisposable
     {
-        Task<blogger> GetBlogger(int bloggerId);
-        Task<ICollection<blogger>> GetAll();
+        Task<bloginfo> GetBlogger(int blogId);
+        Task<ICollection<bloginfo>> GetAll();
     }
 }

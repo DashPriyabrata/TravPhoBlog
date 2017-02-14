@@ -132,6 +132,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BloggerRepository.cs" />
+    <Compile Include="Repositories\BlogInfoRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBlogInfoRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBloggerRepository.cs" />
   </ItemGroup>
   <ItemGroup>

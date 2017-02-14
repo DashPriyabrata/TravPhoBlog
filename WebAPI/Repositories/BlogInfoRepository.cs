@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using WebAPI.Models;
 using WebAPI.Repositories.Interfaces;
 
 namespace WebAPI.Repositories
 {
-    public class BloggerRepository : IBloggerRepository, IDisposable
+    public class BlogInfoRepository : IBlogInfoRepository, IDisposable
     {
         MyTravelBlogEntities dbContext;
 
-        public BloggerRepository(MyTravelBlogEntities dbContext)
+        public BlogInfoRepository(MyTravelBlogEntities dbContext)
         {
             this.dbContext = dbContext;
         }
-        public async Task<blogger> GetBlogger(int bloggerId)
+
+        public async Task<ICollection<bloginfo>> GetAll()
         {
-            var blogger = await dbContext.bloggers.Where(x => x.BloggerId == bloggerId).FirstOrDefaultAsync();
-            return blogger;
+            var allBlogInfo = await dbContext.bloginfoes.ToListAsync();
+            return allBlogInfo;
         }
 
-        public async Task<ICollection<blogger>> GetAll()
+        public async Task<bloginfo> GetBlogger(int blogId)
         {
-            var bloggers = await dbContext.bloggers.ToListAsync();
-            return bloggers;
+            var blogInfo = await dbContext.bloginfoes.Where(x => x.BlogId == blogId).FirstOrDefaultAsync();
+            return blogInfo;
         }
 
         private bool isDisposed;
