@@ -24,7 +24,7 @@ namespace WebAPI.Repositories
             return allBlogInfo;
         }
 
-        public async Task<bloginfo> GetBlogger(int blogId)
+        public async Task<bloginfo> GetBlogInfo(int blogId)
         {
             var blogInfo = await dbContext.bloginfoes.Where(x => x.BlogId == blogId).FirstOrDefaultAsync();
             return blogInfo;

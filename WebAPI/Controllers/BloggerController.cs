@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
 
         public BloggerController()
         {
-            bloggerRepo = new BloggerRepository();
+            bloggerRepo = new BloggerRepository(new MyTravelBlogEntities());
         }
 
         [ResponseType(typeof(blogger))]

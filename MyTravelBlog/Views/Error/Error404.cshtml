@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Error 404!";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <section class="blog-content error-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="content-area">
+
+                        <div class="text-center">
+                            <div class="error-code">
+                                <strong>404</strong>
+                            </div>
+                            <div class="error-message">
+                                <h3>Oops... Page Not Found!</h3>
+                            </div>
+                            <div class="error-body">
+                                Try using the button below to go to main page of the site <br>
+                                <a href="@Url.Action("Index", "Home")" class="btn btn-primary solid blank"><i class="fa fa-arrow-circle-left">&nbsp;</i> Go to Home</a>
+                            </div>
+                        </div>
+
+                    </div><!--/ Content end -->
+                </div><!--/ Content col end -->
+
+            </div><!--/ Blog row end -->
+        </div><!--/ Blog container end -->
+    </section><!--/ Blog end -->
+</body>
+</html>

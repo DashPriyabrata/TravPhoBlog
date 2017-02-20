@@ -9,7 +9,7 @@ namespace WebAPI.Repositories.Interfaces
 {
     interface IBlogInfoRepository : IDisposable
     {
-        Task<bloginfo> GetBlogger(int blogId);
+        Task<bloginfo> GetBlogInfo(int blogId);
         Task<ICollection<bloginfo>> GetAll();
     }
 }
