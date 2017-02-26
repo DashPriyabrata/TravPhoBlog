@@ -27,5 +27,6 @@ namespace WebAPI.Models
     
         public virtual DbSet<blogger> bloggers { get; set; }
         public virtual DbSet<bloginfo> bloginfoes { get; set; }
+        public virtual DbSet<blogcontent> blogcontents { get; set; }
     }
 }

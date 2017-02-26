@@ -106,8 +106,12 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BloggerController.cs" />
+    <Compile Include="Controllers\BlogInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blogcontent.cs">
+      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blogger.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>

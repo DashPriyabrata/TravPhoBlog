@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="Models.blogger" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Models.bloginfo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="Models.fk_BloggerId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Models.blogcontent" Width="1.5" PointX="5.25" PointY="1.625" />
+        <AssociationConnector Association="Models.FK_PostId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

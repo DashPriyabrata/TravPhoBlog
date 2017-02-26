@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Models.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.mytravelblog.blogcontent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="blogcontent">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Content" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Content" Type="longtext" Nullable="false" />
+        </EntityType>
         <EntityType Name="blogger">
           <Key>
             <PropertyRef Name="BloggerId" />
@@ -30,24 +40,30 @@
           <Property Name="IsActive" Type="bool" Nullable="false" />
           <Property Name="BloggerId" Type="int" />
         </EntityType>
-        <Association Name="FK_BloggerId">
-          <End Role="blogger" Type="Self.blogger" Multiplicity="0..1" />
-          <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="*" />
+        <Association Name="FK_PostId">
+          <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="1" />
+          <End Role="blogcontent" Type="Self.blogcontent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="blogger">
-              <PropertyRef Name="BloggerId" />
+            <Principal Role="bloginfo">
+              <PropertyRef Name="BlogId" />
             </Principal>
-            <Dependent Role="bloginfo">
-              <PropertyRef Name="BloggerId" />
+            <Dependent Role="blogcontent">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="blogger" EntityType="Self.blogger" Schema="mytravelblog" store:Type="Tables" />
           <EntitySet Name="bloginfo" EntityType="Self.bloginfo" Schema="mytravelblog" store:Type="Tables" />
-          <AssociationSet Name="FK_BloggerId" Association="Self.FK_BloggerId">
-            <End Role="blogger" EntitySet="blogger" />
+          <EntitySet Name="blogcontent" EntityType="Self.blogcontent" store:Type="Tables" store:Schema="mytravelblog">
+            <DefiningQuery>SELECT
+`blogcontent`.`Id`, 
+`blogcontent`.`Content`
+FROM `blogcontent` AS `blogcontent`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PostId" Association="Self.FK_PostId">
             <End Role="bloginfo" EntitySet="bloginfo" />
+            <End Role="blogcontent" EntitySet="blogcontent" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -80,6 +96,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="BloggerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="blogger" Relationship="Self.fk_BloggerId" FromRole="bloginfo" ToRole="blogger" />
+          <NavigationProperty Name="blogcontents" Relationship="Models.FK_PostId" FromRole="bloginfo" ToRole="blogcontent" />
         </EntityType>
         <Association Name="fk_BloggerId">
           <End Role="blogger" Type="Self.blogger" Multiplicity="1" />
@@ -100,7 +117,33 @@
             <End Role="blogger" EntitySet="bloggers" />
             <End Role="bloginfo" EntitySet="bloginfoes" />
           </AssociationSet>
+          <EntitySet Name="blogcontents" EntityType="Models.blogcontent" />
+          <AssociationSet Name="FK_PostId" Association="Models.FK_PostId">
+            <End Role="bloginfo" EntitySet="bloginfoes" />
+            <End Role="blogcontent" EntitySet="blogcontents" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="blogcontent">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Content" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bloginfo" Relationship="Models.FK_PostId" FromRole="blogcontent" ToRole="bloginfo" />
+        </EntityType>
+        <Association Name="FK_PostId">
+          <End Type="Models.bloginfo" Role="bloginfo" Multiplicity="1" />
+          <End Type="Models.blogcontent" Role="blogcontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bloginfo">
+              <PropertyRef Name="BlogId" />
+            </Principal>
+            <Dependent Role="blogcontent">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -131,6 +174,14 @@
                 <ScalarProperty Name="Tags" ColumnName="Tags" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="BloggerId" ColumnName="BloggerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blogcontents">
+            <EntityTypeMapping TypeName="Models.blogcontent">
+              <MappingFragment StoreEntitySet="blogcontent">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
