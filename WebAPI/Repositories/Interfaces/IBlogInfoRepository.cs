@@ -11,6 +11,6 @@ namespace WebAPI.Repositories.Interfaces
     {
         Task<bloginfo> GetBlogInfo(int blogId);
         Task<ICollection<bloginfo>> GetAll();
-        Task<string> GetContent(int blogId);
+        Task<postcontent> GetContent(int blogId);
     }
 }

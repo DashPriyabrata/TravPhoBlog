@@ -14,12 +14,6 @@ namespace WebAPI.Models
     
     public partial class bloginfo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public bloginfo()
-        {
-            this.blogcontents = new HashSet<blogcontent>();
-        }
-    
         public int BlogId { get; set; }
         public string Title { get; set; }
         public System.DateTime PostDate { get; set; }
@@ -28,9 +22,11 @@ namespace WebAPI.Models
         public string Tags { get; set; }
         public bool IsActive { get; set; }
         public int BloggerId { get; set; }
+        public Nullable<int> CategoryId { get; set; }
+        public Nullable<bool> IsFeatured { get; set; }
     
         public virtual blogger blogger { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<blogcontent> blogcontents { get; set; }
+        public virtual postcontent postcontent { get; set; }
+        public virtual category category { get; set; }
     }
 }

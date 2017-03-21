@@ -12,10 +12,20 @@ namespace WebAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class blogcontent
+    public partial class postcontent
     {
         public int Id { get; set; }
-        public string Content { get; set; }
+        public string Image_Title { get; set; }
+        public string Introduction { get; set; }
+        public string Quote { get; set; }
+        public string Description_Start { get; set; }
+        public string Image_BefPoints { get; set; }
+        public string Points { get; set; }
+        public string Description_End { get; set; }
+        public string Image_End { get; set; }
+        public string Closing_Statements { get; set; }
+        public string Image_Direction { get; set; }
+        public string Direction { get; set; }
     
         public virtual bloginfo bloginfo { get; set; }
     }

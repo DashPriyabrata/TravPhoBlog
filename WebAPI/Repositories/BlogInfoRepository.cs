@@ -30,10 +30,10 @@ namespace WebAPI.Repositories
             return blogInfo;
         }
 
-        public async Task<string> GetContent(int blogId)
+        public async Task<postcontent> GetContent(int blogId)
         {
-            var blogContent = await dbContext.blogcontents.Where(x => x.Id == blogId).FirstOrDefaultAsync();
-            return blogContent.Content;
+            var postContent = await dbContext.postcontents.Where(x => x.Id == blogId).FirstOrDefaultAsync();
+            return postContent;
         }
 
         private bool isDisposed;

@@ -5,27 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Models.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'def.mytravelblog.blogcontent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="blogcontent">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Content" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Content" Type="longtext" Nullable="false" />
-        </EntityType>
         <EntityType Name="blogger">
           <Key>
             <PropertyRef Name="BloggerId" />
           </Key>
           <Property Name="BloggerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="45" />
+          <Property Name="LastName" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="AboutMe" Type="text" Nullable="false" />
           <Property Name="Slogan" Type="varchar" MaxLength="100" />
           <Property Name="Photo" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="bool" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="JoinDate" Type="datetime" Precision="0" />
+          <Property Name="Email" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="bloginfo">
           <Key>
@@ -38,32 +31,111 @@ warning 6002: The table/view 'def.mytravelblog.blogcontent' does not have a prim
           <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Tags" Type="varchar" MaxLength="100" />
           <Property Name="IsActive" Type="bool" Nullable="false" />
-          <Property Name="BloggerId" Type="int" />
+          <Property Name="BloggerId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="IsFeatured" Type="bool" />
         </EntityType>
-        <Association Name="FK_PostId">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="postcontent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Image_Title" Type="varchar" MaxLength="45" />
+          <Property Name="Introduction" Type="varchar" MaxLength="3000" />
+          <Property Name="Quote" Type="varchar" MaxLength="500" />
+          <Property Name="Description_Start" Type="varchar" MaxLength="3000" />
+          <Property Name="Image_BefPoints" Type="varchar" MaxLength="45" />
+          <Property Name="Points" Type="varchar" MaxLength="2000" />
+          <Property Name="Description_End" Type="varchar" MaxLength="3000" />
+          <Property Name="Image_End" Type="varchar" MaxLength="45" />
+          <Property Name="Closing_Statements" Type="varchar" MaxLength="2000" />
+          <Property Name="Image_Direction" Type="varchar" MaxLength="45" />
+          <Property Name="Direction" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BloggerId">
+          <End Role="blogger" Type="Self.blogger" Multiplicity="1" />
+          <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blogger">
+              <PropertyRef Name="BloggerId" />
+            </Principal>
+            <Dependent Role="bloginfo">
+              <PropertyRef Name="BloggerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogId">
           <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="1" />
-          <End Role="blogcontent" Type="Self.blogcontent" Multiplicity="*" />
+          <End Role="postcontent" Type="Self.postcontent" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="bloginfo">
               <PropertyRef Name="BlogId" />
             </Principal>
-            <Dependent Role="blogcontent">
+            <Dependent Role="postcontent">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category">
+          <End Role="category" Type="Self.category" Multiplicity="0..1" />
+          <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bloginfo">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleId">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="blogger" Type="Self.blogger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="blogger">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="blogger" EntityType="Self.blogger" Schema="mytravelblog" store:Type="Tables" />
           <EntitySet Name="bloginfo" EntityType="Self.bloginfo" Schema="mytravelblog" store:Type="Tables" />
-          <EntitySet Name="blogcontent" EntityType="Self.blogcontent" store:Type="Tables" store:Schema="mytravelblog">
-            <DefiningQuery>SELECT
-`blogcontent`.`Id`, 
-`blogcontent`.`Content`
-FROM `blogcontent` AS `blogcontent`</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_PostId" Association="Self.FK_PostId">
+          <EntitySet Name="category" EntityType="Self.category" Schema="mytravelblog" store:Type="Tables" />
+          <EntitySet Name="postcontent" EntityType="Self.postcontent" Schema="mytravelblog" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="mytravelblog" store:Type="Tables" />
+          <AssociationSet Name="FK_BloggerId" Association="Self.FK_BloggerId">
+            <End Role="blogger" EntitySet="blogger" />
             <End Role="bloginfo" EntitySet="bloginfo" />
-            <End Role="blogcontent" EntitySet="blogcontent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogId" Association="Self.FK_BlogId">
+            <End Role="bloginfo" EntitySet="bloginfo" />
+            <End Role="postcontent" EntitySet="postcontent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category" Association="Self.FK_Category">
+            <End Role="category" EntitySet="category" />
+            <End Role="bloginfo" EntitySet="bloginfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleId" Association="Self.FK_RoleId">
+            <End Role="role" EntitySet="role" />
+            <End Role="blogger" EntitySet="blogger" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -82,6 +154,10 @@ FROM `blogcontent` AS `blogcontent`</DefiningQuery>
           <NavigationProperty Name="bloginfoes" Relationship="Self.fk_BloggerId" FromRole="blogger" ToRole="bloginfo" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" />
+          <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="role" Relationship="Models.FK_RoleId" FromRole="blogger" ToRole="role" />
         </EntityType>
         <EntityType Name="bloginfo">
           <Key>
@@ -96,7 +172,10 @@ FROM `blogcontent` AS `blogcontent`</DefiningQuery>
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="BloggerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="blogger" Relationship="Self.fk_BloggerId" FromRole="bloginfo" ToRole="blogger" />
-          <NavigationProperty Name="blogcontents" Relationship="Models.FK_PostId" FromRole="bloginfo" ToRole="blogcontent" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="IsFeatured" Type="Boolean" />
+          <NavigationProperty Name="postcontent" Relationship="Models.FK_BlogId" FromRole="bloginfo" ToRole="postcontent" />
+          <NavigationProperty Name="category" Relationship="Models.FK_Category" FromRole="bloginfo" ToRole="category" />
         </EntityType>
         <Association Name="fk_BloggerId">
           <End Role="blogger" Type="Self.blogger" Multiplicity="1" />
@@ -117,30 +196,90 @@ FROM `blogcontent` AS `blogcontent`</DefiningQuery>
             <End Role="blogger" EntitySet="bloggers" />
             <End Role="bloginfo" EntitySet="bloginfoes" />
           </AssociationSet>
-          <EntitySet Name="blogcontents" EntityType="Models.blogcontent" />
-          <AssociationSet Name="FK_PostId" Association="Models.FK_PostId">
+          <EntitySet Name="categories" EntityType="Models.category" />
+          <EntitySet Name="postcontents" EntityType="Models.postcontent" />
+          <EntitySet Name="roles" EntityType="Models.role" />
+          <AssociationSet Name="FK_RoleId" Association="Models.FK_RoleId">
+            <End Role="role" EntitySet="roles" />
+            <End Role="blogger" EntitySet="bloggers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogId" Association="Models.FK_BlogId">
             <End Role="bloginfo" EntitySet="bloginfoes" />
-            <End Role="blogcontent" EntitySet="blogcontents" />
+            <End Role="postcontent" EntitySet="postcontents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category" Association="Models.FK_Category">
+            <End Role="category" EntitySet="categories" />
+            <End Role="bloginfo" EntitySet="bloginfoes" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="blogcontent">
+        <EntityType Name="category">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Content" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="bloginfo" Relationship="Models.FK_PostId" FromRole="blogcontent" ToRole="bloginfo" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="bloginfoes" Relationship="Models.FK_Category" FromRole="category" ToRole="bloginfo" />
         </EntityType>
-        <Association Name="FK_PostId">
+        <EntityType Name="postcontent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Image_Title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Introduction" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Quote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description_Start" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Image_BefPoints" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Points" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Description_End" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Image_End" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Closing_Statements" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Image_Direction" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Direction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bloginfo" Relationship="Models.FK_BlogId" FromRole="postcontent" ToRole="bloginfo" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Role1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bloggers" Relationship="Models.FK_RoleId" FromRole="role" ToRole="blogger" />
+        </EntityType>
+        <Association Name="FK_RoleId">
+          <End Type="Models.role" Role="role" Multiplicity="1" />
+          <End Type="Models.blogger" Role="blogger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="blogger">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogId">
           <End Type="Models.bloginfo" Role="bloginfo" Multiplicity="1" />
-          <End Type="Models.blogcontent" Role="blogcontent" Multiplicity="*" />
+          <End Type="Models.postcontent" Role="postcontent" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="bloginfo">
               <PropertyRef Name="BlogId" />
             </Principal>
-            <Dependent Role="blogcontent">
+            <Dependent Role="postcontent">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category">
+          <End Type="Models.category" Role="category" Multiplicity="0..1" />
+          <End Type="Models.bloginfo" Role="bloginfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bloginfo">
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -153,6 +292,9 @@ FROM `blogcontent` AS `blogcontent`</DefiningQuery>
           <EntitySetMapping Name="bloggers">
             <EntityTypeMapping TypeName="Models.blogger">
               <MappingFragment StoreEntitySet="blogger">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="BloggerId" ColumnName="BloggerId" />
@@ -166,6 +308,8 @@ FROM `blogcontent` AS `blogcontent`</DefiningQuery>
           <EntitySetMapping Name="bloginfoes">
             <EntityTypeMapping TypeName="Models.bloginfo">
               <MappingFragment StoreEntitySet="bloginfo">
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="BlogId" ColumnName="BlogId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="PostDate" ColumnName="PostDate" />
@@ -177,10 +321,37 @@ FROM `blogcontent` AS `blogcontent`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="blogcontents">
-            <EntityTypeMapping TypeName="Models.blogcontent">
-              <MappingFragment StoreEntitySet="blogcontent">
-                <ScalarProperty Name="Content" ColumnName="Content" />
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="Models.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="postcontents">
+            <EntityTypeMapping TypeName="Models.postcontent">
+              <MappingFragment StoreEntitySet="postcontent">
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="Image_Direction" ColumnName="Image_Direction" />
+                <ScalarProperty Name="Closing_Statements" ColumnName="Closing_Statements" />
+                <ScalarProperty Name="Image_End" ColumnName="Image_End" />
+                <ScalarProperty Name="Description_End" ColumnName="Description_End" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Image_BefPoints" ColumnName="Image_BefPoints" />
+                <ScalarProperty Name="Description_Start" ColumnName="Description_Start" />
+                <ScalarProperty Name="Quote" ColumnName="Quote" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="Image_Title" ColumnName="Image_Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="Models.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="Role1" ColumnName="Role" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

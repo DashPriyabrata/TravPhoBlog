@@ -8,8 +8,12 @@
         <EntityTypeShape EntityType="Models.blogger" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Models.bloginfo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="Models.fk_BloggerId" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Models.blogcontent" Width="1.5" PointX="5.25" PointY="1.625" />
-        <AssociationConnector Association="Models.FK_PostId" />
+        <EntityTypeShape EntityType="Models.category" Width="1.5" PointX="3.125" PointY="5.875" />
+        <EntityTypeShape EntityType="Models.postcontent" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="Models.role" Width="1.5" PointX="0.75" PointY="6" />
+        <AssociationConnector Association="Models.FK_RoleId" />
+        <AssociationConnector Association="Models.FK_BlogId" />
+        <AssociationConnector Association="Models.FK_Category" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

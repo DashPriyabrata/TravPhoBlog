@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         [ResponseType(typeof(string))]
         public async Task<IHttpActionResult> GetBlogContent()
         {
-            return Ok(await blogInfoRepo.GetBlogContent(3));
+            return Ok(await blogInfoRepo.GetContent(3));
         }
     }
 }
