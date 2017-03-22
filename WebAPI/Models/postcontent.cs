@@ -14,19 +14,27 @@ namespace WebAPI.Models
     
     public partial class postcontent
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public postcontent()
+        {
+            this.bloginfoes = new HashSet<bloginfo>();
+        }
+    
         public int Id { get; set; }
         public string Image_Title { get; set; }
         public string Introduction { get; set; }
         public string Quote { get; set; }
         public string Description_Start { get; set; }
-        public string Image_BefPoints { get; set; }
-        public string Points { get; set; }
+        public string Image_BeforeHighlights { get; set; }
+        public string Highlights { get; set; }
+        public string Image_AfterHighlights { get; set; }
         public string Description_End { get; set; }
         public string Image_End { get; set; }
         public string Closing_Statements { get; set; }
         public string Image_Direction { get; set; }
         public string Direction { get; set; }
     
-        public virtual bloginfo bloginfo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<bloginfo> bloginfoes { get; set; }
     }
 }

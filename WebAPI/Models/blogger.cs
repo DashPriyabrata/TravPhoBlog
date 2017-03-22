@@ -21,18 +21,18 @@ namespace WebAPI.Models
         }
     
         public int BloggerId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string AboutMe { get; set; }
         public string Slogan { get; set; }
         public string Photo { get; set; }
         public bool IsActive { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         public int RoleId { get; set; }
         public Nullable<System.DateTime> JoinDate { get; set; }
         public string Email { get; set; }
     
+        public virtual role role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bloginfo> bloginfoes { get; set; }
-        public virtual role role { get; set; }
     }
 }

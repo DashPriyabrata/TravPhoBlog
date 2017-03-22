@@ -23,10 +23,17 @@ namespace WebAPI.Controllers
             blogInfoRepo = new BlogInfoRepository(new MyTravelBlogEntities());
         }
 
-        [ResponseType(typeof(string))]
+        [ResponseType(typeof(bloginfo))]
+        [Route("api/BlogInfo/{blogId}")]
+        public async Task<IHttpActionResult> GetBlogInfo(int blogId)
+        {
+            return Ok(await blogInfoRepo.GetBlogInfo(blogId));
+        }
+
+        [ResponseType(typeof(postcontent))]
         public async Task<IHttpActionResult> GetBlogContent()
         {
-            return Ok(await blogInfoRepo.GetContent(3));
+            return Ok(await blogInfoRepo.GetContent(1));
         }
     }
 }
