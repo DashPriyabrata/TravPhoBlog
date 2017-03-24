@@ -3,16 +3,16 @@
     ViewBag.Title = "Post Home";
 }
 
-<section class="blog-content">
+<section class="blog-content" ng-app="app">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="content-area">
+                <div class="content-area" ng-controller="BlogInfoController">
 
                     <article class="single-post">
-
+                        {{blogData.postcontent.Image_Title}}
                         <div class="post-media post-image">
-                            <a href="#"><img src="~/Images/Post/post1.jpg" alt="img"></a>
+                            <a href="#"><img ng-src="~/Images/Post/{{blogData.postcontent.Image_Title}}" alt="img"></a>
                         </div>
 
                         <div class="post-inwrap header-single">
@@ -70,19 +70,19 @@
                             <p class="image-desc">Photo taken at</p>
                             <br />
                             <p>Aliquam hendrerit facilisis sapien et lacinia. Fusce vitae quam tempor, ultrices justo vel, elementum nisl. Aliquam eget ornare ipsum. Duis mollis odio aliquam, laoreet nunc vitae, iaculis lorem. Ut turpis tellus, convallis ac quam quis, fringilla placerat leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer condimentum tortor dolor. Nullam imperdiet egestas orci nec blandit. In volutpat tortor vel dui blandit pellentesque. Donec accumsan lacus feugiat nunc faucibus, ac tincidunt nisi convallis. Proin at eleif end massa. Nunc vel tincidunt erat. Nulla molestie consequat lobortis.</p>
-                            <br/>
+                            <br />
                             <div class="post-media body-image">
                                 <a href="#"><img src="~/Images/Post/post1.jpg" alt="img"></a>
                             </div>
                             <p class="image-desc">Photo taken at</p>
                             <br />
                             <p>Closing Points</p>
-                            <br/>
+                            <br />
                             <div class="post-media body-image">
                                 <a href="#"><img src="~/Images/Post/post1.jpg" alt="img"></a>
                             </div>
                             <p class="image-desc">Photo taken at</p>
-                            <br/>
+                            <br />
                             <p>Transportation/Accomodation/Food/Sight seeing</p>
                         </div>
 
@@ -296,4 +296,3 @@
         </div><!--/ Blog row end -->
     </div><!--/ Blog container end -->
 </section><!--/ Blog end -->
-

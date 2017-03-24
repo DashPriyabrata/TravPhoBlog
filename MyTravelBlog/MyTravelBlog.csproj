@@ -231,6 +231,7 @@
     <Content Include="Images\Post\post6.jpg" />
     <Content Include="Images\Post\post7.jpg" />
     <Content Include="Images\Post\post8.jpg" />
+    <Content Include="Images\Post\Vientiane\Title.jpg" />
     <Content Include="Images\Signature.jpg" />
     <Content Include="Images\Slider\bg1.jpg" />
     <Content Include="Images\Slider\bg2.jpg" />
@@ -246,7 +247,9 @@
     <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\BloggerController.js" />
+    <Content Include="Scripts\app\controllers\BlogInfoController.js" />
     <Content Include="Scripts\app\services\BloggerService.js" />
+    <Content Include="Scripts\app\services\BlogInfoService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -302,7 +305,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Post\Vientiane\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
