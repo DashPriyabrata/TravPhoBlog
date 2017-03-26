@@ -13,7 +13,7 @@ using WebAPI.Repositories.Interfaces;
 
 namespace WebAPI.Controllers
 {
-    [EnableCors(origins: "http://localhost", headers: "*", methods: "*")]
+    
     public class BlogInfoController : ApiController
     {
         IBlogInfoRepository blogInfoRepo;
@@ -31,9 +31,10 @@ namespace WebAPI.Controllers
         }
 
         [ResponseType(typeof(postcontent))]
-        public async Task<IHttpActionResult> GetBlogContent()
+        [Route("api/BlogInfo/PostContent")]
+        public async Task<IHttpActionResult> GetPostContent()
         {
-            return Ok(await blogInfoRepo.GetContent(1));
+            return Ok(await blogInfoRepo.GetContent(2));
         }
     }
 }

@@ -3,6 +3,9 @@
     ViewBag.Title = "Post Home";
 }
 
+<script src="~/Scripts/app/controllers/BlogInfoController.js"></script>
+<script src="~/Scripts/app/services/BlogInfoService.js"></script>
+
 <section class="blog-content" ng-app="app">
     <div class="container">
         <div class="row">
@@ -10,9 +13,10 @@
                 <div class="content-area" ng-controller="BlogInfoController">
 
                     <article class="single-post">
-                        {{blogData.postcontent.Image_Title}}
+                        {{postContent.Image_Title}}
+                        {{blogData.BlogId}}
                         <div class="post-media post-image">
-                            <a href="#"><img ng-src="~/Images/Post/{{blogData.postcontent.Image_Title}}" alt="img"></a>
+                            <a href="#"><img ng-src="~/Images/Post/{{postContent.Image_Title}}" alt="img"></a>
                         </div>
 
                         <div class="post-inwrap header-single">

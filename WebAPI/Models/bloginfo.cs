@@ -21,15 +21,13 @@ namespace WebAPI.Models
         public string Country { get; set; }
         public string Tags { get; set; }
         public bool IsActive { get; set; }
-        public int? BloggerId { get; set; }
+        public int BloggerId { get; set; }
         public int? CategoryId { get; set; }
         public bool? IsFeatured { get; set; }
         public bool? IsCommentsEnabled { get; set; }
         public int? Views { get; set; }
         public int? ContentId { get; set; }
-    
+
         public virtual blogger blogger { get; set; }
-        public virtual category category { get; set; }
-        public virtual postcontent postcontent { get; set; }
     }
 }

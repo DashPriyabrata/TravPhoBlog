@@ -4,6 +4,8 @@
 
 <script src="~/Scripts/app/controllers/BloggerController.js"></script>
 <script src="~/Scripts/app/services/BloggerService.js"></script>
+<script src="~/Scripts/app/controllers/BlogInfoController.js"></script>
+<script src="~/Scripts/app/services/BlogInfoService.js"></script>
 
 <div ng-app="app" ng-controller="BloggerController">
     <ul>
@@ -13,7 +15,6 @@
 
 <div ng-app="app" ng-controller="BlogInfoController">
     <ul>
-        <li>{{blogData.postcontent.Image_Title}}</li>
-        <li>{{blogData.BlogId}}</li>
+        <li><strong>{{blogData.BlogId}}</strong></li>
     </ul>
 </div>

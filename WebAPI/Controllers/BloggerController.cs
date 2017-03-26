@@ -13,7 +13,6 @@ using WebAPI.Repositories.Interfaces;
 
 namespace WebAPI.Controllers
 {
-    [EnableCors(origins: "http://localhost", headers: "*", methods: "*")]
     public class BloggerController : ApiController
     {
         IBloggerRepository bloggerRepo;
