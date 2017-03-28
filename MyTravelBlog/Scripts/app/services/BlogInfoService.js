@@ -4,10 +4,20 @@ app.factory('blogInfoService', [
             'use strict';
             return {
                 apiRoot: apiRoot,
-                getBlogInfo: function () {
+                getBlogInfo: function (blogId) {
                     var def = $q.defer();
 
-                    $http.get(apiRoot)
+                    $http.get(apiRoot + blogId)
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
+                },
+                getPostContent: function (contentId) {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "PostContent/" + contentId)
                         .then(function (response) {
                             def.resolve(response.data);
                         }, def.reject);

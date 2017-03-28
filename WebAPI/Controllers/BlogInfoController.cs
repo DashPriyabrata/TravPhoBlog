@@ -31,10 +31,10 @@ namespace WebAPI.Controllers
         }
 
         [ResponseType(typeof(postcontent))]
-        [Route("api/BlogInfo/PostContent")]
-        public async Task<IHttpActionResult> GetPostContent()
+        [Route("api/BlogInfo/PostContent/{contentId}")]
+        public async Task<IHttpActionResult> GetPostContent(int contentId)
         {
-            return Ok(await blogInfoRepo.GetContent(2));
+            return Ok(await blogInfoRepo.GetContent(contentId));
         }
     }
 }
