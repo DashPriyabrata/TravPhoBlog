@@ -7,10 +7,9 @@ function BlogInfoController(blogInfoService, $scope) {
 
     blogInfoService.getBlogInfo(1).then(function (data) {
         $scope.blogData = data;
-    });
 
-    blogInfoService.getPostContent(1).then(function (data) {
-        $scope.postContent = data;
+        blogInfoService.getPostContent($scope.blogData.ContentId).then(function (data) {
+            $scope.postContent = data;
+        });
     });
-    
 }
