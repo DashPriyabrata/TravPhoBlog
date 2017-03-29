@@ -248,8 +248,10 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\BloggerController.js" />
     <Content Include="Scripts\app\controllers\BlogInfoController.js" />
+    <Content Include="Scripts\app\controllers\CategoryController.js" />
     <Content Include="Scripts\app\services\BloggerService.js" />
     <Content Include="Scripts\app\services\BlogInfoService.js" />
+    <Content Include="Scripts\app\services\CategoryService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
