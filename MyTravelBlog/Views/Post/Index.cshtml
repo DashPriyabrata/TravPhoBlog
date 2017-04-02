@@ -6,6 +6,7 @@
 <script src="~/Scripts/app/controllers/BlogInfoController.js"></script>
 <script src="~/Scripts/app/services/BlogInfoService.js"></script>
 <script src="~/Scripts/app/services/CategoryService.js"></script>
+<base target="_blank">
 
 <section class="blog-content" ng-app="app">
     <div class="container">
@@ -52,50 +53,44 @@
 
 
                         <div class="entry-content">
-                            <p><span class="dropcap">{{postContent.Introduction.substring(0,1)}}</span>{{postContent.Introduction.substring(1)}}</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit e et dolore magnam aliquam quaerat voluptatem.</p>
+                            <p><span class="dropcap">{{postContent.Intro_Highlight.substring(0,1)}}</span>{{postContent.Intro_Highlight.substring(1)}}</p>
+                            <p>{{postContent.Introduction}}</p>
                             <blockquote>
-                                <p>Duis in mi auctor, varius sapien scelerisque, pellentesque nisi. Maecenas ut consequat dui, quis luctus erat. Curabitur ut dignissim massa. Proin egestas dui sit amet ipsum dapibus, et ultrices nungue ornare magnasque.</p>
+                                <p>{{postContent.Quote}}</p>
                             </blockquote>
-                            <p>Suspendisse finibus ultricies augue, non sodales enim sagittis ut. Sed non lacus diam. Nam ante ante, luctus ac augue ac, tincidunt accumsan lorem. Donec nec libero vitae ex pulvinar finibus. Nulla sit amet nisl aliquet, sodales urna in, ullamcorper orci. Phasellus fringilla neque nec massa accumsan, vitae condimentum enim gravi da. Sed a libero et purus aliquam rutrum id quis lectus. Praesent tempor sagittis blandit. Aliquam quis placerat velit, nec volutpat nisi. Duis facilisis sem sed turpis sodales, ac rhoncus justo tristique.</p>
+                            <p>{{postContent.Description_Start}}</p>
                             <div class="post-media body-image">
-                                <a href="#"><img src="~/Images/Post/post1.jpg" alt="img"></a>
+                                <a href="#"><img ng-src="~/Images/Post/{{postContent.Image_BeforeHighlights}}" alt="img"></a>
                             </div>
                             <p class="image-desc">Photo taken at</p>
                             <ul>
-                                <li>Araft beer elit exercitation</li>
-                                <li>Exercitation photo booth stumptown</li>
-                                <li>Photo booth anim 8-bit hella</li>
-                                <li>Trinking vinegar jean shorts</li>
-                                <li>Tonx cray commodo exercitation</li>
+                                <li ng-repeat="x in postContent.Highlights.split('.')">{{x}}</li>
                             </ul>
                             <div class="post-media body-image">
-                                <a href="#"><img src="~/Images/Post/post1.jpg" alt="img"></a>
+                                <a href="#"><img ng-src="~/Images/Post/{{postContent.Image_AfterHighlights}}" alt="img"></a>
                             </div>
                             <p class="image-desc">Photo taken at</p>
                             <br />
-                            <p>Aliquam hendrerit facilisis sapien et lacinia. Fusce vitae quam tempor, ultrices justo vel, elementum nisl. Aliquam eget ornare ipsum. Duis mollis odio aliquam, laoreet nunc vitae, iaculis lorem. Ut turpis tellus, convallis ac quam quis, fringilla placerat leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer condimentum tortor dolor. Nullam imperdiet egestas orci nec blandit. In volutpat tortor vel dui blandit pellentesque. Donec accumsan lacus feugiat nunc faucibus, ac tincidunt nisi convallis. Proin at eleif end massa. Nunc vel tincidunt erat. Nulla molestie consequat lobortis.</p>
+                            <p>{{postContent.Description_End}}</p>
                             <br />
                             <div class="post-media body-image">
-                                <a href="#"><img src="~/Images/Post/post1.jpg" alt="img"></a>
+                                <a href="#"><img ng-src="~/Images/Post/{{postContent.Image_End}}" alt="img"></a>
                             </div>
                             <p class="image-desc">Photo taken at</p>
                             <br />
-                            <p>Closing Points</p>
+                            <p>{{postContent.Closing_Statements}}</p>
                             <br />
                             <div class="post-media body-image">
-                                <a href="#"><img src="~/Images/Post/post1.jpg" alt="img"></a>
+                                <a href="#"><img ng-src="~/Images/Post/{{postContent.Image_Direction}}" alt="img"></a>
                             </div>
                             <p class="image-desc">Photo taken at</p>
                             <br />
-                            <p>Transportation/Accomodation/Food/Sight seeing</p>
+                            <p>{{postContent.Direction}}</p>
                         </div>
 
                         <div class="post-bottom clearfix">
                             <div class="post-tags pull-left">
-                                <a href="#">Beauty</a>
-                                <a href="#">Fashion</a>
-                                <a href="#">Living</a>
+                                <a href="#" ng-repeat="x in blogData.Tags.split('.')">{{x}}</a>
                             </div>
                             <div class="share-items pull-right">
                                 <ul class="social-icons unstyled">
@@ -129,18 +124,19 @@
 
                     <div class="author-box">
                         <div class="author-img pull-left">
-                            <img src="~/Images/About.jpeg" alt="">
+                            <img ng-src="~/Images/Blogger/{{blogData.blogger.Photo}}" alt="{{blogData.blogger.Photo.split('.')[0]}}">
                         </div>
                         <div class="author-info">
-                            <h3>Priyabrata Dash</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vestibulum eget justo sit amet varius.</p>
+                            <h3>{{blogData.blogger.FirstName}} {{blogData.blogger.LastName}}</h3>
+                            <p>{{blogData.blogger.AboutMe}}</p>
                             <div class="authors-social">
                                 <span>Follow Me: </span>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                @*<a href="#"><i class="fa fa-behance"></i></a>*@
+                                <a href="{{blogData.blogger.Twitter}}"><i class="fa fa-twitter"></i></a>
+                                <a href="{{blogData.blogger.Facebook}}"><i class="fa fa-facebook"></i></a>
+                                <a href="{{blogData.blogger.Instagram}}"><i class="fa fa-instagram"></i></a>
+                                <a href="{{blogData.blogger.GooglePlus}}"><i class="fa fa-google-plus"></i></a>
+                                <a href="{{blogData.blogger.Pinterest}}"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                         </div>
                     </div> <!-- Author box end -->

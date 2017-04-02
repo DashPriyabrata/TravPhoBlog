@@ -19,6 +19,12 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="JoinDate" Type="datetime" Precision="0" />
           <Property Name="Email" Type="varchar" MaxLength="45" />
+          <Property Name="Facebook" Type="varchar" MaxLength="50" />
+          <Property Name="Twitter" Type="varchar" MaxLength="50" />
+          <Property Name="Instagram" Type="varchar" MaxLength="50" />
+          <Property Name="GooglePlus" Type="varchar" MaxLength="50" />
+          <Property Name="Pinterest" Type="varchar" MaxLength="50" />
+          <Property Name="Behance" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="bloginfo">
           <Key>
@@ -52,7 +58,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image_Title" Type="varchar" MaxLength="45" />
-          <Property Name="Introduction" Type="varchar" MaxLength="3000" />
+          <Property Name="Intro_Highlight" Type="varchar" MaxLength="1000" />
+          <Property Name="Introduction" Type="varchar" MaxLength="2000" />
           <Property Name="Quote" Type="varchar" MaxLength="500" />
           <Property Name="Description_Start" Type="varchar" MaxLength="3000" />
           <Property Name="Image_BeforeHighlights" Type="varchar" MaxLength="45" />
@@ -62,7 +69,7 @@
           <Property Name="Image_End" Type="varchar" MaxLength="45" />
           <Property Name="Closing_Statements" Type="varchar" MaxLength="2000" />
           <Property Name="Image_Direction" Type="varchar" MaxLength="45" />
-          <Property Name="Direction" Type="varchar" MaxLength="2000" />
+          <Property Name="Direction" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -117,16 +124,16 @@
         <EntityContainer Name="MyTravelBlogEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="categories" EntityType="Models.category" />
           <EntitySet Name="roles" EntityType="Models.role" />
-          <EntitySet Name="bloggers" EntityType="Models.blogger" />
-          <AssociationSet Name="FK_RoleId" Association="Models.FK_RoleId">
-            <End Role="role" EntitySet="roles" />
-            <End Role="blogger" EntitySet="bloggers" />
-          </AssociationSet>
-          <EntitySet Name="postcontents" EntityType="Models.postcontent" />
           <EntitySet Name="bloginfoes" EntityType="Models.bloginfo" />
+          <EntitySet Name="postcontents" EntityType="Models.postcontent" />
+          <EntitySet Name="bloggers" EntityType="Models.blogger" />
           <AssociationSet Name="FK_BloggerId" Association="Models.FK_BloggerId">
             <End Role="blogger" EntitySet="bloggers" />
             <End Role="bloginfo" EntitySet="bloginfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleId" Association="Models.FK_RoleId">
+            <End Role="role" EntitySet="roles" />
+            <End Role="blogger" EntitySet="bloggers" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="category">
@@ -144,53 +151,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="bloggers" Relationship="Models.FK_RoleId" FromRole="role" ToRole="blogger" />
-        </EntityType>
-        <EntityType Name="blogger">
-          <Key>
-            <PropertyRef Name="BloggerId" />
-          </Key>
-          <Property Name="BloggerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="AboutMe" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="Slogan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <Property Name="JoinDate" Type="DateTime" />
-          <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="role" Relationship="Models.FK_RoleId" FromRole="blogger" ToRole="role" />
-          <NavigationProperty Name="bloginfoes" Relationship="Models.FK_BloggerId" FromRole="blogger" ToRole="bloginfo" />
-        </EntityType>
-        <Association Name="FK_RoleId">
-          <End Type="Models.role" Role="role" Multiplicity="1" />
-          <End Type="Models.blogger" Role="blogger" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="blogger">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="postcontent">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Image_Title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Introduction" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="Quote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Description_Start" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="Image_BeforeHighlights" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Highlights" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Image_AfterHighlights" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Description_End" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="Image_End" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Closing_Statements" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Image_Direction" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Direction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="bloginfo">
           <Key>
@@ -211,6 +171,48 @@
           <Property Name="ContentId" Type="Int32" />
           <NavigationProperty Name="blogger" Relationship="Models.FK_BloggerId" FromRole="bloginfo" ToRole="blogger" />
         </EntityType>
+        <EntityType Name="postcontent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image_Title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Intro_Highlight" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Introduction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Quote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description_Start" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Image_BeforeHighlights" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Highlights" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Image_AfterHighlights" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Description_End" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Image_End" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Closing_Statements" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Image_Direction" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="blogger">
+          <Key>
+            <PropertyRef Name="BloggerId" />
+          </Key>
+          <Property Name="BloggerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="AboutMe" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Slogan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" />
+          <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Instagram" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GooglePlus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pinterest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Behance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bloginfoes" Relationship="Models.FK_BloggerId" FromRole="blogger" ToRole="bloginfo" />
+          <NavigationProperty Name="role" Relationship="Models.FK_RoleId" FromRole="blogger" ToRole="role" />
+        </EntityType>
         <Association Name="FK_BloggerId">
           <End Type="Models.blogger" Role="blogger" Multiplicity="1" />
           <End Type="Models.bloginfo" Role="bloginfo" Multiplicity="*" />
@@ -220,6 +222,18 @@
             </Principal>
             <Dependent Role="bloginfo">
               <PropertyRef Name="BloggerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleId">
+          <End Type="Models.role" Role="role" Multiplicity="1" />
+          <End Type="Models.blogger" Role="blogger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="blogger">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -246,19 +260,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="bloggers">
-            <EntityTypeMapping TypeName="Models.blogger">
-              <MappingFragment StoreEntitySet="blogger">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="Slogan" ColumnName="Slogan" />
-                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <EntitySetMapping Name="bloginfoes">
+            <EntityTypeMapping TypeName="Models.bloginfo">
+              <MappingFragment StoreEntitySet="bloginfo">
+                <ScalarProperty Name="ContentId" ColumnName="ContentId" />
+                <ScalarProperty Name="Views" ColumnName="Views" />
+                <ScalarProperty Name="IsCommentsEnabled" ColumnName="IsCommentsEnabled" />
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="BloggerId" ColumnName="BloggerId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -276,27 +293,31 @@
                 <ScalarProperty Name="Description_Start" ColumnName="Description_Start" />
                 <ScalarProperty Name="Quote" ColumnName="Quote" />
                 <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="Intro_Highlight" ColumnName="Intro_Highlight" />
                 <ScalarProperty Name="Image_Title" ColumnName="Image_Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="bloginfoes">
-            <EntityTypeMapping TypeName="Models.bloginfo">
-              <MappingFragment StoreEntitySet="bloginfo">
-                <ScalarProperty Name="ContentId" ColumnName="ContentId" />
-                <ScalarProperty Name="Views" ColumnName="Views" />
-                <ScalarProperty Name="IsCommentsEnabled" ColumnName="IsCommentsEnabled" />
-                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="BloggerId" ColumnName="BloggerId" />
+          <EntitySetMapping Name="bloggers">
+            <EntityTypeMapping TypeName="Models.blogger">
+              <MappingFragment StoreEntitySet="blogger">
+                <ScalarProperty Name="Behance" ColumnName="Behance" />
+                <ScalarProperty Name="Pinterest" ColumnName="Pinterest" />
+                <ScalarProperty Name="GooglePlus" ColumnName="GooglePlus" />
+                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Tags" ColumnName="Tags" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BloggerId" ColumnName="BloggerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

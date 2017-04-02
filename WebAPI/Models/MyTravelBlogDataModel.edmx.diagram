@@ -6,12 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="bd976f7c23fe44c197f64a4e8fb51328" Name="Diagram1">
         <EntityTypeShape EntityType="Models.category" Width="1.5" PointX="3.125" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.role" Width="1.5" PointX="0.75" PointY="6" />
-        <EntityTypeShape EntityType="Models.blogger" Width="1.5" PointX="0.75" PointY="1.125" />
-        <AssociationConnector Association="Models.FK_RoleId" />
-        <EntityTypeShape EntityType="Models.postcontent" Width="1.875" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="Models.role" Width="1.5" PointX="0.875" PointY="5.75" />
         <EntityTypeShape EntityType="Models.bloginfo" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="Models.postcontent" Width="1.875" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Models.blogger" Width="1.5" PointX="0.75" PointY="0.5" />
         <AssociationConnector Association="Models.FK_BloggerId" />
+        <AssociationConnector Association="Models.FK_RoleId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
