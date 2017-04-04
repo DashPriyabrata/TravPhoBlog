@@ -5,6 +5,7 @@ function BlogInfoController(blogInfoService, categoryService, $scope) {
     $scope.blogData = [];
     $scope.postContent = [];
     $scope.categoryData = [];
+    $scope.comments = [];
     
     blogInfoService.getBlogInfo(3).then(function (data) {
         $scope.blogData = data;
@@ -15,6 +16,10 @@ function BlogInfoController(blogInfoService, categoryService, $scope) {
 
         categoryService.getCategory($scope.blogData.CategoryId).then(function (data) {
             $scope.categoryData = data;
+        });
+
+        blogInfoService.getComments(1).then(function (data) {
+            $scope.comments = data;
         });
     });
 }

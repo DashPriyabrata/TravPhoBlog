@@ -26,7 +26,7 @@
           <Property Name="Name" Type="varchar" MaxLength="45" />
           <Property Name="Email" Type="varchar" MaxLength="45" />
           <Property Name="Website" Type="varchar" MaxLength="45" />
-          <Property Name="Avtar" Type="varchar" MaxLength="45" />
+          <Property Name="Avatar" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="blogger">
           <Key>
@@ -287,8 +287,8 @@
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Avtar" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="blog_comment" Relationship="Models.FK_UserId" FromRole="blog_user" ToRole="blog_comment" />
+          <Property Name="Avatar" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_UserId">
           <End Type="Models.blog_user" Role="blog_user" Multiplicity="1" />
@@ -402,7 +402,7 @@
           <EntitySetMapping Name="blog_user">
             <EntityTypeMapping TypeName="Models.blog_user">
               <MappingFragment StoreEntitySet="blog_user">
-                <ScalarProperty Name="Avtar" ColumnName="Avtar" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

@@ -24,7 +24,7 @@ namespace WebAPI.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
-        public string Avtar { get; set; }
+        public string Avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<blog_comment> blog_comment { get; set; }

@@ -23,6 +23,16 @@ app.factory('blogInfoService', [
                         }, def.reject);
 
                     return def.promise;
+                },
+                getComments: function (blogId) {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "Comments/" + blogId)
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
                 }
             };
         }

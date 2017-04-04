@@ -16,7 +16,6 @@
 
                     <article class="single-post">
                         {{postContent.Image_Title}}
-                        {{blogData.BlogId}}
                         <div class="post-media post-image">
                             <a href="#"><img ng-src="~/Images/Post/{{postContent.Image_Title}}" alt="img"></a>
                         </div>
@@ -199,27 +198,27 @@
                     <div id="comments" class="comments-area">
                         <h3 class="comments-heading title-normal">12 Comments</h3>
                         <ul class="comments-list">
-                            <li>
-                                <div class="comment">
+                            <li ng-repeat="x in comments | filter: { ParentId: 0 }">
+                                <div class="comment" >
                                     <img class="comment-avatar pull-left" alt="" src="~/Images/Post/avator1.png">
                                     <div class="comment-body">
                                         <div class="comment-author">
-                                            <span class="title-font">Lara Croft</span>
-                                            <span class="comment-date">March 29, 2016</span>
+                                            <span class="title-font">{{x.blog_user.Name}}</span>
+                                            <span class="comment-date">{{x.Date | date :  "MMMM d, yyyy"}}</span>
                                         </div>
-                                        <p>Kocididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exe rcitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                                        <p>{{x.Comment}}</p>
                                         <div class="text-left">
                                             <a class="comment-reply" href="#">Reply</a>
                                         </div>
                                     </div>
                                 </div>
-                                <ul class="comments-reply">
-                                    <li>
+                                <ul class="comments-reply" >
+                                    <li ng-repeat="c in comments" ng-if="c.ParentId==x.Id">
                                         <div class="comment">
                                             <img class="comment-avatar pull-left" alt="" src="~/Images/Post/avator2.png">
                                             <div class="comment-body">
                                                 <div class="comment-author">
-                                                    <span class="title-font">Tim Jack</span>
+                                                    <span class="title-font">{{c.blog_user.Name}}</span>
                                                     <span class="comment-date">March 29, 2016</span>
                                                 </div>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In magna ligula, faucibus sed ligula ut, venenatis mattis diam.</p>
@@ -229,7 +228,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
+                                    @*<li>
                                         <div class="comment">
                                             <img class="comment-avatar pull-left" alt="" src="~/Images/Post/avator3.png">
                                             <div class="comment-body">
@@ -243,9 +242,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li>*@
                                 </ul><!-- comments-reply end -->
-                                <div class="comment last">
+                                @*<div class="comment last">
                                     <img class="comment-avatar pull-left" alt="" src="~/Images/Post/author.jpg">
                                     <div class="comment-body">
                                         <div class="comment-author">
@@ -257,7 +256,7 @@
                                             <a class="comment-reply" href="#">Reply</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
                             </li><!-- Comments-list li end -->
                         </ul><!-- Comments-list ul end -->
                     </div><!-- Post comment end -->
