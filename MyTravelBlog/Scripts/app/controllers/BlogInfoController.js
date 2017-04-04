@@ -6,7 +6,7 @@ function BlogInfoController(blogInfoService, categoryService, $scope) {
     $scope.postContent = [];
     $scope.categoryData = [];
     
-    blogInfoService.getBlogInfo(1).then(function (data) {
+    blogInfoService.getBlogInfo(3).then(function (data) {
         $scope.blogData = data;
 
         blogInfoService.getPostContent($scope.blogData.ContentId).then(function (data) {

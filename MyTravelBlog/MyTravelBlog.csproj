@@ -15,7 +15,7 @@
     <AssemblyName>MyTravelBlog</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -200,7 +200,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\About.jpeg" />
+    <Content Include="Images\Blogger\Priyabrata.jpg" />
     <Content Include="Images\Ad\sidebar-ad1.jpg" />
     <Content Include="Images\Contact.jpg" />
     <Content Include="Images\Instagram\instagram1.jpg" />
@@ -231,6 +231,10 @@
     <Content Include="Images\Post\post6.jpg" />
     <Content Include="Images\Post\post7.jpg" />
     <Content Include="Images\Post\post8.jpg" />
+    <Content Include="Images\Post\Vientiane\AfterHighlights.jpg" />
+    <Content Include="Images\Post\Vientiane\BeforeHighlights.jpg" />
+    <Content Include="Images\Post\Vientiane\Direction.jpg" />
+    <Content Include="Images\Post\Vientiane\End.jpg" />
     <Content Include="Images\Post\Vientiane\Title.jpg" />
     <Content Include="Images\Signature.jpg" />
     <Content Include="Images\Slider\bg1.jpg" />

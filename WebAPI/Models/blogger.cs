@@ -37,8 +37,8 @@ namespace WebAPI.Models
         public string Pinterest { get; set; }
         public string Behance { get; set; }
     
-        public virtual role role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bloginfo> bloginfoes { get; set; }
+        public virtual role role { get; set; }
     }
 }
