@@ -10,5 +10,7 @@ namespace WebAPI.Repositories.Interfaces
         Task<bloginfo> GetBlogInfo(int blogId);
         Task<ICollection<bloginfo>> GetAll();
         Task<postcontent> GetContent(int blogId);
+        Task<List<blog_comment>> GetComments(int blogId);
+        Task<bool> AddComment(blog_comment comment);
     }
 }

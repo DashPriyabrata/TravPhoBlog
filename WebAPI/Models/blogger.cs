@@ -30,6 +30,12 @@ namespace WebAPI.Models
         public int RoleId { get; set; }
         public Nullable<System.DateTime> JoinDate { get; set; }
         public string Email { get; set; }
+        public string Facebook { get; set; }
+        public string Twitter { get; set; }
+        public string Instagram { get; set; }
+        public string GooglePlus { get; set; }
+        public string Pinterest { get; set; }
+        public string Behance { get; set; }
     
         public virtual role role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

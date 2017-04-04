@@ -36,5 +36,12 @@ namespace WebAPI.Controllers
         {
             return Ok(await blogInfoRepo.GetContent(contentId));
         }
+
+        [ResponseType(typeof(List<blog_comment>))]
+        [Route("api/BlogInfo/Comments/{blogId}")]
+        public async Task<IHttpActionResult> GetComments(int blogId)
+        {
+            return Ok(await blogInfoRepo.GetComments(blogId));
+        }
     }
 }

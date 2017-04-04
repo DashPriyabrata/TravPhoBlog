@@ -16,6 +16,7 @@ namespace WebAPI.Models
     {
         public int Id { get; set; }
         public string Image_Title { get; set; }
+        public string Intro_Highlight { get; set; }
         public string Introduction { get; set; }
         public string Quote { get; set; }
         public string Description_Start { get; set; }

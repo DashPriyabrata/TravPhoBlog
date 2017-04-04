@@ -36,6 +36,19 @@ namespace WebAPI.Repositories
             return postContent;
         }
 
+        public async Task<List<blog_comment>> GetComments(int blogId)
+        {
+            var comments = await dbContext.blog_comment.Where(x => x.PostId == blogId).ToListAsync();
+            return comments;
+        }
+
+        public async Task<bool> AddComment(blog_comment comment)
+        {
+            var status = dbContext.blog_comment.Add(comment);
+
+            return status == null ? false : true;
+        }
+
         private bool isDisposed;
 
         protected virtual void Dispose(bool isDisposing)
