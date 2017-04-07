@@ -6,8 +6,10 @@ function BlogInfoController(blogInfoService, categoryService, $scope) {
     $scope.postContent = [];
     $scope.categoryData = [];
     $scope.comments = [];
+    $scope.comment = [];
+    $scope.addCommentStatus = [];
     
-    blogInfoService.getBlogInfo(3).then(function (data) {
+    blogInfoService.getBlogInfo(1).then(function (data) {
         $scope.blogData = data;
 
         blogInfoService.getPostContent($scope.blogData.ContentId).then(function (data) {
@@ -20,6 +22,9 @@ function BlogInfoController(blogInfoService, categoryService, $scope) {
 
         blogInfoService.getComments(1).then(function (data) {
             $scope.comments = data;
+
+        blogInfoService.addComment($scope.comment).then(function (data) {
+            $scope.addCommentStatus = data;
         });
     });
 }

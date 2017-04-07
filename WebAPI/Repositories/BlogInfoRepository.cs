@@ -44,9 +44,9 @@ namespace WebAPI.Repositories
 
         public async Task<bool> AddComment(blog_comment comment)
         {
-            var status = dbContext.blog_comment.Add(comment);
-
-            return status == null ? false : true;
+            dbContext.blog_comment.Add(comment);
+            var success = await dbContext.SaveChangesAsync();
+            return success >0 ? false : true;
         }
 
         private bool isDisposed;

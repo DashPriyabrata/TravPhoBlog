@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebAPI.Models;
 using WebAPI.Repositories;
@@ -42,6 +38,24 @@ namespace WebAPI.Controllers
         public async Task<IHttpActionResult> GetComments(int blogId)
         {
             return Ok(await blogInfoRepo.GetComments(blogId));
+        }
+
+        [HttpPost]
+        [Route("api/BlogInfo/AddComment")]
+        [ResponseType(typeof(bool))]
+        public async Task<IHttpActionResult> GetComments([FromBody] blog_comment comment)
+        {
+            var _comment = new blog_comment
+            {
+                PostId = 1,
+                ParentId = 3,
+                UserId = 3,
+                Comment = "Added from Api",
+                Mark_Read = 0,
+                IsEnabled = 0,
+                Date = DateTime.Now
+            };
+            return Ok(await blogInfoRepo.AddComment(_comment));
         }
     }
 }

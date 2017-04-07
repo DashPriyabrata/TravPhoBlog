@@ -33,6 +33,16 @@ app.factory('blogInfoService', [
                         }, def.reject);
 
                     return def.promise;
+                },
+                addComment: function (commentData) {
+                    var def = $q.defer();
+
+                    $http.post(apiRoot + "AddComment/" + JSON.stringify(commentData))
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
                 }
             };
         }

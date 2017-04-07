@@ -219,55 +219,27 @@
                                             <div class="comment-body">
                                                 <div class="comment-author">
                                                     <span class="title-font">{{c.blog_user.Name}}</span>
-                                                    <span class="comment-date">March 29, 2016</span>
+                                                    <span class="comment-date">{{c.Date | date :  "MMMM d, yyyy"}}</span>
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In magna ligula, faucibus sed ligula ut, venenatis mattis diam.</p>
+                                                <p>{{c.Comment}}</p>
                                                 <div class="text-left">
                                                     <a class="comment-reply" href="#">Reply</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    @*<li>
-                                        <div class="comment">
-                                            <img class="comment-avatar pull-left" alt="" src="~/Images/Post/avator3.png">
-                                            <div class="comment-body">
-                                                <div class="comment-author">
-                                                    <span class="title-font">Tony Care</span>
-                                                    <span class="comment-date">April 29, 2016</span>
-                                                </div>
-                                                <p>Kocididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exe rcitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
-                                                <div class="text-left">
-                                                    <a class="comment-reply" href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>*@
                                 </ul><!-- comments-reply end -->
-                                @*<div class="comment last">
-                                    <img class="comment-avatar pull-left" alt="" src="~/Images/Post/author.jpg">
-                                    <div class="comment-body">
-                                        <div class="comment-author">
-                                            <span class="title-font">Andrew Corns</span>
-                                            <span class="comment-date">April 30, 2016</span>
-                                        </div>
-                                        <p>Kocididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exe rcitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
-                                        <div class="text-left">
-                                            <a class="comment-reply" href="#">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>*@
                             </li><!-- Comments-list li end -->
                         </ul><!-- Comments-list ul end -->
                     </div><!-- Post comment end -->
 
                     <div class="comments-form">
                         <h3 class="title-normal">Leave A Comment</h3>
-                        <form role="form">
+                        <form role="form" ng-submit="addComment()">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control required-field" id="message" placeholder="Your comment here" rows="9" required></textarea>
+                                        <textarea class="form-control required-field" id="message" placeholder="Your comment here" ng-model="comment.Comment" rows="9" required></textarea>
                                     </div>
                                 </div>
 
