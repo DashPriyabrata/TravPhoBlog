@@ -256,6 +256,7 @@
     <Content Include="Scripts\app\services\BloggerService.js" />
     <Content Include="Scripts\app\services\BlogInfoService.js" />
     <Content Include="Scripts\app\services\CategoryService.js" />
+    <Content Include="Scripts\app\services\UserService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -337,7 +338,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>47885</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/MyTravelBlog</IISUrl>
+          <IISUrl>http://localhost:48472/MyTravelBlog</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

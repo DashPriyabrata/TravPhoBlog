@@ -109,6 +109,7 @@
     <Compile Include="Controllers\BloggerController.cs" />
     <Compile Include="Controllers\BlogInfoController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -155,6 +156,8 @@
     <Compile Include="Repositories\Interfaces\IBlogInfoRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBloggerRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

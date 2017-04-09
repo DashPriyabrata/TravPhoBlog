@@ -6,6 +6,7 @@
 <script src="~/Scripts/app/controllers/BlogInfoController.js"></script>
 <script src="~/Scripts/app/services/BlogInfoService.js"></script>
 <script src="~/Scripts/app/services/CategoryService.js"></script>
+<script src="~/Scripts/app/services/UserService.js"></script>
 <base target="_blank">
 
 <section class="blog-content" ng-app="app">
@@ -235,23 +236,23 @@
 
                     <div class="comments-form">
                         <h3 class="title-normal">Leave A Comment</h3>
-                        <form role="form" ng-submit="addComment()">
+                        <form role="form" ng-submit="addUser()">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control required-field" id="message" placeholder="Your comment here" ng-model="comment.Comment" rows="9" required></textarea>
+                                        <textarea class="form-control required-field" id="message" placeholder="Your comment here" ng-model="comment" rows="9" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" name="name" id="name" placeholder="Your Name" type="text" required>
+                                        <input class="form-control" name="name" id="name" placeholder="Your Name" ng-model="user.Name" type="text" required>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" name="email" id="email" placeholder="Your Mail" type="email" required>
+                                        <input class="form-control" name="email" id="email" placeholder="Your Mail" ng-model="user.Email" type="email" required>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Your Website" type="text" required>
+                                        <input class="form-control" placeholder="Your Website" ng-model="user.Website" type="text" required>
                                     </div>
                                 </div>
                             </div>

@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [Route("api/BlogInfo/AddComment")]
         [ResponseType(typeof(bool))]
-        public async Task<IHttpActionResult> GetComments([FromBody] blog_comment comment)
+        public async Task<IHttpActionResult> AddComment([FromBody] blog_comment comment)
         {
             var _comment = new blog_comment
             {

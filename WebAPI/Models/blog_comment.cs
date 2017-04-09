@@ -16,12 +16,12 @@ namespace WebAPI.Models
     {
         public int Id { get; set; }
         public int PostId { get; set; }
-        public Nullable<int> ParentId { get; set; }
+        public int ParentId { get; set; }
         public int UserId { get; set; }
         public string Comment { get; set; }
-        public Nullable<sbyte> Mark_Read { get; set; }
-        public Nullable<sbyte> IsEnabled { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public sbyte? Mark_Read { get; set; }
+        public sbyte? IsEnabled { get; set; }
+        public DateTime? Date { get; set; }
     
         public virtual blog_user blog_user { get; set; }
     }

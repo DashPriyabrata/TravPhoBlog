@@ -1,6 +1,6 @@
-﻿app.controller('BlogInfoController', ['blogInfoService', 'categoryService', '$scope', BlogInfoController]);
+﻿app.controller('BlogInfoController', ['blogInfoService', 'categoryService', 'userService', '$scope', BlogInfoController]);
 
-function BlogInfoController(blogInfoService, categoryService, $scope) {
+function BlogInfoController(blogInfoService, categoryService, userService, $scope) {
     'use strict';
     $scope.blogData = [];
     $scope.postContent = [];
@@ -8,8 +8,10 @@ function BlogInfoController(blogInfoService, categoryService, $scope) {
     $scope.comments = [];
     $scope.comment = [];
     $scope.addCommentStatus = [];
-    
-    blogInfoService.getBlogInfo(1).then(function (data) {
+    $scope.user = [];
+    $scope.parentId = 0;
+
+    blogInfoService.getBlogInfo(3).then(function (data) {
         $scope.blogData = data;
 
         blogInfoService.getPostContent($scope.blogData.ContentId).then(function (data) {
@@ -22,9 +24,21 @@ function BlogInfoController(blogInfoService, categoryService, $scope) {
 
         blogInfoService.getComments(1).then(function (data) {
             $scope.comments = data;
-
-        blogInfoService.addComment($scope.comment).then(function (data) {
-            $scope.addCommentStatus = data;
         });
+    });
+
+    userService.addUser($scope.user).then(function (data){
+        var userData = data;
+        var commentData = new {
+            PostId: $scope.blogData.BlogId,
+            ParentId: $scope.parentId,
+            UserId: userData.Id,
+            Comment: $scope.comment
+        };
+
+        return blogInfoService.addComment(commentData);
+    })
+    .then(function (isSuccess) {
+        $scope.addCommentStatus = isSuccess;
     });
 }
