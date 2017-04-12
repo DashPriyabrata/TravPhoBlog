@@ -8,7 +8,7 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
     $scope.comments = [];
     $scope.comment = [];
     $scope.addCommentStatus = [];
-    $scope.user = [];
+    $scope.user = {};
     $scope.parentId = 0;
 
     blogInfoService.getBlogInfo(3).then(function (data) {
@@ -27,18 +27,19 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
         });
     });
 
-    userService.addUser($scope.user).then(function (data){
-        var userData = data;
-        var commentData = new {
-            PostId: $scope.blogData.BlogId,
-            ParentId: $scope.parentId,
-            UserId: userData.Id,
-            Comment: $scope.comment
-        };
+    $scope.addUser = function () {
+        userService.addUser($scope.user).then(function (data) {
+            var userData = data;
+            var commentData = {
+                PostId: $scope.blogData.BlogId,
+                ParentId: $scope.parentId,
+                UserId: userData.Id,
+                Comment: $scope.comment
+            };
 
-        return blogInfoService.addComment(commentData);
-    })
-    .then(function (isSuccess) {
-        $scope.addCommentStatus = isSuccess;
-    });
+            return blogInfoService.addComment(commentData);
+        }).then(function (isSuccess) {
+            $scope.addCommentStatus = isSuccess;
+        });
+    }
 }

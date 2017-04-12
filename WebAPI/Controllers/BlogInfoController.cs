@@ -45,17 +45,7 @@ namespace WebAPI.Controllers
         [ResponseType(typeof(bool))]
         public async Task<IHttpActionResult> AddComment([FromBody] blog_comment comment)
         {
-            var _comment = new blog_comment
-            {
-                PostId = 1,
-                ParentId = 3,
-                UserId = 3,
-                Comment = "Added from Api",
-                Mark_Read = 0,
-                IsEnabled = 0,
-                Date = DateTime.Now
-            };
-            return Ok(await blogInfoRepo.AddComment(_comment));
+            return Ok(await blogInfoRepo.AddComment(comment));
         }
     }
 }

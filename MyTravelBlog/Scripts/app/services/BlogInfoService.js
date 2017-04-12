@@ -37,7 +37,7 @@ app.factory('blogInfoService', [
                 addComment: function (commentData) {
                     var def = $q.defer();
 
-                    $http.post(apiRoot + "AddComment/" + JSON.stringify(commentData))
+                    $http.post(apiRoot + "AddComment/", commentData)
                         .then(function (response) {
                             def.resolve(response.data);
                         }, def.reject);

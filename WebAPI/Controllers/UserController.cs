@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [Route("api/User/Add")]
         [ResponseType(typeof(blog_user))]
-        public async Task<IHttpActionResult> GetComments([FromBody] blog_user user)
+        public async Task<IHttpActionResult> AddUser([FromBody] blog_user user)
         {
             return Ok(await userRepo.AddUser(user));
         }

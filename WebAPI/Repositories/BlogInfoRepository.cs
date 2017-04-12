@@ -46,7 +46,7 @@ namespace WebAPI.Repositories
         {
             dbContext.blog_comment.Add(comment);
             var success = await dbContext.SaveChangesAsync();
-            return success > 0 ? false : true;
+            return success > 0 ? true : false;
         }
 
         private bool isDisposed;
