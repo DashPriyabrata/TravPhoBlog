@@ -7,6 +7,7 @@
 <script src="~/Scripts/app/services/BlogInfoService.js"></script>
 <script src="~/Scripts/app/services/CategoryService.js"></script>
 <script src="~/Scripts/app/services/UserService.js"></script>
+<script src="~/Scripts/app/components/CommentComponent.js"></script>
 <base target="_blank">
 
 <section class="blog-content" ng-app="app">
@@ -234,7 +235,9 @@
                         </ul><!-- Comments-list ul end -->
                     </div><!-- Post comment end -->
 
-                    <div class="comments-form">
+                    <comment-component></comment-component>
+
+                    @*<div class="comments-form">
                         <h3 class="title-normal">Leave A Comment</h3>
                         <form role="form" ng-submit="addUser()">
                             <div class="row">
@@ -261,7 +264,7 @@
                                 <button class="btn btn-primary" type="submit">Post Comment</button>
                             </div>
                         </form>
-                    </div><!-- Comments form end -->
+                    </div>*@<!-- Comments form end -->
 
                 </div><!--/ Content end -->
             </div><!--/ Content col end -->
