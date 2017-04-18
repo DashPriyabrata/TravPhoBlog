@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="content-area" ng-controller="BlogInfoController">
+                <div class="content-area" ng-controller="BlogInfoController as $blogInfoCtrl">
 
                     <article class="single-post">
                         {{postContent.Image_Title}}
@@ -235,7 +235,7 @@
                         </ul><!-- Comments-list ul end -->
                     </div><!-- Post comment end -->
 
-                    <comment-component></comment-component>
+                    <comment-component input="$blogInfoCtrl.comment" on-submit="$blogInfoCtrl.saveComment(commentsData)"></comment-component>
 
                     @*<div class="comments-form">
                         <h3 class="title-normal">Leave A Comment</h3>

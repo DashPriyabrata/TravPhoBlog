@@ -10,6 +10,12 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
     $scope.addCommentStatus = [];
     $scope.user = {};
     $scope.parentId = 0;
+    var _self = this;
+    _self.comment = "";
+
+    _self.saveComment = function (commentsData) {
+        //save logic here - can me form post or ajax post
+    }
 
     blogInfoService.getBlogInfo(3).then(function (data) {
         $scope.blogData = data;
