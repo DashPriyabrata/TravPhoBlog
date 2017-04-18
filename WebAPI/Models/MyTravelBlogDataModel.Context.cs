@@ -12,6 +12,8 @@ namespace WebAPI.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MyTravelBlogEntities : DbContext
     {
@@ -32,5 +34,23 @@ namespace WebAPI.Models
         public virtual DbSet<blog_comment> blog_comment { get; set; }
         public virtual DbSet<blog_user> blog_user { get; set; }
         public virtual DbSet<postcontent> postcontents { get; set; }
+    
+        public virtual ObjectResult<blog_user> Next_Post(Nullable<int> postId)
+        {
+            var postIdParameter = postId.HasValue ?
+                new ObjectParameter("PostId", postId) :
+                new ObjectParameter("PostId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<blog_user>("Next_Post", postIdParameter);
+        }
+    
+        public virtual ObjectResult<blog_user> Next_Post(Nullable<int> postId, MergeOption mergeOption)
+        {
+            var postIdParameter = postId.HasValue ?
+                new ObjectParameter("PostId", postId) :
+                new ObjectParameter("PostId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<blog_user>("Next_Post", mergeOption, postIdParameter);
+        }
     }
 }
