@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using WebAPI.Models;
 using WebAPI.Repositories.Interfaces;
 
@@ -28,6 +27,18 @@ namespace WebAPI.Repositories
         {
             var blogInfo = await dbContext.bloginfoes.Where(x => x.BlogId == blogId).FirstOrDefaultAsync();
             return blogInfo;
+        }
+
+        public async Task<blog_user> GetPrevPost(int blogId)
+        {
+            //Todo : Change logic to get prev post.
+            return null;
+        }
+        public async Task<blog_user> GetNextPost(int blogId)
+        {
+            //Todo : CHange logic to get next post instead of user.
+            var user = dbContext.Next_Post(blogId).FirstOrDefault();
+            return user;
         }
 
         public async Task<postcontent> GetContent(int blogId)
