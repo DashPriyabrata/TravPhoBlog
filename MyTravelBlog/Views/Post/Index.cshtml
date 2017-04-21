@@ -17,7 +17,7 @@
                 <div class="content-area" ng-controller="BlogInfoController as $blogInfoCtrl">
 
                     <article class="single-post">
-                        {{postContent.Image_Title}}
+                        {{postContent.Image_Title}} {{prevPost.BlogId}} {{nextPost.BlogId}}
                         <div class="post-media post-image">
                             <a href="#"><img ng-src="~/Images/Post/{{postContent.Image_Title}}" alt="img"></a>
                         </div>

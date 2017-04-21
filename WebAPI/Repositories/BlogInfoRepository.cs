@@ -29,15 +29,14 @@ namespace WebAPI.Repositories
             return blogInfo;
         }
 
-        public async Task<blog_user> GetPrevPost(int blogId)
+        public async Task<bloginfo> GetPrevPost(int blogId)
         {
-            //Todo : Change logic to get prev post.
-            return null;
+            var user = dbContext.SP_PrevPost(blogId).FirstOrDefault();
+            return user;
         }
-        public async Task<blog_user> GetNextPost(int blogId)
+        public async Task<bloginfo> GetNextPost(int blogId)
         {
-            //Todo : CHange logic to get next post instead of user.
-            var user = dbContext.Next_Post(blogId).FirstOrDefault();
+            var user = dbContext.SP_NextPost(blogId).FirstOrDefault();
             return user;
         }
 

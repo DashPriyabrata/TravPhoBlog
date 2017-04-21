@@ -34,7 +34,14 @@ namespace WebAPI.Controllers
         }
 
         [ResponseType(typeof(blog_user))]
-        [Route("api/BlogInfo/NextUser/{blogId}")]
+        [Route("api/BlogInfo/PrevPost/{blogId}")]
+        public async Task<IHttpActionResult> GetPrevUser(int blogId)
+        {
+            return Ok(await blogInfoRepo.GetPrevPost(blogId));
+        }
+
+        [ResponseType(typeof(blog_user))]
+        [Route("api/BlogInfo/NextPost/{blogId}")]
         public async Task<IHttpActionResult> GetNextUser(int blogId)
         {
             return Ok(await blogInfoRepo.GetNextPost(blogId));

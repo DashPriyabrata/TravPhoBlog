@@ -43,6 +43,26 @@ app.factory('blogInfoService', [
                         }, def.reject);
 
                     return def.promise;
+                },
+                getPrevPost: function (postId) {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "PrevPost/" + postId)
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
+                },
+                getNextPost: function (postId) {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "NextPost/" + postId)
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
                 }
             };
         }

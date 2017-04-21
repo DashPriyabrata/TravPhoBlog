@@ -143,13 +143,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyTravelBlogDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Next_Post_Result.cs">
-      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\postcontent.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\role.cs">
+      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_NextPost_Result.cs">
+      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_PrevPost_Result.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

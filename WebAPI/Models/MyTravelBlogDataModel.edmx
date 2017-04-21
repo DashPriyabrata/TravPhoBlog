@@ -137,7 +137,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="Next_Post" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mytravelblog">
+        <Function Name="SP_NextPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mytravelblog">
+          <Parameter Name="PostId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PrevPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mytravelblog">
           <Parameter Name="PostId" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="ModelsStoreContainer">
@@ -185,7 +188,10 @@
             <End Role="blog_comment" EntitySet="blog_comment" />
           </AssociationSet>
           <EntitySet Name="postcontents" EntityType="Models.postcontent" />
-          <FunctionImport Name="Next_Post" EntitySet="blog_user" ReturnType="Collection(Models.blog_user)">
+          <FunctionImport Name="SP_NextPost" EntitySet="bloginfoes" ReturnType="Collection(Models.bloginfo)">
+            <Parameter Name="PostId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PrevPost" EntitySet="bloginfoes" ReturnType="Collection(Models.bloginfo)">
             <Parameter Name="PostId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
@@ -327,7 +333,8 @@
           <Property Name="Image_Direction" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
-        <ComplexType Name="Next_Post_Result" />
+        <ComplexType Name="SP_NextPost_Result" />
+        <ComplexType Name="SP_PrevPost_Result" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -437,7 +444,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Next_Post" FunctionName="Models.Store.Next_Post">
+          <FunctionImportMapping FunctionImportName="SP_NextPost" FunctionName="Models.Store.SP_NextPost">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PrevPost" FunctionName="Models.Store.SP_PrevPost">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

@@ -35,22 +35,40 @@ namespace WebAPI.Models
         public virtual DbSet<blog_user> blog_user { get; set; }
         public virtual DbSet<postcontent> postcontents { get; set; }
     
-        public virtual ObjectResult<blog_user> Next_Post(Nullable<int> postId)
+        public virtual ObjectResult<bloginfo> SP_NextPost(Nullable<int> postId)
         {
             var postIdParameter = postId.HasValue ?
                 new ObjectParameter("PostId", postId) :
                 new ObjectParameter("PostId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<blog_user>("Next_Post", postIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_NextPost", postIdParameter);
         }
     
-        public virtual ObjectResult<blog_user> Next_Post(Nullable<int> postId, MergeOption mergeOption)
+        public virtual ObjectResult<bloginfo> SP_NextPost(Nullable<int> postId, MergeOption mergeOption)
         {
             var postIdParameter = postId.HasValue ?
                 new ObjectParameter("PostId", postId) :
                 new ObjectParameter("PostId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<blog_user>("Next_Post", mergeOption, postIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_NextPost", mergeOption, postIdParameter);
+        }
+    
+        public virtual ObjectResult<bloginfo> SP_PrevPost(Nullable<int> postId)
+        {
+            var postIdParameter = postId.HasValue ?
+                new ObjectParameter("PostId", postId) :
+                new ObjectParameter("PostId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_PrevPost", postIdParameter);
+        }
+    
+        public virtual ObjectResult<bloginfo> SP_PrevPost(Nullable<int> postId, MergeOption mergeOption)
+        {
+            var postIdParameter = postId.HasValue ?
+                new ObjectParameter("PostId", postId) :
+                new ObjectParameter("PostId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_PrevPost", mergeOption, postIdParameter);
         }
     }
 }

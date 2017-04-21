@@ -11,7 +11,7 @@ namespace WebAPI.Models
 {
     using System;
     
-    public partial class Next_Post_Result
+    public partial class SP_PrevPost_Result
     {
     }
 }

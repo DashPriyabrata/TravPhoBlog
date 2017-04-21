@@ -8,6 +8,8 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
     $scope.comments = [];
     $scope.comment = [];
     $scope.addCommentStatus = [];
+    $scope.prevPost = [];
+    $scope.nextPost = [];
     $scope.user = {};
     $scope.parentId = 0;
     var _self = this;
@@ -31,6 +33,14 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
         blogInfoService.getComments(1).then(function (data) {
             $scope.comments = data;
         });
+    });
+
+    blogInfoService.getPrevPost(2).then(function (data) {
+        $scope.prevPost = data;
+    });
+
+    blogInfoService.getNextPost(2).then(function (data) {
+        $scope.nextPost = data;
     });
 
     $scope.addUser = function () {
