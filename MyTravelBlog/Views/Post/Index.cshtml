@@ -105,20 +105,17 @@
                     </article><!--/ article end -->
 
                     <nav class="post-navigation clearfix">
-                        <div class="post-previous">
+                        <div class="post-previous" ng-show="prevPost != null">
                             <a href="#">
                                 <span><i class="fa fa-angle-left"></i>Previous Post</span>
-                                <h3 class="title-normal">
-                                    Locon sectetur adipisicing elit sed do eius mod tempor incidi
-                                </h3>
+                                <h3 class="title-normal">{{prevPost.Title}}</h3>
                             </a>
                         </div>
-                        <div class="post-next">
+                        <hr>
+                        <div class="post-next" ng-show="nextPost != null">
                             <a href="#">
                                 <span>Next Post <i class="fa fa-angle-right"></i></span>
-                                <h3>
-                                    Donec accumsan lacus feugiat nunc faucibus ac tincidunt nisi
-                                </h3>
+                                <h3 class="title-normal">{{nextPost.Title}}</h3>
                             </a>
                         </div>
                     </nav><!-- Post navigation end -->

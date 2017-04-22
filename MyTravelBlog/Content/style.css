@@ -1677,8 +1677,8 @@ article.list-post-left .list-post-inwrap {
     .post-navigation .post-next {
         padding: 0 40px;
         width: 50%;
-        border-left: 1px solid #e7e7e7;
-        border-right: 1px solid #e7e7e7;
+        /*border-left: 1px solid #e7e7e7;
+        border-right: 1px solid #e7e7e7;*/
         display: table-cell;
         position: relative;
         vertical-align: middle;
@@ -1699,15 +1699,15 @@ article.list-post-left .list-post-inwrap {
     .post-navigation .post-previous {
         text-align: right;
         float: left;
-        border-left: 0 none;
-        border-right: 0 none;
+        /*border-left: 0 none;*/
+        /*border-right: 1px solid #e7e7e7;*/
         padding: 0 20px 0 40px;
     }
 
     .post-navigation .post-next {
         text-align: left;
-        float: left;
-        border-right: 0 none;
+        float: right;
+        /*border-left: 1px solid #e7e7e7;*/
         padding: 0 40px 0 20px;
     }
 
