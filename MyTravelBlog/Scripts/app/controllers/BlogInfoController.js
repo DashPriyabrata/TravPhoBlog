@@ -1,6 +1,11 @@
-﻿app.controller('BlogInfoController', ['blogInfoService', 'categoryService', 'userService', '$scope', BlogInfoController]);
+﻿app.config(['$locationProvider', function ($locationProvider) {
+    // In order to get the query string from the
+    // $location object, it must be in HTML5 mode.
+    $locationProvider.html5Mode(true);
+}]);
+app.controller('BlogInfoController', ['blogInfoService', 'categoryService', 'userService', '$scope', '$location', BlogInfoController]);
 
-function BlogInfoController(blogInfoService, categoryService, userService, $scope) {
+function BlogInfoController(blogInfoService, categoryService, userService, $scope, $location) {
     'use strict';
     $scope.blogData = [];
     $scope.postContent = [];
@@ -19,7 +24,9 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
         //save logic here - can me form post or ajax post
     }
 
-    blogInfoService.getBlogInfo(3).then(function (data) {
+    var blogId = $location.search().blogId;
+
+    blogInfoService.getBlogInfo(blogId).then(function (data) {
         $scope.blogData = data;
 
         blogInfoService.getPostContent($scope.blogData.ContentId).then(function (data) {
@@ -35,11 +42,11 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
         });
     });
 
-    blogInfoService.getPrevPost(2).then(function (data) {
+    blogInfoService.getPrevPost(blogId).then(function (data) {
         $scope.prevPost = data;
     });
 
-    blogInfoService.getNextPost(2).then(function (data) {
+    blogInfoService.getNextPost(blogId).then(function (data) {
         $scope.nextPost = data;
     });
 
