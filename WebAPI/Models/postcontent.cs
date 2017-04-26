@@ -15,7 +15,6 @@ namespace WebAPI.Models
     public partial class postcontent
     {
         public int Id { get; set; }
-        public string Image_Title { get; set; }
         public string Intro_Highlight { get; set; }
         public string Introduction { get; set; }
         public string Quote { get; set; }

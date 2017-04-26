@@ -46,7 +46,7 @@ namespace WebAPI.Repositories
             return postContent;
         }
 
-        public async Task<List<blog_comment>> GetComments(int blogId)
+        public async Task<ICollection<blog_comment>> GetComments(int blogId)
         {
             var comments = await dbContext.blog_comment.Where(x => x.PostId == blogId).ToListAsync();
             return comments;
@@ -57,6 +57,18 @@ namespace WebAPI.Repositories
             dbContext.blog_comment.Add(comment);
             var success = await dbContext.SaveChangesAsync();
             return success > 0 ? true : false;
+        }
+
+        public async Task<IEnumerable<bloginfo>> GetRelatedPosts(string tag)
+        {
+            //var postTags = tags.Split('.');
+            var relatedPosts = new List<bloginfo>();
+
+            relatedPosts = await dbContext.bloginfoes.Where(x => x.Tags.Contains(tag)).ToListAsync();
+            //relatedPosts.AddRange(tempPosts);
+            if (relatedPosts.Count >= 4)
+                return relatedPosts.Take(4);
+            return relatedPosts;
         }
 
         private bool isDisposed;

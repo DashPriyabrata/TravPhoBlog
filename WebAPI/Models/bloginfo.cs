@@ -16,18 +16,19 @@ namespace WebAPI.Models
     {
         public int BlogId { get; set; }
         public string Title { get; set; }
+        public string TitleImage { get; set; }
         public System.DateTime PostDate { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public string Tags { get; set; }
         public bool IsActive { get; set; }
         public int BloggerId { get; set; }
-        public int? CategoryId { get; set; }
-        public bool? IsFeatured { get; set; }
-        public bool? IsCommentsEnabled { get; set; }
-        public int? Views { get; set; }
-        public int? ContentId { get; set; }
-
+        public Nullable<int> CategoryId { get; set; }
+        public Nullable<bool> IsFeatured { get; set; }
+        public Nullable<bool> IsCommentsEnabled { get; set; }
+        public Nullable<int> Views { get; set; }
+        public Nullable<int> ContentId { get; set; }
+    
         public virtual blogger blogger { get; set; }
     }
 }

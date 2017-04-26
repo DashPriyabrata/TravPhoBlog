@@ -47,6 +47,13 @@ namespace WebAPI.Controllers
             return Ok(await blogInfoRepo.GetNextPost(blogId));
         }
 
+        [ResponseType(typeof(IEnumerable<bloginfo>))]
+        [Route("api/BlogInfo/RelatedPosts/{tag}")]
+        public async Task<IHttpActionResult> GetRelatedPosts(string tag)
+        {
+            return Ok(await blogInfoRepo.GetRelatedPosts(tag));
+        }
+
         [ResponseType(typeof(List<blog_comment>))]
         [Route("api/BlogInfo/Comments/{blogId}")]
         public async Task<IHttpActionResult> GetComments(int blogId)

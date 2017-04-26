@@ -9,12 +9,12 @@
         <EntityTypeShape EntityType="Models.role" Width="1.5" PointX="0.75" PointY="6" />
         <EntityTypeShape EntityType="Models.blogger" Width="1.5" PointX="0.75" PointY="1.125" />
         <AssociationConnector Association="Models.FK_RoleId" />
-        <EntityTypeShape EntityType="Models.bloginfo" Width="1.5" PointX="3" PointY="0.875" />
-        <AssociationConnector Association="Models.FK_BloggerId" />
         <EntityTypeShape EntityType="Models.blog_comment" Width="1.5" PointX="8" PointY="1.375" />
         <EntityTypeShape EntityType="Models.blog_user" Width="1.5" PointX="8.125" PointY="5.5" />
         <AssociationConnector Association="Models.FK_UserId" />
-        <EntityTypeShape EntityType="Models.postcontent" Width="1.875" PointX="5.375" PointY="1" />
+        <EntityTypeShape EntityType="Models.bloginfo" Width="1.75" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="Models.postcontent" Width="1.875" PointX="5.375" PointY="1.375" />
+        <AssociationConnector Association="Models.FK_BloggerId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
