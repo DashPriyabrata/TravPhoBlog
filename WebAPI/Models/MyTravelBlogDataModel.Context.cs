@@ -14,7 +14,8 @@ namespace WebAPI.Models
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+    using System.Collections.Generic;
+
     public partial class MyTravelBlogEntities : DbContext
     {
         public MyTravelBlogEntities()
@@ -32,8 +33,10 @@ namespace WebAPI.Models
         public virtual DbSet<blogger> bloggers { get; set; }
         public virtual DbSet<blog_comment> blog_comment { get; set; }
         public virtual DbSet<blog_user> blog_user { get; set; }
-        public virtual DbSet<bloginfo> bloginfoes { get; set; }
         public virtual DbSet<postcontent> postcontents { get; set; }
+        public virtual DbSet<blog_tag> blog_tag { get; set; }
+        public virtual DbSet<bloginfo> bloginfoes { get; set; }
+        public virtual DbSet<tag_mapper> tag_mapper { get; set; }
     
         public virtual ObjectResult<bloginfo> SP_NextPost(Nullable<int> postId)
         {
@@ -69,6 +72,24 @@ namespace WebAPI.Models
                 new ObjectParameter("PostId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_PrevPost", mergeOption, postIdParameter);
+        }
+    
+        public virtual ObjectResult<List<blog_tag>> SP_GetBlogTags(Nullable<int> passedBlogTagId)
+        {
+            var passedBlogTagIdParameter = passedBlogTagId.HasValue ?
+                new ObjectParameter("PassedBlogTagId", passedBlogTagId) :
+                new ObjectParameter("PassedBlogTagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<List<blog_tag>>("SP_GetBlogTags", passedBlogTagIdParameter);
+        }
+    
+        public virtual ObjectResult<blog_tag> SP_GetBlogTags(Nullable<int> passedBlogTagId, MergeOption mergeOption)
+        {
+            var passedBlogTagIdParameter = passedBlogTagId.HasValue ?
+                new ObjectParameter("PassedBlogTagId", passedBlogTagId) :
+                new ObjectParameter("PassedBlogTagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<blog_tag>("SP_GetBlogTags", mergeOption, passedBlogTagIdParameter);
         }
     }
 }

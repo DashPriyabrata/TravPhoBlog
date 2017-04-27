@@ -20,7 +20,6 @@ namespace WebAPI.Models
         public System.DateTime PostDate { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public string Tags { get; set; }
         public bool IsActive { get; set; }
         public int BloggerId { get; set; }
         public Nullable<int> CategoryId { get; set; }
@@ -28,6 +27,7 @@ namespace WebAPI.Models
         public Nullable<bool> IsCommentsEnabled { get; set; }
         public Nullable<int> Views { get; set; }
         public Nullable<int> ContentId { get; set; }
+        public Nullable<int> BlogTagId { get; set; }
     
         public virtual blogger blogger { get; set; }
     }

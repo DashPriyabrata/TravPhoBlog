@@ -122,6 +122,9 @@
     <Compile Include="Models\blog_comment.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\blog_tag.cs">
+      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\blog_user.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
@@ -153,6 +156,9 @@
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_PrevPost_Result.cs">
+      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tag_mapper.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

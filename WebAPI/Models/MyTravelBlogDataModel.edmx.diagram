@@ -12,8 +12,10 @@
         <EntityTypeShape EntityType="Models.blog_comment" Width="1.5" PointX="8" PointY="1.375" />
         <EntityTypeShape EntityType="Models.blog_user" Width="1.5" PointX="8.125" PointY="5.5" />
         <AssociationConnector Association="Models.FK_UserId" />
-        <EntityTypeShape EntityType="Models.bloginfo" Width="1.75" PointX="3" PointY="1.125" />
         <EntityTypeShape EntityType="Models.postcontent" Width="1.875" PointX="5.375" PointY="1.375" />
+        <EntityTypeShape EntityType="Models.blog_tag" Width="1.5" PointX="13.5" PointY="1.375" />
+        <EntityTypeShape EntityType="Models.bloginfo" Width="1.75" PointX="3.125" PointY="1.375" />
+        <EntityTypeShape EntityType="Models.tag_mapper" Width="1.5" PointX="15.375" PointY="1.375" />
         <AssociationConnector Association="Models.FK_BloggerId" />
       </Diagram>
     </edmx:Diagrams>

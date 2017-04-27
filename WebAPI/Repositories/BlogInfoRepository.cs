@@ -46,6 +46,13 @@ namespace WebAPI.Repositories
             return postContent;
         }
 
+        public Task<ICollection<blog_tag>> GetTags(int blogTagId)
+        {
+            //var tagIds = dbContext.tag_mapper.Where(x => x.BlogTagId == blogTagId).
+            var tags = dbContext.SP_GetBlogTags(blogTagId);
+            return null;
+        }
+
         public async Task<ICollection<blog_comment>> GetComments(int blogId)
         {
             var comments = await dbContext.blog_comment.Where(x => x.PostId == blogId).ToListAsync();
@@ -64,7 +71,7 @@ namespace WebAPI.Repositories
             //var postTags = tags.Split('.');
             var relatedPosts = new List<bloginfo>();
 
-            relatedPosts = await dbContext.bloginfoes.Where(x => x.Tags.Contains(tag)).ToListAsync();
+            //relatedPosts = await dbContext.bloginfoes.Where(x => x.Tags.Contains(tag)).ToListAsync();
             //relatedPosts.AddRange(tempPosts);
             if (relatedPosts.Count >= 4)
                 return relatedPosts.Take(4);
