@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
         [Route("api/BlogInfo/Tags/{blogTagId}")]
         public async Task<IHttpActionResult> GetTags(int blogTagId)
         {
-            return Ok(await blogInfoRepo.GetTags(blogTagId));
+            return Ok(blogInfoRepo.GetTags(blogTagId));
         }
 
         [ResponseType(typeof(blog_user))]
@@ -55,10 +55,10 @@ namespace WebAPI.Controllers
         }
 
         [ResponseType(typeof(IEnumerable<bloginfo>))]
-        [Route("api/BlogInfo/RelatedPosts/{tag}")]
-        public async Task<IHttpActionResult> GetRelatedPosts(string tag)
+        [Route("api/BlogInfo/RelatedPosts/{tagIds}")]
+        public async Task<IHttpActionResult> GetRelatedPosts(int[] tagIds)
         {
-            return Ok(await blogInfoRepo.GetRelatedPosts(tag));
+            return Ok(await blogInfoRepo.GetRelatedPosts(tagIds));
         }
 
         [ResponseType(typeof(List<blog_comment>))]

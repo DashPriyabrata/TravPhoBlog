@@ -10,6 +10,7 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
     $scope.blogData = [];
     $scope.postContent = [];
     $scope.categoryData = [];
+    $scope.tags = [];
     $scope.comments = [];
     $scope.comment = [];
     $scope.addCommentStatus = [];
@@ -35,6 +36,10 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
 
         categoryService.getCategory($scope.blogData.CategoryId).then(function (data) {
             $scope.categoryData = data;
+        });
+
+        blogInfoService.getTags($scope.blogData.BlogTagId).then(function (data) {
+            $scope.tags = data;
         });
 
         blogInfoService.getComments(1).then(function (data) {

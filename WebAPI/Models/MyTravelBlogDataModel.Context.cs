@@ -14,8 +14,7 @@ namespace WebAPI.Models
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using System.Collections.Generic;
-
+    
     public partial class MyTravelBlogEntities : DbContext
     {
         public MyTravelBlogEntities()
@@ -74,13 +73,13 @@ namespace WebAPI.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_PrevPost", mergeOption, postIdParameter);
         }
     
-        public virtual ObjectResult<List<blog_tag>> SP_GetBlogTags(Nullable<int> passedBlogTagId)
+        public virtual ObjectResult<blog_tag> SP_GetBlogTags(Nullable<int> passedBlogTagId)
         {
             var passedBlogTagIdParameter = passedBlogTagId.HasValue ?
                 new ObjectParameter("PassedBlogTagId", passedBlogTagId) :
                 new ObjectParameter("PassedBlogTagId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<List<blog_tag>>("SP_GetBlogTags", passedBlogTagIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<blog_tag>("SP_GetBlogTags", passedBlogTagIdParameter);
         }
     
         public virtual ObjectResult<blog_tag> SP_GetBlogTags(Nullable<int> passedBlogTagId, MergeOption mergeOption)

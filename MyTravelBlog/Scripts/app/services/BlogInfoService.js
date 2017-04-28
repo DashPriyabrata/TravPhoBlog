@@ -24,6 +24,16 @@ app.factory('blogInfoService', [
 
                     return def.promise;
                 },
+                getTags: function (blogTagId) {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "Tags/" + blogTagId)
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
+                },
                 getComments: function (blogId) {
                     var def = $q.defer();
 

@@ -46,11 +46,10 @@ namespace WebAPI.Repositories
             return postContent;
         }
 
-        public Task<ICollection<blog_tag>> GetTags(int blogTagId)
+        public List<blog_tag> GetTags(int blogTagId)
         {
-            //var tagIds = dbContext.tag_mapper.Where(x => x.BlogTagId == blogTagId).
             var tags = dbContext.SP_GetBlogTags(blogTagId);
-            return null;
+            return tags.ToList();
         }
 
         public async Task<ICollection<blog_comment>> GetComments(int blogId)
@@ -66,15 +65,23 @@ namespace WebAPI.Repositories
             return success > 0 ? true : false;
         }
 
-        public async Task<IEnumerable<bloginfo>> GetRelatedPosts(string tag)
+        public async Task<IEnumerable<bloginfo>> GetRelatedPosts(int[] tagIds)
         {
-            //var postTags = tags.Split('.');
             var relatedPosts = new List<bloginfo>();
+            if (tagIds.Count() > 0)
+            {
+                for (int i = 0; i < tagIds.Count(); i++)
+                {
+                    var mappers = await dbContext.tag_mapper.Where(x => x.TagId == tagIds[i]).Distinct().ToListAsync();
+                    foreach (var mapper in mappers)
+                    {
+                        relatedPosts.Add(dbContext.bloginfoes.FirstOrDefault(x => x.BlogTagId == mapper.BlogTagId));
+                    }
+                    if (relatedPosts.Count >= 4)
+                        return relatedPosts.Take(4);
+                }
+            }
 
-            //relatedPosts = await dbContext.bloginfoes.Where(x => x.Tags.Contains(tag)).ToListAsync();
-            //relatedPosts.AddRange(tempPosts);
-            if (relatedPosts.Count >= 4)
-                return relatedPosts.Take(4);
             return relatedPosts;
         }
 
