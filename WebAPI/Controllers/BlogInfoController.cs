@@ -55,8 +55,8 @@ namespace WebAPI.Controllers
         }
 
         [ResponseType(typeof(IEnumerable<bloginfo>))]
-        [Route("api/BlogInfo/RelatedPosts/{tagIds}")]
-        public async Task<IHttpActionResult> GetRelatedPosts(int[] tagIds)
+        [Route("api/BlogInfo/RelatedPosts")]
+        public async Task<IHttpActionResult> GetRelatedPosts([FromUri] int[] tagIds)
         {
             return Ok(await blogInfoRepo.GetRelatedPosts(tagIds));
         }

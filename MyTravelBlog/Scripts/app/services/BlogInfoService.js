@@ -73,6 +73,16 @@ app.factory('blogInfoService', [
                         }, def.reject);
 
                     return def.promise;
+                },
+                getRelatedPosts: function (tagIds) {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "RelatedPosts?tagIds=" + JSON.stringify(tagIds))
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
                 }
             };
         }

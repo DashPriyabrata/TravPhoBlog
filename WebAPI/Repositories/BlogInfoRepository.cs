@@ -72,10 +72,12 @@ namespace WebAPI.Repositories
             {
                 for (int i = 0; i < tagIds.Count(); i++)
                 {
-                    var mappers = await dbContext.tag_mapper.Where(x => x.TagId == tagIds[i]).Distinct().ToListAsync();
+                    int tempTagId = tagIds[i];
+                    var mappers = await dbContext.tag_mapper.Where(x => x.TagId == tempTagId).Distinct().ToListAsync();
                     foreach (var mapper in mappers)
                     {
-                        relatedPosts.Add(dbContext.bloginfoes.FirstOrDefault(x => x.BlogTagId == mapper.BlogTagId));
+                        if(!relatedPosts.Exists(x=>x.BlogTagId == mapper.BlogTagId))
+                            relatedPosts.Add(dbContext.bloginfoes.FirstOrDefault(x => x.BlogTagId == mapper.BlogTagId));
                     }
                     if (relatedPosts.Count >= 4)
                         return relatedPosts.Take(4);
