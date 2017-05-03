@@ -141,55 +141,19 @@
                     <div class="related-post">
                         <h2 class="title-normal">You Also Might Like</h2>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" ng-repeat="post in relatedPosts">
                                 <div class="related-item-content border-overlay">
-                                    <a class="related-post-img" href="#"><img ng-src="~/Images/Post/{{blogData.TitleImage.split('.')[0]}}-RP.{{blogData.TitleImage.split('.')[1]}}" alt=""></a>
+                                    <a class="related-post-img" href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}" target="_blank">
+                                        <img ng-src="~/Images/Post/{{post.TitleImage.split('.')[0]}}-RP.{{blogData.TitleImage.split('.')[1]}}" alt="">
+                                    </a>
                                     <div class="post-content">
                                         <div class="post-cat title-font">
-                                            <a href="#">Lifestyle</a>
+                                            <a href="#">{{post.RelatedTagName}}</a>
                                         </div>
-                                        <h2 class="entry-title"><a href="#">Why explaining the truth about Santa</a></h2>
+                                        <h2 class="entry-title"><a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}" target="_blank">{{post.Title}}</a></h2>
                                     </div>
                                 </div>
                             </div><!-- Col 6 end -->
-
-
-                            <div class="col-md-6">
-                                <div class="related-item-content border-overlay">
-                                    <a class="related-post-img" href="#"><img src="~/Images/Post/post3.jpg" alt=""></a>
-                                    <div class="post-content">
-                                        <div class="post-cat title-font">
-                                            <a href="#">Lifestyle</a>
-                                        </div>
-                                        <h2 class="entry-title"><a href="#">Why explaining the truth about Santa</a></h2>
-                                    </div>
-                                </div>
-                            </div><!-- Col 6 end -->
-
-                            <div class="col-md-6">
-                                <div class="related-item-content border-overlay">
-                                    <a class="related-post-img" href="#"><img src="~/Images/Post/post4.jpg" alt=""></a>
-                                    <div class="post-content">
-                                        <div class="post-cat title-font">
-                                            <a href="#">Lifestyle</a>
-                                        </div>
-                                        <h2 class="entry-title"><a href="#">Why explaining the truth about Santa</a></h2>
-                                    </div>
-                                </div>
-                            </div><!-- Col 6 end -->
-
-                            <div class="col-md-6">
-                                <div class="related-item-content border-overlay">
-                                    <a class="related-post-img" href="#"><img src="~/Images/Post/post5.jpg" alt=""></a>
-                                    <div class="post-content">
-                                        <div class="post-cat title-font">
-                                            <a href="#">Lifestyle</a>
-                                        </div>
-                                        <h2 class="entry-title"><a href="#">Why explaining the truth about Santa</a></h2>
-                                    </div>
-                                </div>
-                            </div><!-- Col 6 end -->
-
                         </div>
                     </div><!-- Related post end -->
                     <!-- Post comment start -->
@@ -197,7 +161,7 @@
                         <h3 class="comments-heading title-normal">12 Comments</h3>
                         <ul class="comments-list">
                             <li ng-repeat="x in comments | filter: { ParentId: 0 }">
-                                <div class="comment" >
+                                <div class="comment">
                                     <img class="comment-avatar pull-left" alt="" src="~/Images/Post/avator1.png">
                                     <div class="comment-body">
                                         <div class="comment-author">
@@ -210,7 +174,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <ul class="comments-reply" >
+                                <ul class="comments-reply">
                                     <li ng-repeat="c in comments" ng-if="c.ParentId == x.Id">
                                         <div class="comment">
                                             <img class="comment-avatar pull-left" alt="" src="~/Images/Post/avator2.png">

@@ -41,11 +41,10 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
 
         blogInfoService.getTags($scope.blogData.BlogTagId).then(function (data) {
             $scope.tags = data;
+        });
 
-            var tagIds = $scope.tags.map(function (a) { return a.TagId; });
-            blogInfoService.getRelatedPosts(tagIds).then(function (data) {
-                $scope.relatedPosts = data;
-            });
+        blogInfoService.getRelatedPosts($scope.blogData.BlogTagId).then(function (data) {
+            $scope.relatedPosts = data;
         });
 
         blogInfoService.getComments(1).then(function (data) {

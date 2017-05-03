@@ -15,6 +15,6 @@ namespace WebAPI.Repositories.Interfaces
         Task<bloginfo> GetNextPost(int blogId);
         Task<ICollection<blog_comment>> GetComments(int blogId);
         Task<bool> AddComment(blog_comment comment);
-        Task<IEnumerable<bloginfo>> GetRelatedPosts(int[] tagIds);
+        Task<IEnumerable<bloginfo>> GetRelatedPosts(int blogTagId);
     }
 }

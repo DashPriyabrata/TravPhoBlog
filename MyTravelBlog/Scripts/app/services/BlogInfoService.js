@@ -74,10 +74,10 @@ app.factory('blogInfoService', [
 
                     return def.promise;
                 },
-                getRelatedPosts: function (tagIds) {
+                getRelatedPosts: function (blogTagId) {
                     var def = $q.defer();
 
-                    $http.get(apiRoot + "RelatedPosts?tagIds=" + JSON.stringify(tagIds))
+                    $http.get(apiRoot + "RelatedPosts/" + blogTagId)
                         .then(function (response) {
                             def.resolve(response.data);
                         }, def.reject);

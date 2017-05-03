@@ -65,19 +65,25 @@ namespace WebAPI.Repositories
             return success > 0 ? true : false;
         }
 
-        public async Task<IEnumerable<bloginfo>> GetRelatedPosts(int[] tagIds)
+        public async Task<IEnumerable<bloginfo>> GetRelatedPosts(int blogTagId)
         {
             var relatedPosts = new List<bloginfo>();
+            var tagIds = await dbContext.tag_mapper.Where(x => x.BlogTagId == blogTagId).Select(tag => tag.TagId).ToListAsync();
             if (tagIds.Count() > 0)
             {
                 for (int i = 0; i < tagIds.Count(); i++)
                 {
                     int tempTagId = tagIds[i];
-                    var mappers = await dbContext.tag_mapper.Where(x => x.TagId == tempTagId).Distinct().ToListAsync();
+                    var mappers = await dbContext.tag_mapper.Where(x => x.TagId == tempTagId && x.BlogTagId != blogTagId).Distinct().ToListAsync();
                     foreach (var mapper in mappers)
                     {
                         if(!relatedPosts.Exists(x=>x.BlogTagId == mapper.BlogTagId))
-                            relatedPosts.Add(dbContext.bloginfoes.FirstOrDefault(x => x.BlogTagId == mapper.BlogTagId));
+                        {
+                            var postResult = dbContext.bloginfoes.FirstOrDefault(x => x.BlogTagId == mapper.BlogTagId);
+                            postResult.RelatedTagName = dbContext.blog_tag.FirstOrDefaultAsync(x => x.TagId == tempTagId).Result.Tag;
+                            relatedPosts.Add(postResult);
+                        }
+                            
                     }
                     if (relatedPosts.Count >= 4)
                         return relatedPosts.Take(4);
