@@ -12,7 +12,9 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/Angular")
 
-
+    <!--Local Scripts-->
+    <script src="~/Scripts/app/services/SocialConnectService.js"></script>
+    <script src="~/Scripts/app/controllers/SocialConnectController.js"></script>
 </head>
 <body ng-app="app">
     <!-- Body inner start -->
@@ -124,13 +126,33 @@
         @RenderBody()
 
         <!-- Instagram start -->
-        <section class="no-padding">
+        <section class="no-padding" ng-controller="SocialConnectController">
             <div class="container-fluid">
                 <h2 class="title-classic text-center">Instagram</h2>
 
+                @*<data-owl-carousel id="first" class="owl-carousel owl-theme instagram-carousel" data-options="{navigation: true, pagination: false, rewindNav : false}">
+                        <div owl-carousel-item="" ng-repeat="media in instagramMedia" class="item clearfix">
+                            <a href="{{media.Link}}" target="_blank"><img ng-src="{{media.Images.Low_Resolution.Url}}" alt="img"></a>
+                        </div>
+                    </data-owl-carousel>*@
                 <div id="instagram-carousel" class="owl-carousel owl-theme instagram-carousel">
                     <div class="item clearfix">
-                        <a href="#"><img src="~/Images/Instagram/instagram1.jpg" alt="img"></a>
+                        <a href="{{instagramMedia[0].Link}}"><img ng-src="{{instagramMedia[0].Images.Standard_Resolution.Url}}" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="{{instagramMedia[1].Link}}"><img ng-src="{{instagramMedia[1].Images.Standard_Resolution.Url}}" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="{{instagramMedia[2].Link}}"><img ng-src="{{instagramMedia[2].Images.Standard_Resolution.Url}}" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="{{instagramMedia[3].Link}}"><img ng-src="{{instagramMedia[3].Images.Standard_Resolution.Url}}" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="{{instagramMedia[4].Link}}"><img ng-src="{{instagramMedia[4].Images.Standard_Resolution.Url}}" alt="img"></a>
+                    </div>
+                    <div class="item clearfix">
+                        <a href="{{instagramMedia[5].Link}}"><img ng-src="{{instagramMedia[5].Images.Standard_Resolution.Url}}" alt="img"></a>
                     </div>
                     <div class="item clearfix">
                         <a href="#"><img src="~/Images/Instagram/instagram2.jpg" alt="img"></a>
@@ -146,12 +168,6 @@
                     </div>
                     <div class="item clearfix">
                         <a href="#"><img src="~/Images/Instagram/instagram6.jpg" alt="img"></a>
-                    </div>
-                    <div class="item clearfix">
-                        <a href="#"><img src="~/Images/Instagram/instagram7.jpg" alt="img"></a>
-                    </div>
-                    <div class="item clearfix">
-                        <a href="#"><img src="~/Images/Instagram/instagram8.jpg" alt="img"></a>
                     </div>
                 </div><!-- Carousel end -->
 
