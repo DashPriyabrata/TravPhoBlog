@@ -9,6 +9,7 @@ namespace WebAPI.Repositories.Interfaces
     {
         Task<bloginfo> GetBlogInfo(int blogId);
         Task<ICollection<bloginfo>> GetAll();
+        Task<ICollection<bloginfo>> GetFeaturedPosts();
         Task<postcontent> GetContent(int blogId);
         List<blog_tag> GetTags(int blogTagId);
         Task<bloginfo> GetPrevPost(int blogId);

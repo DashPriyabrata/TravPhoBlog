@@ -17,16 +17,22 @@ namespace WebAPI.Repositories
             this.dbContext = dbContext;
         }
 
+        public async Task<bloginfo> GetBlogInfo(int blogId)
+        {
+            var blogInfo = await dbContext.bloginfoes.Where(x => x.BlogId == blogId).FirstOrDefaultAsync();
+            return blogInfo;
+        }
+
         public async Task<ICollection<bloginfo>> GetAll()
         {
             var allBlogInfo = await dbContext.bloginfoes.ToListAsync();
             return allBlogInfo;
         }
 
-        public async Task<bloginfo> GetBlogInfo(int blogId)
+        public async Task<ICollection<bloginfo>> GetFeaturedPosts()
         {
-            var blogInfo = await dbContext.bloginfoes.Where(x => x.BlogId == blogId).FirstOrDefaultAsync();
-            return blogInfo;
+            var featuredPosts = await dbContext.bloginfoes.Where(x => x.IsFeatured == true).ToListAsync();
+            return featuredPosts;
         }
 
         public async Task<bloginfo> GetPrevPost(int blogId)
