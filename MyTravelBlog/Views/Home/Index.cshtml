@@ -4,54 +4,29 @@
 
 <script src="~/Scripts/app/controllers/BloggerController.js"></script>
 <script src="~/Scripts/app/services/BloggerService.js"></script>
+<script src="~/Scripts/app/controllers/HomeController.js"></script>
+<script src="~/Scripts/app/services/BlogInfoService.js"></script>
 
 <!--/ Carousel start -->
-<div id="main-slide" class="carousel slide" data-ride="carousel">
+<div id="main-slide" class="carousel slide" data-ride="carousel" ng-app="app" ng-controller="HomeController">
 
     <!-- Indicators -->
     <ol class="carousel-indicators visible-lg visible-md">
-        <li data-target="#main-slide" data-slide-to="0" class="active"></li>
-        <li data-target="#main-slide" data-slide-to="1"></li>
-        <li data-target="#main-slide" data-slide-to="2"></li>
+        <li ng-repeat="post in featuredPosts" data-target="#main-slide" data-slide-to="{{$index}}" ng-class="{'active' : $first}"></li>
     </ol><!--/ Indicators end-->
     <!-- Carousel inner -->
-    <div class="carousel-inner">
-        <div class="item active" style="background-image:url(Images/Slider/bg1.jpg)">
+    <div class="carousel-inner" >
+        <div ng-repeat="post in featuredPosts" ng-class="($index == 0) ? 'item active' : 'item'" style="background-image:url(Images/Slider/bg1.jpg)">
             <div class="slider-content">
                 <div class="post-cat title-font">
                     <a href="#">Travel</a>
                 </div>
                 <h2 class="entry-title">
-                    <a href="#">Exploring a kingdom : A journey along the Amazon River</a>
+                    <a href="#">{{post.Title}}</a>
                 </h2>
                 <p><a href="#" class="title-font slider btn btn-primary">Full Story</a></p>
             </div>
         </div><!--/ Carousel item end -->
-
-        <div class="item" style="background-image:url(Images/Slider/bg2.jpg)">
-            <div class="slider-content">
-                <div class="post-cat title-font">
-                    <a href="#">Lifestyle</a>
-                </div>
-                <h2 class="entry-title">
-                    <a href="#">New 'Good Wife' promo will make the wait for January</a>
-                </h2>
-                <p><a href="#" class="title-font slider btn btn-primary">Full Story</a></p>
-            </div>
-        </div><!--/ Carousel item end -->
-
-        <div class="item" style="background-image:url(Images/Slider/bg3.jpg)">
-            <div class="slider-content">
-                <div class="post-cat title-font">
-                    <a href="#">Lifestyle</a>
-                </div>
-                <h2 class="entry-title">
-                    <a href="#">Champagne Jell-Oshort shots are full for New Year's Eve</a>
-                </h2>
-                <p><a href="#" class="title-font slider btn btn-primary">Full Story</a></p>
-            </div>
-        </div><!--/ Carousel item end -->
-
     </div><!-- Carousel inner end-->
     <!-- Controllers -->
     <a class="left carousel-control" href="#main-slide" data-slide="prev">
@@ -529,7 +504,7 @@
                         <h3 class="widget-title">About Me</h3>
                         <div class="about-me-widget text-center">
                             <div class="about-img border-overlay">
-                                <img src="~/Images/About.jpeg" alt="Priyabrata Dash" />
+                                <img src="~/Images/Blogger/Priyabrata.jpg" alt="Priyabrata Dash" />
                             </div>
 
                             <h4>Priyabrata Dash</h4>
