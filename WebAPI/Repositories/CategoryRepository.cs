@@ -29,6 +29,12 @@ namespace WebAPI.Repositories
             return categories;
         }
 
+        public async Task<ICollection<category>> GetSpecificCategories(ICollection<int> categoryIds)
+        {
+            var categories = await dbContext.categories.Where(x=> categoryIds.Contains(x.Id)).ToListAsync();
+            return categories;
+        }
+
         private bool isDisposed;
 
         protected virtual void Dispose(bool isDisposing)

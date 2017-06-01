@@ -30,5 +30,12 @@ namespace WebAPI.Controllers
         {
             return Ok(await categoryRepo.GetAll());
         }
+
+        [ResponseType(typeof(List<category>))]
+        [Route("api/Category/Specific")]
+        public async Task<IHttpActionResult> GetSpecificCategories(List<int> categoryIds)
+        {
+            return Ok(await categoryRepo.GetSpecificCategories(categoryIds));
+        }
     }
 }

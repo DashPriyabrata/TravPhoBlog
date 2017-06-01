@@ -9,5 +9,6 @@ namespace WebAPI.Repositories.Interfaces
     {
         Task<category> GetCategory(int categoryId);
         Task<ICollection<category>> GetAll();
+        Task<ICollection<category>> GetSpecificCategories(ICollection<int> categoryIds);
     }
 }
