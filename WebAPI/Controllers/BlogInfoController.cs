@@ -9,7 +9,7 @@ using WebAPI.Repositories.Interfaces;
 
 namespace WebAPI.Controllers
 {
-    
+
     public class BlogInfoController : ApiController
     {
         IBlogInfoRepository blogInfoRepo;
@@ -24,6 +24,13 @@ namespace WebAPI.Controllers
         public async Task<IHttpActionResult> GetBlogInfo(int blogId)
         {
             return Ok(await blogInfoRepo.GetBlogInfo(blogId));
+        }
+
+        [ResponseType(typeof(bloginfo))]
+        [Route("api/BlogInfo/All")]
+        public async Task<IHttpActionResult> GetAllPosts()
+        {
+            return Ok(await blogInfoRepo.GetAll());
         }
 
         [ResponseType(typeof(List<bloginfo>))]

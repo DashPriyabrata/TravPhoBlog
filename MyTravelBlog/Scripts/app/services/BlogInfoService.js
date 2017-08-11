@@ -14,6 +14,16 @@ app.factory('blogInfoService', [
 
                     return def.promise;
                 },
+                getAllPosts: function () {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "All")
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
+                },
                 getFeaturedPosts: function(){
                     var def = $q.defer();
 

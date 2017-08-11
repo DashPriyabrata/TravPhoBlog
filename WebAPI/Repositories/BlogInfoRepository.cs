@@ -25,7 +25,7 @@ namespace WebAPI.Repositories
 
         public async Task<ICollection<bloginfo>> GetAll()
         {
-            var allBlogInfo = await dbContext.bloginfoes.ToListAsync();
+            var allBlogInfo = await dbContext.bloginfoes.Where(x => x.IsActive).OrderByDescending(x => x.PostDate).ToListAsync();
             return allBlogInfo;
         }
 
@@ -83,13 +83,13 @@ namespace WebAPI.Repositories
                     var mappers = await dbContext.tag_mapper.Where(x => x.TagId == tempTagId && x.BlogTagId != blogTagId).Distinct().ToListAsync();
                     foreach (var mapper in mappers)
                     {
-                        if(!relatedPosts.Exists(x=>x.BlogTagId == mapper.BlogTagId))
+                        if (!relatedPosts.Exists(x => x.BlogTagId == mapper.BlogTagId))
                         {
                             var postResult = dbContext.bloginfoes.FirstOrDefault(x => x.BlogTagId == mapper.BlogTagId);
                             postResult.RelatedTagName = dbContext.blog_tag.FirstOrDefaultAsync(x => x.TagId == tempTagId).Result.Tag;
                             relatedPosts.Add(postResult);
                         }
-                            
+
                     }
                     if (relatedPosts.Count >= 4)
                         return relatedPosts.Take(4);
