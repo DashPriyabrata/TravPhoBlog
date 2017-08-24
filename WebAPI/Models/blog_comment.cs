@@ -19,10 +19,10 @@ namespace WebAPI.Models
         public int ParentId { get; set; }
         public int UserId { get; set; }
         public string Comment { get; set; }
-        public sbyte? Mark_Read { get; set; }
-        public sbyte? IsEnabled { get; set; }
+        public bool? Mark_Read { get; set; }
+        public bool IsEnabled { get; set; }
         public DateTime? Date { get; set; }
-    
+
         public virtual blog_user blog_user { get; set; }
     }
 }

@@ -26,20 +26,6 @@ namespace WebAPI.Controllers
             return Ok(await blogInfoRepo.GetBlogInfo(blogId));
         }
 
-        [ResponseType(typeof(bloginfo))]
-        [Route("api/BlogInfo/All")]
-        public async Task<IHttpActionResult> GetAllPosts()
-        {
-            return Ok(await blogInfoRepo.GetAll());
-        }
-
-        [ResponseType(typeof(List<bloginfo>))]
-        [Route("api/BlogInfo/Featured")]
-        public async Task<IHttpActionResult> GetFeaturedPosts()
-        {
-            return Ok(await blogInfoRepo.GetFeaturedPosts());
-        }
-
         [ResponseType(typeof(postcontent))]
         [Route("api/BlogInfo/PostContent/{contentId}")]
         public async Task<IHttpActionResult> GetPostContent(int contentId)

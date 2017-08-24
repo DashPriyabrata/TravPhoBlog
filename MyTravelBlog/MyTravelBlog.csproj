@@ -15,7 +15,7 @@
     <AssemblyName>MyTravelBlog</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -257,6 +257,7 @@
     <Content Include="Scripts\app\controllers\HomeController.js" />
     <Content Include="Scripts\app\controllers\SocialConnectController.js" />
     <Content Include="Scripts\app\services\BloggerService.js" />
+    <Content Include="Scripts\app\services\BlogHomeService.js" />
     <Content Include="Scripts\app\services\BlogInfoService.js" />
     <Content Include="Scripts\app\services\CategoryService.js" />
     <Content Include="Scripts\app\services\SocialConnectService.js" />

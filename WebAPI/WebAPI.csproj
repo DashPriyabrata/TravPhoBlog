@@ -108,6 +108,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\BloggerController.cs" />
+    <Compile Include="Controllers\BlogHomeController.cs" />
     <Compile Include="Controllers\BlogInfoController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\SocialController.cs" />
@@ -166,8 +167,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BloggerRepository.cs" />
+    <Compile Include="Repositories\BlogHomeRepository.cs" />
     <Compile Include="Repositories\BlogInfoRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBlogHomeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBlogInfoRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBloggerRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />

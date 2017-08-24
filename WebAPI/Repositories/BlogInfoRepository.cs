@@ -23,18 +23,6 @@ namespace WebAPI.Repositories
             return blogInfo;
         }
 
-        public async Task<ICollection<bloginfo>> GetAll()
-        {
-            var allBlogInfo = await dbContext.bloginfoes.Where(x => x.IsActive).OrderByDescending(x => x.PostDate).ToListAsync();
-            return allBlogInfo;
-        }
-
-        public async Task<ICollection<bloginfo>> GetFeaturedPosts()
-        {
-            var featuredPosts = await dbContext.bloginfoes.Where(x => x.IsFeatured == true).ToListAsync();
-            return featuredPosts;
-        }
-
         public async Task<bloginfo> GetPrevPost(int blogId)
         {
             var user = dbContext.SP_PrevPost(blogId).FirstOrDefault();

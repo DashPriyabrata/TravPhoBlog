@@ -11,12 +11,12 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PostId" Type="int" Nullable="false" />
-          <Property Name="ParentId" Type="int" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="Comment" Type="varchar" MaxLength="500" />
-          <Property Name="Mark_Read" Type="tinyint" />
-          <Property Name="IsEnabled" Type="tinyint" />
-          <Property Name="Date" Type="datetime" Precision="0" />
+          <Property Name="Comment" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Mark_Read" Type="bool" />
+          <Property Name="IsEnabled" Type="bool" Nullable="false" />
+          <Property Name="Date" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="blog_tag">
           <Key>
@@ -62,7 +62,7 @@
           </Key>
           <Property Name="BlogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="TitleImage" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TitleImage" Type="varchar" MaxLength="45" />
           <Property Name="PostDate" Type="date" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
@@ -73,7 +73,7 @@
           <Property Name="IsCommentsEnabled" Type="bool" />
           <Property Name="Views" Type="int" />
           <Property Name="ContentId" Type="int" />
-          <Property Name="BlogTagId" Type="int" />
+          <Property Name="BlogTagId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="category">
           <Key>
@@ -155,6 +155,7 @@
         <Function Name="SP_GetBlogTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mytravelblog">
           <Parameter Name="PassedBlogTagId" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetLastFiveCommentedPosts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mytravelblog" />
         <Function Name="SP_NextPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mytravelblog">
           <Parameter Name="PostId" Type="int" Mode="In" />
         </Function>
@@ -196,12 +197,7 @@
             <End Role="role" EntitySet="roles" />
             <End Role="blogger" EntitySet="bloggers" />
           </AssociationSet>
-          <EntitySet Name="blog_comment" EntityType="Models.blog_comment" />
           <EntitySet Name="blog_user" EntityType="Models.blog_user" />
-          <AssociationSet Name="FK_UserId" Association="Models.FK_UserId">
-            <End Role="blog_user" EntitySet="blog_user" />
-            <End Role="blog_comment" EntitySet="blog_comment" />
-          </AssociationSet>
           <FunctionImport Name="SP_NextPost" EntitySet="bloginfoes" ReturnType="Collection(Models.bloginfo)">
           <Parameter Name="PostId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -210,15 +206,21 @@
           </FunctionImport>
           <EntitySet Name="postcontents" EntityType="Models.postcontent" />
           <EntitySet Name="blog_tag" EntityType="Models.blog_tag" />
-          <EntitySet Name="bloginfoes" EntityType="Models.bloginfo" />
           <EntitySet Name="tag_mapper" EntityType="Models.tag_mapper" />
+          <FunctionImport Name="SP_GetBlogTags" EntitySet="blog_tag" ReturnType="Collection(Models.blog_tag)">
+          <Parameter Name="PassedBlogTagId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="bloginfoes" EntityType="Models.bloginfo" />
           <AssociationSet Name="FK_BloggerId" Association="Models.FK_BloggerId">
             <End Role="blogger" EntitySet="bloggers" />
             <End Role="bloginfo" EntitySet="bloginfoes" />
           </AssociationSet>
-          <FunctionImport Name="SP_GetBlogTags" EntitySet="blog_tag" ReturnType="Collection(Models.blog_tag)">
-            <Parameter Name="PassedBlogTagId" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <EntitySet Name="blog_comment" EntityType="Models.blog_comment" />
+          <AssociationSet Name="FK_UserId" Association="Models.FK_UserId">
+            <End Role="blog_user" EntitySet="blog_user" />
+            <End Role="blog_comment" EntitySet="blog_comment" />
+          </AssociationSet>
+          <FunctionImport Name="SP_GetLastFiveCommentedPosts" EntitySet="bloginfoes" ReturnType="Collection(Models.bloginfo)" />
           </EntityContainer>
         <EntityType Name="category">
           <Key>
@@ -271,20 +273,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="blog_comment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PostId" Type="Int32" Nullable="false" />
-          <Property Name="ParentId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Mark_Read" Type="SByte" />
-          <Property Name="IsEnabled" Type="SByte" />
-          <Property Name="Date" Type="DateTime" />
-          <NavigationProperty Name="blog_user" Relationship="Models.FK_UserId" FromRole="blog_comment" ToRole="blog_user" />
-        </EntityType>
         <EntityType Name="blog_user">
           <Key>
             <PropertyRef Name="Id" />
@@ -293,21 +281,9 @@
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="blog_comment" Relationship="Models.FK_UserId" FromRole="blog_user" ToRole="blog_comment" />
           <Property Name="Avatar" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="blog_comment" Relationship="Models.FK_UserId" FromRole="blog_user" ToRole="blog_comment" />
         </EntityType>
-        <Association Name="FK_UserId">
-          <End Type="Models.blog_user" Role="blog_user" Multiplicity="1" />
-          <End Type="Models.blog_comment" Role="blog_comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="blog_user">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="blog_comment">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="SP_NextPost_Result" />
         <ComplexType Name="SP_PrevPost_Result" />
         <EntityType Name="postcontent">
@@ -335,13 +311,21 @@
           <Property Name="TagId" Type="Int32" Nullable="false" />
           <Property Name="Tag" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tag_mapper">
+          <Key>
+            <PropertyRef Name="BlogTagId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="BlogTagId" Type="Int32" Nullable="false" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="bloginfo">
           <Key>
             <PropertyRef Name="BlogId" />
           </Key>
           <Property Name="BlogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TitleImage" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TitleImage" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="PostDate" Type="DateTime" Nullable="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -352,16 +336,8 @@
           <Property Name="IsCommentsEnabled" Type="Boolean" />
           <Property Name="Views" Type="Int32" />
           <Property Name="ContentId" Type="Int32" />
-          <Property Name="BlogTagId" Type="Int32" />
-          <NavigationProperty Name="blogger" Relationship="Models.FK_BloggerId" FromRole="bloginfo" ToRole="blogger" />
-        </EntityType>
-        <EntityType Name="tag_mapper">
-          <Key>
-            <PropertyRef Name="BlogTagId" />
-            <PropertyRef Name="TagId" />
-          </Key>
           <Property Name="BlogTagId" Type="Int32" Nullable="false" />
-          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="blogger" Relationship="Models.FK_BloggerId" FromRole="bloginfo" ToRole="blogger" />
         </EntityType>
         <Association Name="FK_BloggerId">
           <End Type="Models.blogger" Role="blogger" Multiplicity="1" />
@@ -375,6 +351,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="blog_comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Mark_Read" Type="Boolean" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="blog_user" Relationship="Models.FK_UserId" FromRole="blog_comment" ToRole="blog_user" />
+        </EntityType>
+        <Association Name="FK_UserId">
+          <End Type="Models.blog_user" Role="blog_user" Multiplicity="1" />
+          <End Type="Models.blog_comment" Role="blog_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blog_user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="blog_comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_GetLastFiveCommentedPosts_Result" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -420,20 +423,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="blog_comment">
-            <EntityTypeMapping TypeName="Models.blog_comment">
-              <MappingFragment StoreEntitySet="blog_comment">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
-                <ScalarProperty Name="Mark_Read" ColumnName="Mark_Read" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="PostId" ColumnName="PostId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="blog_user">
             <EntityTypeMapping TypeName="Models.blog_user">
               <MappingFragment StoreEntitySet="blog_user">
@@ -476,6 +465,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tag_mapper">
+            <EntityTypeMapping TypeName="Models.tag_mapper">
+              <MappingFragment StoreEntitySet="tag_mapper">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="BlogTagId" ColumnName="BlogTagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="bloginfoes">
             <EntityTypeMapping TypeName="Models.bloginfo">
               <MappingFragment StoreEntitySet="bloginfo">
@@ -496,15 +493,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tag_mapper">
-            <EntityTypeMapping TypeName="Models.tag_mapper">
-              <MappingFragment StoreEntitySet="tag_mapper">
-                <ScalarProperty Name="TagId" ColumnName="TagId" />
-                <ScalarProperty Name="BlogTagId" ColumnName="BlogTagId" />
+          <EntitySetMapping Name="blog_comment">
+            <EntityTypeMapping TypeName="Models.blog_comment">
+              <MappingFragment StoreEntitySet="blog_comment">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+                <ScalarProperty Name="Mark_Read" ColumnName="Mark_Read" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetBlogTags" FunctionName="Models.Store.SP_GetBlogTags" />
+          <FunctionImportMapping FunctionImportName="SP_GetLastFiveCommentedPosts" FunctionName="Models.Store.SP_GetLastFiveCommentedPosts" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
