@@ -7,13 +7,13 @@ function HomeController(blogHomeService, $scope) {
     $scope.allPosts = [];
     $scope.trendingPosts = [];
 
-    blogInfoService.getAllPosts().then(function (data) {
+    blogHomeService.getAllPosts().then(function (data) {
         $scope.allPosts = data;
     });
-    blogInfoService.getFeaturedPosts().then(function (data) {
+    blogHomeService.getFeaturedPosts().then(function (data) {
         $scope.featuredPosts = data;
     });
-    blogInfoService.getTrendingPosts().then(function (data) {
+    blogHomeService.getTrendingPosts().then(function (data) {
         $scope.trendingPosts = data;
     });
 }

@@ -5,7 +5,6 @@
 
 <script src="~/Scripts/app/controllers/BlogInfoController.js"></script>
 <script src="~/Scripts/app/services/BlogInfoService.js"></script>
-<script src="~/Scripts/app/services/CategoryService.js"></script>
 <script src="~/Scripts/app/services/UserService.js"></script>
 <script src="~/Scripts/app/components/CommentComponent.js"></script>
 <base href="/">
@@ -36,7 +35,7 @@
                                 </span>
                                 <span class="post-cat">
                                     <i class="fa fa-folder"></i>
-                                    <a href="#">{{categoryData.Name}}</a>
+                                    <a href="#">{{blogData.Category}}</a>
                                 </span>
                                 <span class="post-date">
                                     <i class="fa fa-clock-o"></i>
@@ -144,7 +143,7 @@
                             <div class="col-md-6" ng-repeat="post in relatedPosts">
                                 <div class="related-item-content border-overlay">
                                     <a class="related-post-img" href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}" target="_blank">
-                                        <img ng-src="~/Images/Post/{{post.TitleImage.split('.')[0]}}-RP.{{blogData.TitleImage.split('.')[1]}}" alt="">
+                                        <img ng-src="~/Images/Post/{{post.TitleImage.split('.')[0]}}-RP.{{post.TitleImage.split('.')[1]}}" alt="img">
                                     </a>
                                     <div class="post-content">
                                         <div class="post-cat title-font">

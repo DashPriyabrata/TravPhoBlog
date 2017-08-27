@@ -3,13 +3,12 @@
     // $location object, it must be in HTML5 mode.
     $locationProvider.html5Mode(true);
 }]);
-app.controller('BlogInfoController', ['blogInfoService', 'categoryService', 'userService', '$scope', '$location', BlogInfoController]);
+app.controller('BlogInfoController', ['blogInfoService', 'userService', '$scope', '$location', BlogInfoController]);
 
-function BlogInfoController(blogInfoService, categoryService, userService, $scope, $location) {
+function BlogInfoController(blogInfoService, userService, $scope, $location) {
     'use strict';
     $scope.blogData = [];
     $scope.postContent = [];
-    $scope.categoryData = [];
     $scope.tags = [];
     $scope.comments = [];
     $scope.comment = [];
@@ -33,10 +32,6 @@ function BlogInfoController(blogInfoService, categoryService, userService, $scop
 
         blogInfoService.getPostContent($scope.blogData.ContentId).then(function (data) {
             $scope.postContent = data;
-        });
-
-        categoryService.getCategory($scope.blogData.CategoryId).then(function (data) {
-            $scope.categoryData = data;
         });
 
         blogInfoService.getTags($scope.blogData.BlogTagId).then(function (data) {

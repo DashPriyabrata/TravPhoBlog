@@ -253,13 +253,11 @@
     <Content Include="Scripts\app\components\CommentComponent.js" />
     <Content Include="Scripts\app\controllers\BloggerController.js" />
     <Content Include="Scripts\app\controllers\BlogInfoController.js" />
-    <Content Include="Scripts\app\controllers\CategoryController.js" />
     <Content Include="Scripts\app\controllers\HomeController.js" />
     <Content Include="Scripts\app\controllers\SocialConnectController.js" />
     <Content Include="Scripts\app\services\BloggerService.js" />
     <Content Include="Scripts\app\services\BlogHomeService.js" />
     <Content Include="Scripts\app\services\BlogInfoService.js" />
-    <Content Include="Scripts\app\services\CategoryService.js" />
     <Content Include="Scripts\app\services\SocialConnectService.js" />
     <Content Include="Scripts\app\services\UserService.js" />
     <Content Include="Scripts\bootstrap.js" />

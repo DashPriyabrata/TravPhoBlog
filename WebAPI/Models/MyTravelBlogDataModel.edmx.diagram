@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bd976f7c23fe44c197f64a4e8fb51328" Name="Diagram1">
-        <EntityTypeShape EntityType="Models.category" Width="1.5" PointX="3.125" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Models.role" Width="1.5" PointX="0.75" PointY="6" />
         <EntityTypeShape EntityType="Models.blogger" Width="1.5" PointX="0.75" PointY="1.125" />
         <AssociationConnector Association="Models.FK_RoleId" />
@@ -14,8 +13,8 @@
         <AssociationConnector Association="Models.FK_UserId" />
         <EntityTypeShape EntityType="Models.postcontent" Width="1.875" PointX="5.375" PointY="1.375" />
         <EntityTypeShape EntityType="Models.blog_tag" Width="1.5" PointX="9.875" PointY="1.5" />
-        <EntityTypeShape EntityType="Models.bloginfo" Width="1.75" PointX="3.125" PointY="1.375" />
         <EntityTypeShape EntityType="Models.tag_mapper" Width="1.5" PointX="15.375" PointY="1.375" />
+        <EntityTypeShape EntityType="Models.bloginfo" Width="1.5" PointX="3" PointY="1.375" />
         <AssociationConnector Association="Models.FK_BloggerId" />
       </Diagram>
     </edmx:Diagrams>

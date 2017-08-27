@@ -110,7 +110,6 @@
     <Compile Include="Controllers\BloggerController.cs" />
     <Compile Include="Controllers\BlogHomeController.cs" />
     <Compile Include="Controllers\BlogInfoController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\SocialController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -129,9 +128,6 @@
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_user.cs">
-      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\category.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InstagramPost.cs" />
@@ -169,11 +165,9 @@
     <Compile Include="Repositories\BloggerRepository.cs" />
     <Compile Include="Repositories\BlogHomeRepository.cs" />
     <Compile Include="Repositories\BlogInfoRepository.cs" />
-    <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBlogHomeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBlogInfoRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBloggerRepository.cs" />
-    <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />
     <Compile Include="Repositories\Interfaces\ISocialConnectRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\SocialConnectRepository.cs" />

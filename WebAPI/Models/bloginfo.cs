@@ -22,7 +22,7 @@ namespace WebAPI.Models
         public string Country { get; set; }
         public bool IsActive { get; set; }
         public int BloggerId { get; set; }
-        public Nullable<int> CategoryId { get; set; }
+        public string Category { get; set; }
         public Nullable<bool> IsFeatured { get; set; }
         public Nullable<bool> IsCommentsEnabled { get; set; }
         public Nullable<int> Views { get; set; }
