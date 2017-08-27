@@ -17,15 +17,15 @@
     </ol><!--/ Indicators end-->
     <!-- Carousel inner -->
     <div class="carousel-inner">
-        <div ng-repeat="post in featuredPosts" ng-class="($index == 0) ? 'item active' : 'item'" style="background-image:url(Images/Slider/bg1.jpg)">
+        <div ng-repeat="post in featuredPosts" ng-class="($index == 0) ? 'item active' : 'item'" style="background-image:url(Images/Post/{{post.TitleImage.split('.')[0]}}-RP.{{post.TitleImage.split('.')[1]}})">
             <div class="slider-content">
                 <div class="post-cat title-font">
-                    <a href="#">Travel</a>
+                    <a href="#">{{post.Category}}</a>
                 </div>
                 <h2 class="entry-title">
-                    <a href="#">{{post.Title}}</a>
+                    <a>{{post.Title}}</a>
                 </h2>
-                <p><a href="#" class="title-font slider btn btn-primary">Full Story</a></p>
+                <p><a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}" class="title-font slider btn btn-primary">Full Story</a></p>
             </div>
         </div><!--/ Carousel item end -->
     </div><!-- Carousel inner end-->
