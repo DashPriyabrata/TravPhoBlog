@@ -251,6 +251,7 @@
     <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\components\CommentComponent.js" />
+    <Content Include="Scripts\app\controllers\LayoutController.js" />
     <Content Include="Scripts\app\controllers\BloggerController.js" />
     <Content Include="Scripts\app\controllers\BlogInfoController.js" />
     <Content Include="Scripts\app\controllers\HomeController.js" />

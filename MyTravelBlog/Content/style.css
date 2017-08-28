@@ -637,6 +637,7 @@ ul.navbar-nav {
     ul.navbar-nav > li {
         float: none;
         display: inline-block;
+        padding: 0 25px;
     }
 
         ul.navbar-nav > li:hover > a,
@@ -644,11 +645,6 @@ ul.navbar-nav {
             color: #ed485c;
             position: relative;
         }
-
-
-    ul.navbar-nav > li {
-        padding: 0 25px;
-    }
 
         ul.navbar-nav > li:after {
             content: '';
@@ -690,7 +686,8 @@ ul.navbar-nav {
             }
 
 .nav .open > a, .nav .open > a:hover,
-.nav .open > a:focus {
+.nav .open > a:focus,  .nav > li > a:hover,
+.nav > li > a:focus {
     background: transparent;
     border: 0;
 }
@@ -1600,7 +1597,7 @@ article.list-post-left .list-post-inwrap {
     margin-top: 20px;
     margin-bottom: 20px;
     list-style: none;
-    width:  92%;
+    width: 92%;
 }
 
     .entry-content ul li:before {
@@ -1653,7 +1650,7 @@ article.list-post-left .list-post-inwrap {
     width: 90%;
 }
 
-.single-post .body-image img{
+.single-post .body-image img {
     display: block;
     margin: auto;
     width: 90%;

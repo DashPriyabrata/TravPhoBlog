@@ -5,7 +5,7 @@
     <!-- Mobile Specific Metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>@ViewBag.Title - My Travel Blog</title>
+    <title>@ViewBag.Title - Travel, Photography, Blogging</title>
     @Styles.Render("~/Content/css", "~/Content/ThirdParty")
 
     <!-- Modernizr for browser compatibility. All other JS at the end of file. -->
@@ -15,6 +15,7 @@
     <!--Local Scripts-->
     <script src="~/Scripts/app/services/SocialConnectService.js"></script>
     <script src="~/Scripts/app/controllers/SocialConnectController.js"></script>
+    <script src="~/Scripts/app/controllers/LayoutController.js"></script>
 </head>
 <body ng-app="app">
     <!-- Body inner start -->
@@ -101,18 +102,27 @@
                                 <span class="icon-bar"></span>
                             </button>
 
-                            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                            <div class="collapse navbar-collapse navbar-responsive-collapse" ng-controller="LayoutController">
 
                                 <ul class="nav navbar-nav">
-                                    <li class="dropdown active">
-                                        <a href="@Url.Action("Index", "Home")" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                    <li ng-class="{ active: isActive('localhost:81/')}">
+                                        <a href="@Url.Action("Index", "Home")">Home</a>
                                     </li>
-
-                                    <li><a href="@Url.Action("Travel", "Category")">Travel</a></li>
-                                    <li><a href="@Url.Action("Biking", "Category")">Biking</a></li>
-                                    <li><a href="@Url.Action("Photos", "Category")">Photos</a></li>
-                                    <li><a href="@Url.Action("About", "Home")">About Me</a></li>
-                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                    <li ng-class="{ active: isActive('/Travel')}">
+                                        <a href="@Url.Action("Travel", "Category")">Travel</a>
+                                    </li>
+                                    <li ng-class="{ active: isActive('/Biking')}">
+                                        <a href="@Url.Action("Biking", "Category")">Biking</a>
+                                    </li>
+                                    <li ng-class="{ active: isActive('/Photos')}">
+                                        <a href="@Url.Action("Photos", "Category")">Photos</a>
+                                    </li>
+                                    <li ng-class="{ active: isActive('/About')}">
+                                        <a href="@Url.Action("About", "Home")">About Me</a>
+                                    </li>
+                                    <li ng-class="{ active: isActive('/Contact')}">
+                                        <a href="@Url.Action("Contact", "Home")">Contact</a>
+                                    </li>
 
                                 </ul><!--/ Nav ul end -->
 
