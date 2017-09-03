@@ -1,4 +1,11 @@
-﻿
+﻿app.config(['$locationProvider', function ($locationProvider) {
+    //Disabling displayig the re-written url on browser but do the job.
+    $locationProvider.html5Mode({
+        enabled: true,
+        rewriteLinks: false,
+        requireBase: false
+    });
+}]);
 app.controller('HomeController', ['blogHomeService', '$scope', HomeController]);
 
 function HomeController(blogHomeService, $scope) {

@@ -390,6 +390,10 @@ h5 {
     letter-spacing: 1px;
 }
 
+    .title-normal.center {
+        text-align: center;
+    }
+
 /* Top Bar
 ================================================== */
 .top-bar {

@@ -13,12 +13,22 @@ namespace MyTravelBlog.Controllers
             return View();
         }
 
-        public ViewResult About()
+        public ViewResult AboutMe()
         {
             return View();
         }
 
         public ViewResult Contact()
+        {
+            return View();
+        }
+
+        public ViewResult AboutUs()
+        {
+            return View();
+        }
+
+        public ViewResult Advertise()
         {
             return View();
         }

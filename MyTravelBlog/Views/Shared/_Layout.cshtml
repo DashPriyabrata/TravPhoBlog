@@ -27,10 +27,8 @@
                     <div class="col-md-12">
                         <div class="top-bar-inner">
                             <ul class="top-menu title-font unstyled">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Advertise</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="@Url.Action("AboutUs", "Home")">About Us</a></li>
+                                <li><a href="@Url.Action("Advertise", "Home")">Advertise</a></li>
                             </ul>
 
                             <div class="top-search">
@@ -118,7 +116,7 @@
                                         <a href="@Url.Action("Photos", "Category")">Photos</a>
                                     </li>
                                     <li ng-class="{ active: isActive('/About')}">
-                                        <a href="@Url.Action("About", "Home")">About Me</a>
+                                        <a href="@Url.Action("AboutMe", "Home")">About Me</a>
                                     </li>
                                     <li ng-class="{ active: isActive('/Contact')}">
                                         <a href="@Url.Action("Contact", "Home")">Contact</a>
@@ -189,19 +187,14 @@
                 <div class="footer-social text-center">
                     <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
                     <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
-                    <a href="#"><i class="fa fa-heart"></i> Bloglovin</a>
-                    <a href="#"><i class="fa fa-pinterest"></i> Pinterest</a>
-                    <a href="#"><i class="fa fa-google-plus"></i> Google +</a>
                     <a href="#"><i class="fa fa-instagram"></i> Instagram</a>
                 </div><!-- Footer social end -->
 
                 <ul class="footer-menu title-font">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Lifestyle</a></li>
-                    <li><a href="#">Travel</a></li>
-                    <li><a href="#">Fashion</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("AboutUs", "Home")">About Us</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    <li><a href="@Url.Action("Advertise", "Home")">Advertise</a></li>
                 </ul><!-- Footer menu end -->
 
                 <div class="copyright-info">

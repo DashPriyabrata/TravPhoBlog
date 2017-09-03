@@ -1,7 +1,11 @@
 ﻿app.config(['$locationProvider', function ($locationProvider) {
     // In order to get the query string from the
     // $location object, it must be in HTML5 mode.
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+        enabled: true,
+        rewriteLinks: false,
+        requireBase: true
+    });
 }]);
 app.controller('BlogInfoController', ['blogInfoService', 'userService', '$scope', '$location', BlogInfoController]);
 
