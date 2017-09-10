@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 <script src="~/Scripts/app/controllers/BloggerController.js"></script>
@@ -525,7 +525,7 @@
                     </div><!-- About me widget end -->
 
                     <div class="widget widget-add">
-                        <img src="Images/Ad/sidebar-ad1.jpg" alt="" />
+                        <a href="@Url.Action("Advertise", "Home")"><img src="Images/Ad/sidebar-ad1.jpg" alt=""></a>
                     </div><!-- Widget ad end -->
 
                     <div class="widget recent-posts">

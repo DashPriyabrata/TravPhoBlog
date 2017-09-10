@@ -16,7 +16,7 @@
 6.    Blog content
 7.    Blog single
 8.    Blog grid
-9.   Category Page
+9.    Category Page
 10.   About Page
 11.   Contact Page
 12.   Error page
@@ -262,6 +262,14 @@ blockquote {
     margin: 0 15px 2px 0;
     position: relative;
     text-transform: uppercase;
+}
+
+/* Generic */
+
+.center{
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
 }
 
 
