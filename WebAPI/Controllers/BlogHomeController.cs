@@ -17,11 +17,18 @@ namespace WebAPI.Controllers
             blogHomeRepo = new BlogHomeRepository(new MyTravelBlogEntities());
         }
 
-        [ResponseType(typeof(bloginfo))]
+        [ResponseType(typeof(List<bloginfo>))]
         [Route("api/BlogHome/All")]
         public async Task<IHttpActionResult> GetAllPosts()
         {
             return Ok(await blogHomeRepo.GetAll());
+        }
+
+        [ResponseType(typeof(List<bloginfo>))]
+        [Route("api/BlogHome/Precise/{startIndex}/{numOfPosts}")]
+        public async Task<IHttpActionResult> GetPrecisePosts(int startIndex, int numOfPosts)
+        {
+            return Ok(await blogHomeRepo.GetPrecisePosts(startIndex, numOfPosts));
         }
 
         [ResponseType(typeof(List<bloginfo>))]

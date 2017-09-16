@@ -29,6 +29,7 @@ namespace WebAPI.Models
         public Nullable<int> ContentId { get; set; }
         public int BlogTagId { get; set; }
         public string RelatedTagName { get; set; }
+        public string Introduction { get; set; }
 
         public virtual blogger blogger { get; set; }
     }

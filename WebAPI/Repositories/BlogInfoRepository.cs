@@ -73,7 +73,7 @@ namespace WebAPI.Repositories
                     {
                         if (!relatedPosts.Exists(x => x.BlogTagId == mapper.BlogTagId))
                         {
-                            var postResult = dbContext.bloginfoes.FirstOrDefault(x => x.BlogTagId == mapper.BlogTagId);
+                            var postResult = await dbContext.bloginfoes.FirstOrDefaultAsync(x => x.BlogTagId == mapper.BlogTagId);
                             postResult.RelatedTagName = dbContext.blog_tag.FirstOrDefaultAsync(x => x.TagId == tempTagId).Result.Tag;
                             relatedPosts.Add(postResult);
                         }
