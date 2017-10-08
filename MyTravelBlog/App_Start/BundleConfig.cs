@@ -28,7 +28,8 @@ namespace MyTravelBlog
             thirdPartyScripts.Include("~/Scripts/owl.carousel.min.js",
                                       "~/Scripts/unitegallery.min.js",
                                       "~/Scripts/ug-theme-tiles.js",
-                                      "~/Scripts/custom.js");
+                                      "~/Scripts/custom.js",
+                                      "~/Scripts/underscore.js");
 
             bundles.Add(thirdPartyScripts);
             #endregion

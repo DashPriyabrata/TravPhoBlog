@@ -212,6 +212,7 @@
     <Content Include="Images\Instagram\instagram7.jpg" />
     <Content Include="Images\Instagram\instagram8.jpg" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\Priyabrata_Avatar.JPG" />
     <Content Include="Images\Photo-Widget\img1.jpg" />
     <Content Include="Images\Photo-Widget\img2.jpg" />
     <Content Include="Images\Photo-Widget\img3.jpg" />
@@ -257,6 +258,7 @@
     <Content Include="Scripts\app\controllers\BlogInfoController.js" />
     <Content Include="Scripts\app\controllers\HomeController.js" />
     <Content Include="Scripts\app\controllers\SocialConnectController.js" />
+    <Content Include="Scripts\app\services\PagerService.js" />
     <Content Include="Scripts\app\services\BloggerService.js" />
     <Content Include="Scripts\app\services\BlogHomeService.js" />
     <Content Include="Scripts\app\services\BlogInfoService.js" />
@@ -287,6 +289,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ug-theme-tiles.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\unitegallery.min.js" />
     <Content Include="Scripts\waypoints.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -317,6 +321,7 @@
     <Content Include="Views\Error\Error404.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\Advertise.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -325,7 +330,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

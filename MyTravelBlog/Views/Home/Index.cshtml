@@ -7,6 +7,7 @@
 <script src="~/Scripts/app/controllers/HomeController.js"></script>
 <script src="~/Scripts/app/services/BlogInfoService.js"></script>
 <script src="~/Scripts/app/services/BlogHomeService.js"></script>
+<script src="~/Scripts/app/services/PagerService.js"></script>
 
 <!--/ Carousel start -->
 <div id="main-slide" class="carousel slide" data-ride="carousel" ng-app="app" ng-controller="HomeController">
@@ -487,14 +488,18 @@
 
                     <div class="paging text-center title-font">
                         <ul class="pagination">
-                            <li><a class="prev page-numbers" href="#"><i class="fa fa-caret-left"></i> Newer Posts</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
                             <li>
-                                <a class="next page-numbers" href="#">Older Posts <i class="fa fa-caret-right"></i></a>
+                                <a class="prev" ng-click="gotoPage(pageNumber-1)" ng-class="{linkDisabled:pager.currentPage === pager.startPage}" href=""><i class="fa fa-caret-left"></i> Newer Posts</a>
+                            </li>
+                            <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}"><a ng-click="gotoPage(page)" href="">{{page}}</a></li>
+                            @*<li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">6</a></li>*@
+                            <li>
+                                <a class="next" ng-click="gotoPage(pageNumber+1)" ng-class="{linkDisabled:pager.currentPage === pager.endPage}" href="">Older Posts <i class="fa fa-caret-right"></i></a>
                             </li>
                         </ul>
                     </div><!-- Pagination end -->
@@ -518,7 +523,7 @@
                         <h3 class="widget-title">About Me</h3>
                         <div class="about-me-widget text-center">
                             <div class="about-img border-overlay">
-                                <img src="~/Images/Blogger/Priyabrata.jpg" alt="Priyabrata Dash" />
+                                <img src="~/Images/Priyabrata_Avatar.jpg" alt="Priyabrata Dash" />
                             </div>
 
                             <h4>Priyabrata Dash</h4>

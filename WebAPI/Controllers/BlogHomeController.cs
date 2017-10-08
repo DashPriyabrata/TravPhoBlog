@@ -31,6 +31,13 @@ namespace WebAPI.Controllers
             return Ok(await blogHomeRepo.GetPrecisePosts(startIndex, numOfPosts));
         }
 
+        [ResponseType(typeof(int))]
+        [Route("api/BlogHome/TotalBlogCount")]
+        public async Task<IHttpActionResult> GetBlogsCount()
+        {
+            return Ok(await blogHomeRepo.GetTotalBlogCount());
+        }
+
         [ResponseType(typeof(List<bloginfo>))]
         [Route("api/BlogHome/Featured")]
         public async Task<IHttpActionResult> GetFeaturedPosts()

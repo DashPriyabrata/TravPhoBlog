@@ -28,8 +28,10 @@ namespace WebAPI.Models
         public Nullable<int> Views { get; set; }
         public Nullable<int> ContentId { get; set; }
         public int BlogTagId { get; set; }
+        //Custom properties
         public string RelatedTagName { get; set; }
         public string Introduction { get; set; }
+        public int TotalBlogCount { get; set; }
 
         public virtual blogger blogger { get; set; }
     }

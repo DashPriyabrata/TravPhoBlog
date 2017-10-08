@@ -24,6 +24,16 @@ app.factory('blogHomeService', [
 
                     return def.promise;
                 },
+                getTotalBlogCount: function () {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "TotalBlogCount")
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
+                },
                 getFeaturedPosts: function(){
                     var def = $q.defer();
 

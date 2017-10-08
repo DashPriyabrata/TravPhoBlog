@@ -8,6 +8,7 @@ namespace WebAPI.Repositories.Interfaces
     {
         Task<IEnumerable<bloginfo>> GetAll();
         Task<IEnumerable<bloginfo>> GetPrecisePosts(int skippedCount, int requiredCount);
+        Task<int> GetTotalBlogCount();
         Task<IEnumerable<bloginfo>> GetFeaturedPosts();
         Task<IEnumerable<bloginfo>> GetTrendingPosts();
     }

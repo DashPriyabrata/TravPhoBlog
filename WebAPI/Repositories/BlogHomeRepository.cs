@@ -35,6 +35,12 @@ namespace WebAPI.Repositories
             return posts;
         }
 
+        public async Task<int> GetTotalBlogCount()
+        {
+            var count = await dbContext.bloginfoes.Where(x => x.IsActive).CountAsync();
+            return count;
+        }
+
         public async Task<IEnumerable<bloginfo>> GetFeaturedPosts()
         {
             var featuredPosts = await dbContext.bloginfoes.Where(x => x.IsFeatured == true).ToListAsync();
