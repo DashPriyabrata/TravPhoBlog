@@ -41,82 +41,86 @@
 </div>
 <!--/ Carousel end -->
 <!--/ Trending start -->
-<section class="trending-wrapper">
-    <div class="container" ng-controller="HomeController">
+<section class="trending-wrapper" ng-controller="HomeController">
+    <div class="container">
         <h2 class="trending-slider-title title-classic">Trending</h2>
 
         <div id="trending-slider" class="owl-carousel owl-theme trending-slider">
-            <div class="item clearfix">
-                <div class="trending-item-content border-overlay" ng-repeat="post in trendingPosts">
-                    <a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}">
-                        <img class="trending-post-img" ng-src="~/Images/Post/{{post.TitleImage.split('.')[0]}}-RP.{{post.TitleImage.split('.')[1]}}" alt="img" />
+            <div class="item clearfix" ng-hide="trendingPosts[0] == null">
+                <div class="trending-item-content border-overlay">
+                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[0].BlogId}}">
+                        <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[0].TitleImage.split('.')[0]}}-RP.{{trendingPosts[0].TitleImage.split('.')[1]}}" alt="img" />
                     </a>
                     <div class="post-content border-overlay-content">
                         <div class="post-cat title-font">
-                            <a href="#">{{post.Category}}</a>
+                            <a href="#">{{trendingPosts[0].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}">{{post.Title}}</a>
+                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[0].BlogId}}">{{trendingPosts[0].Title}}</a>
                         </h2>
                     </div>
                 </div>
             </div><!-- Item 1 end -->
-            @*<div class="item clearfix">
-                    <div class="trending-item-content border-overlay">
-                        <a href="#"><img class="trending-post-img" src="Images/Post/post2.jpg" alt="img"></a>
-                        <div class="post-content border-overlay-content">
-                            <div class="post-cat title-font">
-                                <a href="#">Travel</a>
-                            </div>
-                            <h2 class="entry-title">
-                                <a href="#">To Avoid Holiday Delays Airlines Flights</a>
-                            </h2>
+            <div class="item clearfix" ng-hide="trendingPosts[1] == null">
+                <div class="trending-item-content border-overlay">
+                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[1].BlogId}}">
+                        <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[1].TitleImage.split('.')[0]}}-RP.{{trendingPosts[1].TitleImage.split('.')[1]}}" alt="img" />
+                    </a>
+                    <div class="post-content border-overlay-content">
+                        <div class="post-cat title-font">
+                            <a href="#">{{trendingPosts[1].Category}}</a>
                         </div>
+                        <h2 class="entry-title">
+                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[1].BlogId}}">{{trendingPosts[1].Title}}</a>
+                        </h2>
                     </div>
-                </div><!-- Item 2 end -->
-
-                <div class="item clearfix">
-                    <div class="trending-item-content border-overlay">
-                        <a href="#"><img class="trending-post-img" src="images/post/post3.jpg" alt="img"></a>
-                        <div class="post-content border-overlay-content">
-                            <div class="post-cat title-font">
-                                <a href="#">Travel</a>
-                            </div>
-                            <h2 class="entry-title">
-                                <a href="#">Wearable Tech Made Strides In 2015</a>
-                            </h2>
+                </div>
+            </div><!-- Item 2 end -->
+            <div class="item clearfix" ng-hide="trendingPosts[2] == null">
+                <div class="trending-item-content border-overlay">
+                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[2].BlogId}}">
+                        <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[2].TitleImage.split('.')[0]}}-RP.{{trendingPosts[2].TitleImage.split('.')[1]}}" alt="img" />
+                    </a>
+                    <div class="post-content border-overlay-content">
+                        <div class="post-cat title-font">
+                            <a href="#">{{trendingPosts[2].Category}}</a>
                         </div>
+                        <h2 class="entry-title">
+                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[2].BlogId}}">{{trendingPosts[2].Title}}</a>
+                        </h2>
                     </div>
-                </div><!-- Item 3 end -->
-
-                <div class="item clearfix">
-                    <div class="trending-item-content border-overlay">
-                        <a href="#"><img class="trending-post-img" src="images/post/post1.jpg" alt="img"></a>
-                        <div class="post-content border-overlay-content">
-                            <div class="post-cat title-font">
-                                <a href="#">Lifestyle</a>
-                            </div>
-                            <h2 class="entry-title">
-                                <a href="#">People Are Furious That Straight Aren't Allowed</a>
-                            </h2>
+                </div>
+            </div><!-- Item 3 end -->
+            <div class="item clearfix" ng-hide="trendingPosts[3] == null">
+                <div class="trending-item-content border-overlay">
+                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[3].BlogId}}">
+                        <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[3].TitleImage.split('.')[0]}}-RP.{{trendingPosts[3].TitleImage.split('.')[1]}}" alt="img" />
+                    </a>
+                    <div class="post-content border-overlay-content">
+                        <div class="post-cat title-font">
+                            <a href="#">{{trendingPosts[3].Category}}</a>
                         </div>
+                        <h2 class="entry-title">
+                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[3].BlogId}}">{{trendingPosts[3].Title}}</a>
+                        </h2>
                     </div>
-                </div><!-- Item 4 end -->
-
-                <div class="item clearfix">
-                    <div class="trending-item-content border-overlay">
-                        <a href="#"><img class="trending-post-img" src="images/post/post5.jpg" alt="img"></a>
-                        <div class="post-content border-overlay-content">
-                            <div class="post-cat title-font">
-                                <a href="#">Travel</a>
-                            </div>
-                            <h2 class="entry-title">
-                                <a href="#">Working Hours Around The World Does</a>
-                            </h2>
+                </div>
+            </div><!-- Item 4 end -->
+            <div class="item clearfix" ng-hide="trendingPosts[4] == null">
+                <div class="trending-item-content border-overlay">
+                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[4].BlogId}}">
+                        <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[4].TitleImage.split('.')[0]}}-RP.{{trendingPosts[4].TitleImage.split('.')[1]}}" alt="img" />
+                    </a>
+                    <div class="post-content border-overlay-content">
+                        <div class="post-cat title-font">
+                            <a href="#">{{trendingPosts[4].Category}}</a>
                         </div>
+                        <h2 class="entry-title">
+                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[4].BlogId}}">{{trendingPosts[4].Title}}</a>
+                        </h2>
                     </div>
-                </div><!-- Item 5 end -->*@
-
+                </div>
+            </div><!-- Item 5 end -->
         </div><!--/ Owl carousel end -->
     </div><!--/ Container end -->
 </section>
