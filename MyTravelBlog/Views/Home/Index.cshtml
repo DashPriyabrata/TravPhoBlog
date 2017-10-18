@@ -10,7 +10,7 @@
 <script src="~/Scripts/app/services/PagerService.js"></script>
 
 <!--/ Carousel start -->
-<div id="main-slide" class="carousel slide" data-ride="carousel" ng-app="app" ng-controller="HomeController">
+<div id="main-slide" class="carousel slide" data-ride="carousel" ng-controller="HomeController">
 
     <!-- Indicators -->
     <ol class="carousel-indicators visible-lg visible-md">
@@ -549,53 +549,54 @@
                         <a href="@Url.Action("Advertise", "Home")"><img src="Images/Ad/sidebar-ad1.jpg" alt=""></a>
                     </div><!-- Widget ad end -->
 
-                    <div class="widget recent-posts">
+                    <div class="widget recent-posts" ng-controller="HomeController">
                         <h3 class="widget-title">Recent Posts</h3>
                         <ul class="unstyled clearfix">
-                            <li>
+                            <li ng-repeat="post in recentPosts | limitTo : 3">
                                 <div class="posts-thumb pull-left">
-                                    <a href="#"><img alt="img" src="images/post/post5.jpg"></a>
+                                    <a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}">
+                                        <img alt="img" ng-src="~/Images/Post/{{post.TitleImage.split('.')[0]}}-RP.{{post.TitleImage.split('.')[1]}}">
+                                    </a>
                                 </div>
                                 <div class="post-info">
                                     <h4 class="entry-title">
-                                        <a href="#">Find the perfect red lipstick to complement your skin</a>
+                                        <a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}">{{post.Title}}</a>
                                     </h4>
                                     <p class="post-meta">
-                                        <span class="post-date"><a href="#"> Jun 19, 2015</a></span>
+                                        <span class="post-date">{{post.PostDate | date :  "MMM d, yyyy"}}</span>
                                     </p>
                                 </div>
                                 <div class="clearfix"></div>
                             </li><!-- 1st post end-->
+                            @*<li>
+                                    <div class="posts-thumb pull-left">
+                                        <a href="#"><img alt="img" src="images/post/post2.jpg"></a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4 class="entry-title">
+                                            <a href="#">Bulgaria claims to find Europe's oldest town</a>
+                                        </h4>
+                                        <p class="post-meta">
+                                            <span class="post-date"><a href="#"> May 29, 2015</a></span>
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li><!-- 2nd post end-->
 
-                            <li>
-                                <div class="posts-thumb pull-left">
-                                    <a href="#"><img alt="img" src="images/post/post2.jpg"></a>
-                                </div>
-                                <div class="post-info">
-                                    <h4 class="entry-title">
-                                        <a href="#">Bulgaria claims to find Europe's oldest town</a>
-                                    </h4>
-                                    <p class="post-meta">
-                                        <span class="post-date"><a href="#"> May 29, 2015</a></span>
-                                    </p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li><!-- 2nd post end-->
-
-                            <li>
-                                <div class="posts-thumb pull-left">
-                                    <a href="#"><img alt="img" src="images/post/post3.jpg"></a>
-                                </div>
-                                <div class="post-info">
-                                    <h4 class="entry-title">
-                                        <a href="#">What to eat for supper in Singapore on Christmas</a>
-                                    </h4>
-                                    <p class="post-meta">
-                                        <span class="post-date"><a href="#"> Apr 17, 2015</a></span>
-                                    </p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li><!-- 3rd post end-->
+                                <li>
+                                    <div class="posts-thumb pull-left">
+                                        <a href="#"><img alt="img" src="images/post/post3.jpg"></a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4 class="entry-title">
+                                            <a href="#">What to eat for supper in Singapore on Christmas</a>
+                                        </h4>
+                                        <p class="post-meta">
+                                            <span class="post-date"><a href="#"> Apr 17, 2015</a></span>
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li><!-- 3rd post end-->*@
                         </ul>
                     </div><!-- Widget recent post end -->
 
@@ -693,20 +694,20 @@
 </section>
 <!--/ Blog end -->
 <!--/ Featured carousel start -->
-<section class="featured-wrapper">
+<section class="featured-wrapper" ng-controller="HomeController">
     <div class="container">
         <h2 class="text-center title-classic">Featured</h2>
 
-        <div id="featured-slider" class="owl-carousel owl-theme featured-slider">
+        <div id="featured-slider" class="owl-carousel featured-slider">
             <div class="item clearfix">
                 <div class="trending-item-content border-overlay">
-                    <a href="#"><img class="trending-post-img" src="images/post/post1.jpg" alt="img"></a>
+                    <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[0].BlogId}}"><img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[0].TitleImage.split('.')[0]}}-RP.{{featuredPosts[0].TitleImage.split('.')[1]}}" alt="img"></a>
                     <div class="post-content border-overlay-content">
                         <div class="post-cat title-font">
-                            <a href="#">Lifestyle</a>
+                            <a href="#">{{featuredPosts[0].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="#">Why Explaining The Truth About Santa</a>
+                            <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[0].BlogId}}">{{featuredPosts[0].Title}}</a>
                         </h2>
                     </div>
                 </div>
@@ -714,13 +715,13 @@
 
             <div class="item clearfix">
                 <div class="trending-item-content border-overlay">
-                    <a href="#"><img class="trending-post-img" src="images/post/post2.jpg" alt="img"></a>
+                    <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[1].BlogId}}"><img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[2].TitleImage.split('.')[0]}}-RP.{{featuredPosts[2].TitleImage.split('.')[1]}}" alt="img"></a>
                     <div class="post-content border-overlay-content">
                         <div class="post-cat title-font">
-                            <a href="#">Travel</a>
+                            <a href="#">{{featuredPosts[1].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="#">To Avoid Holiday Delays, Airlines Add Flights</a>
+                            <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[1].BlogId}}">{{featuredPosts[1].Title}}</a>
                         </h2>
                     </div>
                 </div>
@@ -728,19 +729,19 @@
 
             <div class="item clearfix">
                 <div class="trending-item-content border-overlay">
-                    <a href="#"><img class="trending-post-img" src="images/post/post3.jpg" alt="img"></a>
+                    <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[2].BlogId}}"><img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[1].TitleImage.split('.')[0]}}-RP.{{featuredPosts[1].TitleImage.split('.')[1]}}" alt="img"></a>
                     <div class="post-content border-overlay-content">
                         <div class="post-cat title-font">
-                            <a href="#">Travel</a>
+                            <a href="#">{{featuredPosts[2].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="#">Wearable Tech Made Strides In 2015</a>
+                            <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[2].BlogId}}">{{featuredPosts[2].Title}}</a>
                         </h2>
                     </div>
                 </div>
             </div><!-- Item 3 end -->
 
-            <div class="item clearfix">
+            @*<div class="item clearfix">
                 <div class="trending-item-content border-overlay">
                     <a href="#"><img class="trending-post-img" src="images/post/post4.jpg" alt="img"></a>
                     <div class="post-content border-overlay-content">
@@ -766,7 +767,7 @@
                         </h2>
                     </div>
                 </div>
-            </div><!-- Item 5 end -->
+            </div><!-- Item 5 end -->*@
 
         </div><!--/ Owl carousel end -->
     </div><!--/ Container end -->

@@ -14,6 +14,7 @@ function HomeController(blogHomeService, pagerService, $scope) {
     //$scope.allPosts = [];
     $scope.precisePosts = [];
     $scope.trendingPosts = [];
+    $scope.recentPosts = [];
     $scope.pageNumber = 1;
     $scope.totalBlogCount = 0;
     var startIndex = 0;
@@ -24,6 +25,7 @@ function HomeController(blogHomeService, pagerService, $scope) {
     //});
     blogHomeService.getPrecisePosts(startIndex, numOfPosts).then(function (data) {
         $scope.precisePosts = data;
+        $scope.recentPosts = data;
     });
     blogHomeService.getTotalBlogCount().then(function (data) {
         $scope.totalBlogCount = data;
