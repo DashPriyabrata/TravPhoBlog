@@ -35,43 +35,44 @@ namespace WebAPI.Models
         public virtual DbSet<tag_mapper> tag_mapper { get; set; }
         public virtual DbSet<bloginfo> bloginfoes { get; set; }
         public virtual DbSet<blog_comment> blog_comment { get; set; }
-
+        public virtual DbSet<blog_category> blog_category { get; set; }
+    
         public virtual ObjectResult<bloginfo> SP_NextPost(Nullable<int> postId)
         {
             var postIdParameter = postId.HasValue ?
                 new ObjectParameter("PostId", postId) :
                 new ObjectParameter("PostId", typeof(int));
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_NextPost", postIdParameter);
         }
-
+    
         public virtual ObjectResult<bloginfo> SP_NextPost(Nullable<int> postId, MergeOption mergeOption)
         {
             var postIdParameter = postId.HasValue ?
                 new ObjectParameter("PostId", postId) :
                 new ObjectParameter("PostId", typeof(int));
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_NextPost", mergeOption, postIdParameter);
         }
-
+    
         public virtual ObjectResult<bloginfo> SP_PrevPost(Nullable<int> postId)
         {
             var postIdParameter = postId.HasValue ?
                 new ObjectParameter("PostId", postId) :
                 new ObjectParameter("PostId", typeof(int));
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_PrevPost", postIdParameter);
         }
-
+    
         public virtual ObjectResult<bloginfo> SP_PrevPost(Nullable<int> postId, MergeOption mergeOption)
         {
             var postIdParameter = postId.HasValue ?
                 new ObjectParameter("PostId", postId) :
                 new ObjectParameter("PostId", typeof(int));
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_PrevPost", mergeOption, postIdParameter);
         }
-
+    
         public virtual ObjectResult<blog_tag> SP_GetBlogTags(Nullable<int> passedBlogTagId)
         {
             var passedBlogTagIdParameter = passedBlogTagId.HasValue ?
@@ -89,7 +90,7 @@ namespace WebAPI.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<blog_tag>("SP_GetBlogTags", mergeOption, passedBlogTagIdParameter);
         }
-
+    
         public virtual ObjectResult<bloginfo> SP_GetLastFiveCommentedPosts()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bloginfo>("SP_GetLastFiveCommentedPosts");

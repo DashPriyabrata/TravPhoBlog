@@ -53,6 +53,16 @@ app.factory('blogHomeService', [
                         }, def.reject);
 
                     return def.promise;
+                },
+                getCatsWithPostCount: function () {
+                    var def = $q.defer();
+
+                    $http.get(apiRoot + "AllCatsWithPostCount")
+                        .then(function (response) {
+                            def.resolve(response.data);
+                        }, def.reject);
+
+                    return def.promise;
                 }
             };
         }

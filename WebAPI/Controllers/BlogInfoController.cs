@@ -13,10 +13,12 @@ namespace WebAPI.Controllers
     public class BlogInfoController : ApiController
     {
         IBlogInfoRepository blogInfoRepo;
+        IBlogTagRepository blogTagRepo;
 
         public BlogInfoController()
         {
             blogInfoRepo = new BlogInfoRepository(new MyTravelBlogEntities());
+            blogTagRepo = new BlogTagRepository(new MyTravelBlogEntities());
         }
 
         [ResponseType(typeof(bloginfo))]
@@ -37,7 +39,7 @@ namespace WebAPI.Controllers
         [Route("api/BlogInfo/Tags/{blogTagId}")]
         public async Task<IHttpActionResult> GetTags(int blogTagId)
         {
-            return Ok(blogInfoRepo.GetTags(blogTagId));
+            return Ok(blogTagRepo.GetTags(blogTagId));
         }
 
         [ResponseType(typeof(blog_user))]

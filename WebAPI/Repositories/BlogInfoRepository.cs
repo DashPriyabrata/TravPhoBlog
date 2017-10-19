@@ -40,12 +40,6 @@ namespace WebAPI.Repositories
             return postContent;
         }
 
-        public List<blog_tag> GetTags(int blogTagId)
-        {
-            var tags = dbContext.SP_GetBlogTags(blogTagId);
-            return tags.ToList();
-        }
-
         public async Task<ICollection<blog_comment>> GetComments(int blogId)
         {
             var comments = await dbContext.blog_comment.Where(x => x.PostId == blogId).ToListAsync();

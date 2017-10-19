@@ -53,6 +53,12 @@ namespace WebAPI.Repositories
             return trendingPosts.ToList();
         }
 
+        public async Task<IEnumerable<blog_category>> GetAllCategoriesWithBlogCount()
+        {
+            var categories = await dbContext.blog_category.ToListAsync();
+            return categories;
+        }
+
         private bool isDisposed;
 
         protected virtual void Dispose(bool isDisposing)

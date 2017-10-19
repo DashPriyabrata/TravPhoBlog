@@ -11,10 +11,12 @@ namespace WebAPI.Controllers
     public class BlogHomeController : ApiController
     {
         IBlogHomeRepository blogHomeRepo;
+        IBlogTagRepository blogTagRepo;
 
         public BlogHomeController()
         {
             blogHomeRepo = new BlogHomeRepository(new MyTravelBlogEntities());
+            blogTagRepo = new BlogTagRepository(new MyTravelBlogEntities());
         }
 
         [ResponseType(typeof(List<bloginfo>))]
@@ -50,6 +52,13 @@ namespace WebAPI.Controllers
         public async Task<IHttpActionResult> GetTrendingPosts()
         {
             return Ok(await blogHomeRepo.GetTrendingPosts());
+        }
+
+        [ResponseType(typeof(List<blog_tag>))]
+        [Route("api/BlogHome/AllCatsWithPostCount")]
+        public async Task<IHttpActionResult> GetAllCategoriesWithBlogCount()
+        {
+            return Ok(await blogHomeRepo.GetAllCategoriesWithBlogCount());
         }
     }
 }
