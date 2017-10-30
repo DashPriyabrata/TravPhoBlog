@@ -28,6 +28,7 @@ namespace WebAPI.Repositories
             var user = dbContext.SP_PrevPost(blogId).FirstOrDefault();
             return user;
         }
+
         public async Task<bloginfo> GetNextPost(int blogId)
         {
             var user = dbContext.SP_NextPost(blogId).FirstOrDefault();
@@ -68,8 +69,11 @@ namespace WebAPI.Repositories
                         if (!relatedPosts.Exists(x => x.BlogTagId == mapper.BlogTagId))
                         {
                             var postResult = await dbContext.bloginfoes.FirstOrDefaultAsync(x => x.BlogTagId == mapper.BlogTagId);
-                            postResult.RelatedTagName = dbContext.blog_tag.FirstOrDefaultAsync(x => x.TagId == tempTagId).Result.Tag;
-                            relatedPosts.Add(postResult);
+                            if (postResult != null)
+                            {
+                                postResult.RelatedTagName = dbContext.blog_tag.FirstOrDefaultAsync(x => x.TagId == tempTagId).Result.Tag;
+                                relatedPosts.Add(postResult);
+                            }
                         }
 
                     }

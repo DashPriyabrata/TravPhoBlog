@@ -1668,6 +1668,13 @@ article.list-post-left .list-post-inwrap {
     width: 90%;
 }
 
+.ask-for-comment {
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    font-size: 16px;
+    border-style: inset;
+}
+
 /* Single page navigation */
 
 .post-navigation {

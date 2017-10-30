@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Post Home";
+    ViewBag.Title = "Detailed";
 }
 
 <script src="~/Scripts/app/controllers/BlogInfoController.js"></script>
@@ -85,10 +85,18 @@
                             </div>
                             <p class="image-desc">Photo taken at</p>
                             <br />
+                            <h4><u>Attractions and Sightseeing :</u></h4>
+                            <p>Demo</p>
+                            <br />
+                            <h4><u>Where to stay?</u></h4>
+                            <p>Demo</p>
+                            <br />
+                            <h4><u>How to move around?</u></h4>
                             <p>{{postContent.Direction}}</p>
-                            <br/>
+                            <br />
                             <p class="ask-for-comment">
-                                Any thoughts, questions or a feedback you want to share with us? Feel free to put a comment using our
+                                Any thoughts, questions or a feedback you want to share with us?
+                                Feel free to put a comment using our
                                 <a style="font-weight: bold;" href="Post?blogId={{blogData.BlogId}}#comment-form">"Comments Form"</a>
                                 favailable below.
                             </p>
@@ -199,7 +207,6 @@
                             </li><!-- Comments-list li end -->
                         </ul><!-- Comments-list ul end -->
                     </div><!-- Post comment end -->
-
                     @*<comment-component input="$blogInfoCtrl.comment" on-submit="$blogInfoCtrl.saveComment(commentsData)"></comment-component>*@
 
                     <div id="comment-form" class="comments-form">
@@ -237,3 +244,4 @@
         </div><!--/ Blog row end -->
     </div><!--/ Blog container end -->
 </section><!--/ Blog end -->
+
