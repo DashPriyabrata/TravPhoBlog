@@ -13,10 +13,5 @@ namespace MyTravelBlog.Controllers
         {
             return View();
         }
-
-        public ActionResult Detailed()
-        {
-            return View();
-        }
     }
 }
