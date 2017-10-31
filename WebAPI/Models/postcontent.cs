@@ -27,5 +27,8 @@ namespace WebAPI.Models
         public string Closing_Statements { get; set; }
         public string Image_Direction { get; set; }
         public string Direction { get; set; }
+        public string ArrivingHere { get; set; }
+        public string Attractions { get; set; }
+        public string Accommodation { get; set; }
     }
 }

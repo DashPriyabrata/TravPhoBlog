@@ -23,11 +23,12 @@ namespace WebAPI.Models
         public bool IsActive { get; set; }
         public int BloggerId { get; set; }
         public string Category { get; set; }
-        public Nullable<bool> IsFeatured { get; set; }
-        public Nullable<bool> IsCommentsEnabled { get; set; }
-        public Nullable<int> Views { get; set; }
-        public Nullable<int> ContentId { get; set; }
+        public bool? IsFeatured { get; set; }
+        public bool? IsCommentsEnabled { get; set; }
+        public int? Views { get; set; }
+        public int? ContentId { get; set; }
         public int BlogTagId { get; set; }
+        public string NavUrlString { get; set; }
         //Custom properties
         public string RelatedTagName { get; set; }
         public string Introduction { get; set; }

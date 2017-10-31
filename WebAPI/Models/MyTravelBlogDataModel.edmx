@@ -82,6 +82,7 @@
           <Property Name="Views" Type="int" />
           <Property Name="ContentId" Type="int" />
           <Property Name="BlogTagId" Type="int" Nullable="false" />
+          <Property Name="NavUrlString" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="postcontent">
           <Key>
@@ -100,6 +101,9 @@
           <Property Name="Closing_Statements" Type="varchar" MaxLength="2000" />
           <Property Name="Image_Direction" Type="varchar" MaxLength="45" />
           <Property Name="Direction" Type="varchar" MaxLength="500" />
+          <Property Name="ArrivingHere" Type="varchar" MaxLength="500" />
+          <Property Name="Attractions" Type="varchar" MaxLength="500" />
+          <Property Name="Accommodation" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -220,7 +224,7 @@
             <End Role="blogger" EntitySet="bloggers" />
             <End Role="bloginfo" EntitySet="bloginfoes" />
           </AssociationSet>
-          <EntitySet Name="blog_category" EntityType="Models.blog_category" />
+		  <EntitySet Name="blog_category" EntityType="Models.blog_category" />
           </EntityContainer>
         <EntityType Name="role">
           <Key>
@@ -295,6 +299,9 @@
           <Property Name="Closing_Statements" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="Image_Direction" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ArrivingHere" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Attractions" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Accommodation" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="blog_tag">
           <Key>
@@ -355,6 +362,7 @@
           <Property Name="Views" Type="Int32" />
           <Property Name="ContentId" Type="Int32" />
           <Property Name="BlogTagId" Type="Int32" Nullable="false" />
+          <Property Name="NavUrlString" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="blogger" Relationship="Models.FK_BloggerId" FromRole="bloginfo" ToRole="blogger" />
         </EntityType>
         <Association Name="FK_BloggerId">
@@ -369,7 +377,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="blog_category">
+		<EntityType Name="blog_category">
           <Key>
             <PropertyRef Name="Name" />
           </Key>
@@ -433,6 +441,9 @@
           <EntitySetMapping Name="postcontents">
             <EntityTypeMapping TypeName="Models.postcontent">
               <MappingFragment StoreEntitySet="postcontent">
+                <ScalarProperty Name="Accommodation" ColumnName="Accommodation" />
+                <ScalarProperty Name="Attractions" ColumnName="Attractions" />
+                <ScalarProperty Name="ArrivingHere" ColumnName="ArrivingHere" />
                 <ScalarProperty Name="Direction" ColumnName="Direction" />
                 <ScalarProperty Name="Image_Direction" ColumnName="Image_Direction" />
                 <ScalarProperty Name="Closing_Statements" ColumnName="Closing_Statements" />
@@ -482,6 +493,7 @@
           <EntitySetMapping Name="bloginfoes">
             <EntityTypeMapping TypeName="Models.bloginfo">
               <MappingFragment StoreEntitySet="bloginfo">
+                <ScalarProperty Name="NavUrlString" ColumnName="NavUrlString" />
                 <ScalarProperty Name="BlogTagId" ColumnName="BlogTagId" />
                 <ScalarProperty Name="ContentId" ColumnName="ContentId" />
                 <ScalarProperty Name="Views" ColumnName="Views" />
@@ -499,7 +511,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="blog_category">
+		  <EntitySetMapping Name="blog_category">
             <EntityTypeMapping TypeName="Models.blog_category">
               <MappingFragment StoreEntitySet="blog_category">
                 <ScalarProperty Name="TaggedBlogCount" ColumnName="TaggedBlogCount" />

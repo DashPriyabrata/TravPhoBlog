@@ -85,29 +85,30 @@
                             </div>
                             <p class="image-desc">Photo taken at</p>
                             <br />
-                            <div id="howtoarrive">
-                                <h4><u>How to arrive?</u></h4>
-                                <p>Demo</p>
+                            <div id="howtoarrive" ng-if="postContent.ArrivingHere">
+                                <h4><u>How to arrive here?</u></h4>
+                                <p>{{postContent.ArrivingHere}}</p>
                                 <br />
                             </div>
-                            <div id="attractions">
+                            <div id="attractions" ng-if="postContent.Attractions">
                                 <h4><u>Attractions and Sightseeing</u></h4>
-                                <p>Demo</p>
+                                <ul style="margin: 0px;width: 100%;">
+                                    <li ng-repeat="x in postContent.Attractions.split(',')">{{x}}</li>
+                                </ul>
                                 <br />
                             </div>
-                            <div id="accommodation">
+                            <div id="accommodation" ng-if="postContent.Accommodation">
                                 <h4><u>Accommodation</u></h4>
-                                <p>Demo</p>
+                                <p>{{postContent.Accommodation}}</p>
                                 <br />
                             </div>
-                            <div id="howtomovearound">
+                            <div id="howtomovearound" ng-if="postContent.Direction">
                                 <h4><u>How to move around?</u></h4>
                                 <p>{{postContent.Direction}}</p>
                                 <br />
                             </div>
                             <p class="ask-for-comment">
-                                Any thoughts, questions or a feedback you want to share with us?
-                                Feel free to put a comment using our
+                                Any thoughts, questions or a feedback you want to share with us? Feel free to put a comment using our
                                 <a style="font-weight: bold;" href="Post?blogId={{blogData.BlogId}}#comment-form">"Comments Form"</a>
                                 available below.
                             </p>
