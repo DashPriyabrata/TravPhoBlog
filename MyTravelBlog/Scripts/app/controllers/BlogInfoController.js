@@ -28,8 +28,9 @@ function BlogInfoController(blogInfoService, userService, $scope, $location) {
     _self.saveComment = function (commentsData) {
         //save logic here - can me form post or ajax post
     }
-
-    var blogId = $location.search().blogId;
+    var splitUrl = $location.$$path.split('/');
+    var blogId = splitUrl[splitUrl.length - 1];
+    //var blogId = $location.search().blogId;
 
     blogInfoService.getBlogInfo(blogId).then(function (data) {
         $scope.blogData = data;

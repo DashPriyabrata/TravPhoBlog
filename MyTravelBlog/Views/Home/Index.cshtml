@@ -26,7 +26,7 @@
                 <h2 class="entry-title">
                     <a>{{post.Title}}</a>
                 </h2>
-                <p><a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}" class="title-font slider btn btn-primary">Full Story</a></p>
+                <p><a href="@Url.Action("Index", "Post")/{{post.NavUrlString}}/{{post.BlogId}}" class="title-font slider btn btn-primary">Full Story</a></p>
             </div>
         </div><!--/ Carousel item end -->
     </div><!-- Carousel inner end-->
@@ -48,7 +48,7 @@
         <div id="trending-slider" class="owl-carousel owl-theme trending-slider">
             <div class="item clearfix" ng-hide="trendingPosts[0] == null">
                 <div class="trending-item-content border-overlay">
-                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[0].BlogId}}">
+                    <a href="@Url.Action("Index", "Post")/{{trendingPosts[0].NavUrlString}}/{{trendingPosts[0].BlogId}}">
                         <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[0].TitleImage.split('.')[0]}}-RP.{{trendingPosts[0].TitleImage.split('.')[1]}}" alt="img" />
                     </a>
                     <div class="post-content border-overlay-content">
@@ -56,14 +56,14 @@
                             <a href="#">{{trendingPosts[0].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[0].BlogId}}">{{trendingPosts[0].Title}}</a>
+                            <a href="@Url.Action("Index", "Post")/{{trendingPosts[0].NavUrlString}}/{{trendingPosts[0].BlogId}}">{{trendingPosts[0].Title}}</a>
                         </h2>
                     </div>
                 </div>
             </div><!-- Item 1 end -->
             <div class="item clearfix" ng-hide="trendingPosts[1] == null">
                 <div class="trending-item-content border-overlay">
-                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[1].BlogId}}">
+                    <a href="@Url.Action("Index", "Post")/{{trendingPosts[1].NavUrlString}}/{{trendingPosts[1].BlogId}}">
                         <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[1].TitleImage.split('.')[0]}}-RP.{{trendingPosts[1].TitleImage.split('.')[1]}}" alt="img" />
                     </a>
                     <div class="post-content border-overlay-content">
@@ -71,14 +71,14 @@
                             <a href="#">{{trendingPosts[1].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[1].BlogId}}">{{trendingPosts[1].Title}}</a>
+                            <a href="@Url.Action("Index", "Post")/{{trendingPosts[1].NavUrlString}}/{{trendingPosts[1].BlogId}}">{{trendingPosts[1].Title}}</a>
                         </h2>
                     </div>
                 </div>
             </div><!-- Item 2 end -->
             <div class="item clearfix" ng-hide="trendingPosts[2] == null">
                 <div class="trending-item-content border-overlay">
-                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[2].BlogId}}">
+                    <a href="@Url.Action("Index", "Post")/{{trendingPosts[2].NavUrlString}}/{{trendingPosts[2].BlogId}}">
                         <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[2].TitleImage.split('.')[0]}}-RP.{{trendingPosts[2].TitleImage.split('.')[1]}}" alt="img" />
                     </a>
                     <div class="post-content border-overlay-content">
@@ -86,14 +86,14 @@
                             <a href="#">{{trendingPosts[2].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[2].BlogId}}">{{trendingPosts[2].Title}}</a>
+                            <a href="@Url.Action("Index", "Post")/{{trendingPosts[2].NavUrlString}}/{{trendingPosts[2].BlogId}}">{{trendingPosts[2].Title}}</a>
                         </h2>
                     </div>
                 </div>
             </div><!-- Item 3 end -->
             <div class="item clearfix" ng-hide="trendingPosts[3] == null">
                 <div class="trending-item-content border-overlay">
-                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[3].BlogId}}">
+                    <a href="@Url.Action("Index", "Post")/{{trendingPosts[3].NavUrlString}}/{{trendingPosts[3].BlogId}}">
                         <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[3].TitleImage.split('.')[0]}}-RP.{{trendingPosts[3].TitleImage.split('.')[1]}}" alt="img" />
                     </a>
                     <div class="post-content border-overlay-content">
@@ -101,14 +101,14 @@
                             <a href="#">{{trendingPosts[3].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[3].BlogId}}">{{trendingPosts[3].Title}}</a>
+                            <a href="@Url.Action("Index", "Post")/{{trendingPosts[3].NavUrlString}}/{{trendingPosts[3].BlogId}}">{{trendingPosts[3].Title}}</a>
                         </h2>
                     </div>
                 </div>
             </div><!-- Item 4 end -->
             <div class="item clearfix" ng-hide="trendingPosts[4] == null">
                 <div class="trending-item-content border-overlay">
-                    <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[4].BlogId}}">
+                    <a href="@Url.Action("Index", "Post")/{{trendingPosts[4].NavUrlString}}/{{trendingPosts[4].BlogId}}">
                         <img class="trending-post-img" ng-src="~/Images/Post/{{trendingPosts[4].TitleImage.split('.')[0]}}-RP.{{trendingPosts[4].TitleImage.split('.')[1]}}" alt="img" />
                     </a>
                     <div class="post-content border-overlay-content">
@@ -116,7 +116,7 @@
                             <a href="#">{{trendingPosts[4].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{trendingPosts[4].BlogId}}">{{trendingPosts[4].Title}}</a>
+                            <a href="@Url.Action("Index", "Post")/{{trendingPosts[4].NavUrlString}}/{{trendingPosts[4].BlogId}}">{{trendingPosts[4].Title}}</a>
                         </h2>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="post-media post-image">
-                                    <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[0].BlogId}}">
+                                    <a href="@Url.Action("Index", "Post")/{{precisePosts[0].NavUrlString}}/{{precisePosts[0].BlogId}}">
                                         <img ng-src="~/Images/Post/{{precisePosts[0].TitleImage.split('.')[0]}}-RP.{{precisePosts[0].TitleImage.split('.')[1]}}" alt="img">
                                     </a>
                                 </div>
@@ -160,7 +160,7 @@
                                 <div class="list-post-inwrap">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[0].BlogId}}">{{precisePosts[0].Title}}</a>
+                                            <a href="@Url.Action("Index", "Post")/{{precisePosts[0].NavUrlString}}/{{precisePosts[0].BlogId}}">{{precisePosts[0].Title}}</a>
                                         </h2>
                                     </div>
 
@@ -169,7 +169,7 @@
                                     </div>
 
                                     <div class="post-bottom clearfix">
-                                        <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[0].BlogId}}" class="pull-left title-font more-link">Full Story</a>
+                                        <a href="@Url.Action("Index", "Post")/{{precisePosts[0].NavUrlString}}/{{precisePosts[0].BlogId}}" class="pull-left title-font more-link">Full Story</a>
                                         <div class="share-items pull-right">
                                             <ul class="social-icons unstyled">
                                                 <li><a data-original-title="Facebook" href="#" target="_blank" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-facebook"></i></a></li>
@@ -207,7 +207,7 @@
                                 <div class="list-post-inwrap">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[1].BlogId}}">{{precisePosts[1].Title}}</a>
+                                            <a href="@Url.Action("Index", "Post")/{{precisePosts[1].NavUrlString}}/{{precisePosts[1].BlogId}}">{{precisePosts[1].Title}}</a>
                                         </h2>
                                     </div>
 
@@ -216,7 +216,7 @@
                                     </div>
 
                                     <div class="post-bottom clearfix">
-                                        <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[1].BlogId}}" class="pull-left title-font more-link">Full Story</a>
+                                        <a href="@Url.Action("Index", "Post")/{{precisePosts[1].NavUrlString}}/{{precisePosts[1].BlogId}}" class="pull-left title-font more-link">Full Story</a>
                                         <div class="share-items pull-right">
                                             <ul class="social-icons unstyled">
                                                 <li><a data-original-title="Facebook" href="#" target="_blank" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-facebook"></i></a></li>
@@ -231,7 +231,7 @@
 
                             <div class="col-md-6">
                                 <div class="post-media post-image">
-                                    <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[1].BlogId}}">
+                                    <a href="@Url.Action("Index", "Post")/{{precisePosts[1].NavUrlString}}/{{precisePosts[1].BlogId}}">
                                         <img ng-src="~/Images/Post/{{precisePosts[1].TitleImage.split('.')[0]}}-RP.{{precisePosts[1].TitleImage.split('.')[1]}}" alt="img">
                                     </a>
                                 </div>
@@ -243,7 +243,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="post-media post-image">
-                                    <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[2].BlogId}}">
+                                    <a href="@Url.Action("Index", "Post")/{{precisePosts[2].NavUrlString}}/{{precisePosts[2].BlogId}}">
                                         <img ng-src="~/Images/Post/{{precisePosts[2].TitleImage.split('.')[0]}}-RP.{{precisePosts[2].TitleImage.split('.')[1]}}" alt="img">
                                     </a>
                                 </div>
@@ -268,7 +268,7 @@
                                 <div class="list-post-inwrap">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[2].BlogId}}">{{precisePosts[2].Title}}</a>
+                                            <a href="@Url.Action("Index", "Post")/{{precisePosts[2].NavUrlString}}/{{precisePosts[2].BlogId}}">{{precisePosts[2].Title}}</a>
                                         </h2>
                                     </div>
 
@@ -277,7 +277,7 @@
                                     </div>
 
                                     <div class="post-bottom clearfix">
-                                        <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[2].BlogId}}" class="pull-left title-font more-link">Full Story</a>
+                                        <a href="@Url.Action("Index", "Post")/{{precisePosts[2].NavUrlString}}/{{precisePosts[2].BlogId}}" class="pull-left title-font more-link">Full Story</a>
                                         <div class="share-items pull-right">
                                             <ul class="social-icons unstyled">
                                                 <li><a data-original-title="Facebook" href="#" target="_blank" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-facebook"></i></a></li>
@@ -299,7 +299,7 @@
 
                                 <div class="entry-header">
                                     <h2 class="entry-title">
-                                        <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[3].BlogId}}">{{precisePosts[3].Title}}</a>
+                                        <a href="@Url.Action("Index", "Post")/{{precisePosts[3].NavUrlString}}/{{precisePosts[3].BlogId}}">{{precisePosts[3].Title}}</a>
                                     </h2>
                                 </div>
                                 <div class="meta-author title-font">
@@ -331,7 +331,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="post-media post-image">
-                                    <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[4].BlogId}}">
+                                    <a href="@Url.Action("Index", "Post")/{{precisePosts[4].NavUrlString}}/{{precisePosts[4].BlogId}}">
                                         <img ng-src="~/Images/Post/{{precisePosts[4].TitleImage.split('.')[0]}}-RP.{{precisePosts[4].TitleImage.split('.')[1]}}" alt="img">
                                     </a>
                                 </div>
@@ -356,7 +356,7 @@
                                 <div class="list-post-inwrap">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[4].BlogId}}">{{precisePosts[4].Title}}</a>
+                                            <a href="@Url.Action("Index", "Post")/{{precisePosts[4].NavUrlString}}/{{precisePosts[4].BlogId}}">{{precisePosts[4].Title}}</a>
                                         </h2>
                                     </div>
 
@@ -365,7 +365,7 @@
                                     </div>
 
                                     <div class="post-bottom clearfix">
-                                        <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[4].BlogId}}" class="pull-left title-font more-link">Full Story</a>
+                                        <a href="@Url.Action("Index", "Post")/{{precisePosts[4].NavUrlString}}/{{precisePosts[4].BlogId}}" class="pull-left title-font more-link">Full Story</a>
                                         <div class="share-items pull-right">
                                             <ul class="social-icons unstyled">
                                                 <li><a data-original-title="Facebook" href="#" target="_blank" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-facebook"></i></a></li>
@@ -403,7 +403,7 @@
                                 <div class="list-post-inwrap">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[5].BlogId}}">{{precisePosts[5].Title}}</a>
+                                            <a href="@Url.Action("Index", "Post")/{{precisePosts[5].NavUrlString}}/{{precisePosts[5].BlogId}}">{{precisePosts[5].Title}}</a>
                                         </h2>
                                     </div>
 
@@ -412,7 +412,7 @@
                                     </div>
 
                                     <div class="post-bottom clearfix">
-                                        <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[5].BlogId}}" class="pull-left title-font more-link">Full Story</a>
+                                        <a href="@Url.Action("Index", "Post")/{{precisePosts[5].NavUrlString}}/{{precisePosts[5].BlogId}}" class="pull-left title-font more-link">Full Story</a>
                                         <div class="share-items pull-right">
                                             <ul class="social-icons unstyled">
                                                 <li><a data-original-title="Facebook" href="#" target="_blank" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-facebook"></i></a></li>
@@ -428,7 +428,7 @@
 
                             <div class="col-md-6">
                                 <div class="post-media post-image">
-                                    <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[5].BlogId}}">
+                                    <a href="@Url.Action("Index", "Post")/{{precisePosts[5].NavUrlString}}/{{precisePosts[5].BlogId}}">
                                         <img ng-src="~/Images/Post/{{precisePosts[5].TitleImage.split('.')[0]}}-RP.{{precisePosts[5].TitleImage.split('.')[1]}}" alt="img">
                                     </a>
                                 </div>
@@ -440,7 +440,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="post-media post-image">
-                                    <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[6].BlogId}}">
+                                    <a href="@Url.Action("Index", "Post")/{{precisePosts[6].NavUrlString}}/{{precisePosts[6].BlogId}}">
                                         <img ng-src="~/Images/Post/{{precisePosts[6].TitleImage.split('.')[0]}}-RP.{{precisePosts[6].TitleImage.split('.')[1]}}" alt="img">
                                     </a>
                                 </div>
@@ -465,7 +465,7 @@
                                 <div class="list-post-inwrap">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[6].BlogId}}">{{precisePosts[6].Title}}</a>
+                                            <a href="@Url.Action("Index", "Post")/{{precisePosts[6].NavUrlString}}/{{precisePosts[6].BlogId}}">{{precisePosts[6].Title}}</a>
                                         </h2>
                                     </div>
 
@@ -474,7 +474,7 @@
                                     </div>
 
                                     <div class="post-bottom clearfix">
-                                        <a href="@Url.Action("Index", "Post")?blogId={{precisePosts[6].BlogId}}" class="pull-left title-font more-link">Full Story</a>
+                                        <a href="@Url.Action("Index", "Post")/{{precisePosts[6].NavUrlString}}/{{precisePosts[6].BlogId}}" class="pull-left title-font more-link">Full Story</a>
                                         <div class="share-items pull-right">
                                             <ul class="social-icons unstyled">
                                                 <li><a data-original-title="Facebook" href="#" target="_blank" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-facebook"></i></a></li>
@@ -554,13 +554,13 @@
                         <ul class="unstyled clearfix">
                             <li ng-repeat="post in recentPosts | limitTo : 3">
                                 <div class="posts-thumb pull-left">
-                                    <a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}">
+                                    <a href="@Url.Action("Index", "Post")/{{post.NavUrlString}}/{{post.BlogId}}">
                                         <img alt="img" ng-src="~/Images/Post/{{post.TitleImage.split('.')[0]}}-RP.{{post.TitleImage.split('.')[1]}}">
                                     </a>
                                 </div>
                                 <div class="post-info">
                                     <h4 class="entry-title">
-                                        <a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}">{{post.Title}}</a>
+                                        <a href="@Url.Action("Index", "Post")/{{post.NavUrlString}}/{{post.BlogId}}">{{post.Title}}</a>
                                     </h4>
                                     <p class="post-meta">
                                         <span class="post-date">{{post.PostDate | date :  "MMM d, yyyy"}}</span>
@@ -703,13 +703,15 @@
         <div id="featured-slider" class="owl-carousel featured-slider">
             <div class="item clearfix">
                 <div class="trending-item-content border-overlay">
-                    <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[0].BlogId}}"><img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[0].TitleImage.split('.')[0]}}-RP.{{featuredPosts[0].TitleImage.split('.')[1]}}" alt="img"></a>
+                    <a href="@Url.Action("Index", "Post")/{{featuredPosts[0].NavUrlString}}/{{featuredPosts[0].BlogId}}">
+                        <img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[0].TitleImage.split('.')[0]}}-RP.{{featuredPosts[0].TitleImage.split('.')[1]}}" alt="img">
+                    </a>
                     <div class="post-content border-overlay-content">
                         <div class="post-cat title-font">
                             <a href="#">{{featuredPosts[0].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[0].BlogId}}">{{featuredPosts[0].Title}}</a>
+                            <a href="@Url.Action("Index", "Post")/{{featuredPosts[0].NavUrlString}}/{{featuredPosts[0].BlogId}}">{{featuredPosts[0].Title}}</a>
                         </h2>
                     </div>
                 </div>
@@ -717,13 +719,15 @@
 
             <div class="item clearfix">
                 <div class="trending-item-content border-overlay">
-                    <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[1].BlogId}}"><img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[2].TitleImage.split('.')[0]}}-RP.{{featuredPosts[2].TitleImage.split('.')[1]}}" alt="img"></a>
+                    <a href="@Url.Action("Index", "Post")/{{featuredPosts[1].NavUrlString}}/{{featuredPosts[1].BlogId}}">
+                        <img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[2].TitleImage.split('.')[0]}}-RP.{{featuredPosts[2].TitleImage.split('.')[1]}}" alt="img">
+                    </a>
                     <div class="post-content border-overlay-content">
                         <div class="post-cat title-font">
                             <a href="#">{{featuredPosts[1].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[1].BlogId}}">{{featuredPosts[1].Title}}</a>
+                            <a href="@Url.Action("Index", "Post")/{{featuredPosts[1].NavUrlString}}/{{featuredPosts[1].BlogId}}">{{featuredPosts[1].Title}}</a>
                         </h2>
                     </div>
                 </div>
@@ -731,13 +735,15 @@
 
             <div class="item clearfix">
                 <div class="trending-item-content border-overlay">
-                    <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[2].BlogId}}"><img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[1].TitleImage.split('.')[0]}}-RP.{{featuredPosts[1].TitleImage.split('.')[1]}}" alt="img"></a>
+                    <a href="@Url.Action("Index", "Post")/{{featuredPosts[2].NavUrlString}}/{{featuredPosts[2].BlogId}}">
+                        <img class="trending-post-img" ng-src="~/Images/Post/{{featuredPosts[1].TitleImage.split('.')[0]}}-RP.{{featuredPosts[1].TitleImage.split('.')[1]}}" alt="img">
+                    </a>
                     <div class="post-content border-overlay-content">
                         <div class="post-cat title-font">
                             <a href="#">{{featuredPosts[2].Category}}</a>
                         </div>
                         <h2 class="entry-title">
-                            <a href="@Url.Action("Index", "Post")?blogId={{featuredPosts[2].BlogId}}">{{featuredPosts[2].Title}}</a>
+                            <a href="@Url.Action("Index", "Post")/{{featuredPosts[2].NavUrlString}}/{{featuredPosts[2].BlogId}}">{{featuredPosts[2].Title}}</a>
                         </h2>
                     </div>
                 </div>

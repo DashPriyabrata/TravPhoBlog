@@ -109,7 +109,7 @@
                             </div>
                             <p class="ask-for-comment">
                                 Any thoughts, questions or a feedback you want to share with us? Feel free to put a comment using our
-                                <a style="font-weight: bold;" href="Post?blogId={{blogData.BlogId}}#comment-form">"Comments Form"</a>
+                                <a style="font-weight: bold;" href="Post/{{blogData.NavUrlString}}/{{blogData.BlogId}}#comment-form">"Comments Form"</a>
                                 available below.
                             </p>
                         </div>
@@ -131,13 +131,13 @@
 
                     <nav class="post-navigation clearfix">
                         <div class="post-previous" ng-show="prevPost != null">
-                            <a href="@Url.Action("Index", "Post")?blogId={{prevPost.BlogId}}" target="_self">
+                            <a href="@Url.Action(string.Empty, "Post")/{{prevPost.NavUrlString}}/{{prevPost.BlogId}}" target="_self">
                                 <span><i class="fa fa-angle-left"></i>Previous Post</span>
                                 <h3 class="title-normal">{{prevPost.Title}}</h3>
                             </a>
                         </div>
                         <div class="post-next" ng-show="nextPost != null">
-                            <a href="@Url.Action("Index", "Post")?blogId={{nextPost.BlogId}}" target="_self">
+                            <a href="@Url.Action(string.Empty, "Post")/{{nextPost.NavUrlString}}/{{nextPost.BlogId}}" target="_self">
                                 <span>Next Post <i class="fa fa-angle-right"></i></span>
                                 <h3 class="title-normal">{{nextPost.Title}}</h3>
                             </a>
@@ -168,14 +168,14 @@
                         <div class="row">
                             <div class="col-md-6" ng-repeat="post in relatedPosts">
                                 <div class="related-item-content border-overlay">
-                                    <a class="related-post-img" href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}" target="_blank">
+                                    <a class="related-post-img" href="@Url.Action(string.Empty, "Post")/{{post.NavUrlString}}/{{post.BlogId}}" target="_blank">
                                         <img ng-src="~/Images/Post/{{post.TitleImage.split('.')[0]}}-RP.{{post.TitleImage.split('.')[1]}}" alt="img">
                                     </a>
                                     <div class="post-content">
                                         <div class="post-cat title-font">
                                             <a href="#">{{post.RelatedTagName}}</a>
                                         </div>
-                                        <h2 class="entry-title"><a href="@Url.Action("Index", "Post")?blogId={{post.BlogId}}" target="_blank">{{post.Title}}</a></h2>
+                                        <h2 class="entry-title"><a href="@Url.Action(string.Empty, "Post")/{{post.NavUrlString}}/{{post.BlogId}}" target="_blank">{{post.Title}}</a></h2>
                                     </div>
                                 </div>
                             </div><!-- Col 6 end -->

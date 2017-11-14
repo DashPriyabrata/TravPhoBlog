@@ -14,6 +14,18 @@ namespace MyTravelBlog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "RouteToBlogPost",
+                "Post/{navUrlString}/{blogId}",
+                defaults: new { controller = "Post", action = "Index" }
+                //new
+                //{
+                //    controller = "Post",
+                //    action = "Index",
+                //    navUrlString = string.Empty
+                //}
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
