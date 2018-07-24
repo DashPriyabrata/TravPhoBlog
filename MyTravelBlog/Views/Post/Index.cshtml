@@ -9,10 +9,19 @@
 <script src="~/Scripts/app/components/CommentComponent.js"></script>
 <base href="/">
 
+<div id="fb-root"></div>
 <script>
     function goToByScroll(id) {
         $('html,body').animate({ scrollTop: $("#" + id).offset().top - 70 }, 'slow');
     }
+    //Facebook comment plugin script.
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=2099597870257585';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 
 <section class="blog-content">
@@ -188,6 +197,9 @@
                         </div>
                     </div><!-- Related post end -->
                     <!-- Post comment start -->
+                    <div class="fb-comments" data-href="http://travphoblog.com/Post/{{blogData.NavUrlString}}/{{blogData.BlogId}}" data-numposts="5" data-width="1140" data-mobile="true" data-order-by="reverse_time"></div>
+                    <br /><br />
+                    <h5 class="title-normal">Don't want to use Facebook? Use our <a onclick="goToByScroll('comment-form')" href="">Comment Form</a> instead.</h5>
                     <div id="comments" class="comments-area">
                         <h3 class="comments-heading title-normal">{{comments.length}} Comments</h3>
                         <ul class="comments-list">
