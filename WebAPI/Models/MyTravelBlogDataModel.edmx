@@ -41,7 +41,7 @@
           <Property Name="Name" Type="varchar" MaxLength="45" />
           <Property Name="Email" Type="varchar" MaxLength="45" />
           <Property Name="Website" Type="varchar" MaxLength="45" />
-          <Property Name="Avatar" Type="varchar" MaxLength="45" />
+          <Property Name="Avatar" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="blogger">
           <Key>
@@ -277,7 +277,7 @@
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Avatar" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="blog_comment" Relationship="Models.FK_UserId" FromRole="blog_user" ToRole="blog_comment" />
         </EntityType>
         <ComplexType Name="SP_NextPost_Result" />
@@ -330,7 +330,7 @@
           <Property Name="Mark_Read" Type="Boolean" />
           <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
           <Property Name="Date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="blog_user" Relationship="Models.FK_UserId" FromRole="blog_comment" ToRole="blog_user" />
+          <NavigationProperty Name="Commenter" Relationship="Models.FK_UserId" FromRole="blog_comment" ToRole="blog_user" />
         </EntityType>
         <Association Name="FK_UserId">
           <End Type="Models.blog_user" Role="blog_user" Multiplicity="1" />

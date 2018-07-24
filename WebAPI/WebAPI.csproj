@@ -118,6 +118,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Utility.cs" />
     <Compile Include="Controllers\BloggerController.cs" />
     <Compile Include="Controllers\BlogHomeController.cs" />
     <Compile Include="Controllers\BlogInfoController.cs" />

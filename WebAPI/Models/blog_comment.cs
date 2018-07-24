@@ -22,7 +22,7 @@ namespace WebAPI.Models
         public bool? Mark_Read { get; set; }
         public bool IsEnabled { get; set; }
         public DateTime? Date { get; set; }
-
-        public virtual blog_user blog_user { get; set; }
+    
+        public virtual blog_user Commenter { get; set; }
     }
 }

@@ -47,7 +47,7 @@ function BlogInfoController(blogInfoService, userService, $scope, $location) {
             $scope.relatedPosts = data;
         });
 
-        blogInfoService.getComments(1).then(function (data) {
+        blogInfoService.getComments(blogId).then(function (data) {
             $scope.comments = data;
         });
     });
@@ -59,6 +59,10 @@ function BlogInfoController(blogInfoService, userService, $scope, $location) {
     blogInfoService.getNextPost(blogId).then(function (data) {
         $scope.nextPost = data;
     });
+
+    $scope.setCommentParent = function (id) {
+        $scope.parentId = id;
+    }
 
     $scope.addUser = function () {
         userService.addUser($scope.user).then(function (data) {
@@ -73,6 +77,11 @@ function BlogInfoController(blogInfoService, userService, $scope, $location) {
             return blogInfoService.addComment(commentData);
         }).then(function (isSuccess) {
             $scope.addCommentStatus = isSuccess;
+
+            //To refresh the comments to show the newly added comment.
+            blogInfoService.getComments(blogId).then(function (data) {
+                $scope.comments = data;
+            });
         });
     }
 }

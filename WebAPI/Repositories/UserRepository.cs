@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using WebAPI.Common;
 using WebAPI.Models;
 using WebAPI.Repositories.Interfaces;
 
@@ -12,10 +11,12 @@ namespace WebAPI.Repositories
     public class UserRepository : IUserRepository, IDisposable
     {
         MyTravelBlogEntities dbContext;
+        Utility util;
 
         public UserRepository(MyTravelBlogEntities dbContext)
         {
             this.dbContext = dbContext;
+            util = new Utility();
         }
         public async Task<blog_user> AddUser(blog_user user)
         {
@@ -27,6 +28,7 @@ namespace WebAPI.Repositories
             }
             else
             {
+                user.Avatar = Constants.GRAVATAR_BASE_URL + await util.GetHashedValue(user.Email);
                 var _newUser = dbContext.blog_user.Add(user);
                 var success = await dbContext.SaveChangesAsync();
 

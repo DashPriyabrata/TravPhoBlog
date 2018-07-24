@@ -9,6 +9,12 @@
 <script src="~/Scripts/app/components/CommentComponent.js"></script>
 <base href="/">
 
+<script>
+    function goToByScroll(id) {
+        $('html,body').animate({ scrollTop: $("#" + id).offset().top - 70 }, 'slow');
+    }
+</script>
+
 <section class="blog-content">
     <div class="container">
         <div class="row">
@@ -183,34 +189,34 @@
                     </div><!-- Related post end -->
                     <!-- Post comment start -->
                     <div id="comments" class="comments-area">
-                        <h3 class="comments-heading title-normal">12 Comments</h3>
+                        <h3 class="comments-heading title-normal">{{comments.length}} Comments</h3>
                         <ul class="comments-list">
                             <li ng-repeat="x in comments | filter: { ParentId: 0 }">
                                 <div class="comment">
-                                    <img class="comment-avatar pull-left" alt="" src="~/Images/Post/avator1.png">
+                                    <img class="comment-avatar pull-left" alt="Commenter Avatar" ng-src="{{x.Commenter.Avatar != null && x.Commenter.Avatar || '/Images/Post/Avatar_Man.png'}}">
                                     <div class="comment-body">
                                         <div class="comment-author">
-                                            <span class="title-font">{{x.blog_user.Name}}</span>
+                                            <span class="title-font">{{x.Commenter.Name}}</span>
                                             <span class="comment-date">{{x.Date | date :  "MMMM d, yyyy"}}</span>
                                         </div>
                                         <p>{{x.Comment}}</p>
                                         <div class="text-left">
-                                            <a class="comment-reply" href="#">Reply</a>
+                                            <a class="comment-reply" onclick="goToByScroll('comment-form')" ng-click="setCommentParent(x.Id)" href="">Reply</a>
                                         </div>
                                     </div>
                                 </div>
                                 <ul class="comments-reply">
                                     <li ng-repeat="c in comments" ng-if="c.ParentId == x.Id">
                                         <div class="comment">
-                                            <img class="comment-avatar pull-left" alt="" src="~/Images/Post/avator2.png">
+                                            <img class="comment-avatar pull-left" alt="Commenter Avatar" ng-src="{{x.Commenter.Avatar != null && c.Commenter.Avatar || '/Images/Post/Avatar_Man.png'}}">
                                             <div class="comment-body">
                                                 <div class="comment-author">
-                                                    <span class="title-font">{{c.blog_user.Name}}</span>
+                                                    <span class="title-font">{{c.Commenter.Name}}</span>
                                                     <span class="comment-date">{{c.Date | date :  "MMMM d, yyyy"}}</span>
                                                 </div>
                                                 <p>{{c.Comment}}</p>
                                                 <div class="text-left">
-                                                    <a class="comment-reply" href="#">Reply</a>
+                                                    <a class="comment-reply" onclick="goToByScroll('comment-form')" ng-click="setCommentParent(x.Id)" href="">Reply</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -240,7 +246,7 @@
                                         <input class="form-control" name="email" id="email" placeholder="Your Mail" ng-model="user.Email" type="email" required>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Your Website" ng-model="user.Website" type="text" required>
+                                        <input class="form-control" placeholder="Your Website" ng-model="user.Website" type="text">
                                     </div>
                                 </div>
                             </div>
