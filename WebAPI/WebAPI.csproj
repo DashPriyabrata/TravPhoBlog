@@ -53,10 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.11\lib\net452\MySql.Data.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data.EntityFramework, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.EntityFramework.8.0.11\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -122,6 +119,7 @@
     <Compile Include="Controllers\BloggerController.cs" />
     <Compile Include="Controllers\BlogHomeController.cs" />
     <Compile Include="Controllers\BlogInfoController.cs" />
+    <Compile Include="Controllers\NewsletterController.cs" />
     <Compile Include="Controllers\SocialController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -161,6 +159,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyTravelBlogDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\newsletter_subs.cs">
+      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\postcontent.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
@@ -183,9 +184,11 @@
     <Compile Include="Repositories\Interfaces\IBlogHomeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBlogInfoRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBloggerRepository.cs" />
+    <Compile Include="Repositories\Interfaces\INewsletterRepository.cs" />
     <Compile Include="Repositories\Interfaces\ISocialConnectRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBlogTagRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\NewsletterRepository.cs" />
     <Compile Include="Repositories\SocialConnectRepository.cs" />
     <Compile Include="Repositories\BlogTagRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />

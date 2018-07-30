@@ -20,6 +20,7 @@
 
     <!--Local Scripts-->
     <script src="~/Scripts/app/services/SocialConnectService.js"></script>
+    <script src="~/Scripts/app/services/NewsletterService.js"></script>
     <script src="~/Scripts/app/controllers/SocialConnectController.js"></script>
     <script src="~/Scripts/app/controllers/LayoutController.js"></script>
 </head>
@@ -182,10 +183,11 @@
 
                 <div class="newsletter text-center">
                     <h3 class="title-normal">Subscribe To Our Newsletter</h3>
-                    <form action="#" method="post" id="newsletter-form" class="newsletter-form">
+                    <form id="newsletter-form" class="newsletter-form" ng-submit="addSubscriber()">
                         <div class="form-group">
-                            <input type="email" name="email" id="newsletter-form-email" class="form-control form-control-lg" placeholder="Your Email Here" autocomplete="off">
-                            <button class="btn btn-primary">Subscribe</button>
+                            <input type="email" name="email" id="newsletter-form-email" class="form-control form-control-lg" placeholder="Your Email Here" autocomplete="off"
+                                   ng-model="subscriber.Email">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
                         </div>
                     </form>
                 </div><!-- Newsletter end -->

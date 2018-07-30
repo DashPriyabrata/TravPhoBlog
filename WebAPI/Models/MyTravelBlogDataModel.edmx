@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Models.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Models.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="blog_category">
           <Key>
             <PropertyRef Name="Name" />
@@ -120,6 +120,16 @@
           <Property Name="BlogTagId" Type="int" Nullable="false" />
           <Property Name="TagId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="newsletter_sub">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="IsSubscribed" Type="bool" />
+          <Property Name="SubscribedDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="Un_SubscribedDate" Type="datetime" Precision="0" />
+        </EntityType>
         <Association Name="FK_BloggerId">
           <End Role="blogger" Type="Self.blogger" Multiplicity="1" />
           <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="*" />
@@ -188,8 +198,10 @@
             <End Role="blog_user" EntitySet="blog_user" />
             <End Role="blog_comment" EntitySet="blog_comment" />
           </AssociationSet>
+          <EntitySet Name="newsletter_sub" EntityType="Self.newsletter_sub" Schema="travphoblog" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -202,16 +214,16 @@
           </AssociationSet>
           <EntitySet Name="blog_user" EntityType="Models.blog_user" />
           <FunctionImport Name="SP_NextPost" EntitySet="bloginfoes" ReturnType="Collection(Models.bloginfo)">
-          <Parameter Name="PostId" Mode="In" Type="Int32" />
+            <Parameter Name="PostId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_PrevPost" EntitySet="bloginfoes" ReturnType="Collection(Models.bloginfo)">
-          <Parameter Name="PostId" Mode="In" Type="Int32" />
+            <Parameter Name="PostId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="postcontents" EntityType="Models.postcontent" />
           <EntitySet Name="blog_tag" EntityType="Models.blog_tag" />
           <EntitySet Name="tag_mapper" EntityType="Models.tag_mapper" />
           <FunctionImport Name="SP_GetBlogTags" EntitySet="blog_tag" ReturnType="Collection(Models.blog_tag)">
-          <Parameter Name="PassedBlogTagId" Mode="In" Type="Int32" />
+            <Parameter Name="PassedBlogTagId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="blog_comment" EntityType="Models.blog_comment" />
           <AssociationSet Name="FK_UserId" Association="Models.FK_UserId">
@@ -224,8 +236,9 @@
             <End Role="blogger" EntitySet="bloggers" />
             <End Role="bloginfo" EntitySet="bloginfoes" />
           </AssociationSet>
-		  <EntitySet Name="blog_category" EntityType="Models.blog_category" />
-          </EntityContainer>
+          <EntitySet Name="blog_category" EntityType="Models.blog_category" />
+          <EntitySet Name="newsletter_sub" EntityType="Models.newsletter_sub" />
+        </EntityContainer>
         <EntityType Name="role">
           <Key>
             <PropertyRef Name="Id" />
@@ -377,7 +390,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-		<EntityType Name="blog_category">
+        <EntityType Name="blog_category">
           <Key>
             <PropertyRef Name="Name" />
           </Key>
@@ -385,7 +398,17 @@
           <Property Name="DateCreated" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TaggedBlogCount" Type="Int32" Nullable="false" />
         </EntityType>
-        </Schema>
+        <EntityType Name="newsletter_sub">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="IsSubscribed" Type="Boolean" />
+          <Property Name="SubscribedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Un_SubscribedDate" Type="DateTime" />
+        </EntityType>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -436,8 +459,8 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_PrevPost" FunctionName="Models.Store.SP_PrevPost">
           </FunctionImportMapping>
-		  <FunctionImportMapping FunctionImportName="SP_GetBlogTags" FunctionName="Models.Store.SP_GetBlogTags" />
-		  <FunctionImportMapping FunctionImportName="SP_GetLastFiveCommentedPosts" FunctionName="Models.Store.SP_GetLastFiveCommentedPosts" />
+          <FunctionImportMapping FunctionImportName="SP_GetBlogTags" FunctionName="Models.Store.SP_GetBlogTags" />
+          <FunctionImportMapping FunctionImportName="SP_GetLastFiveCommentedPosts" FunctionName="Models.Store.SP_GetLastFiveCommentedPosts" />
           <EntitySetMapping Name="postcontents">
             <EntityTypeMapping TypeName="Models.postcontent">
               <MappingFragment StoreEntitySet="postcontent">
@@ -511,12 +534,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-		  <EntitySetMapping Name="blog_category">
+          <EntitySetMapping Name="blog_category">
             <EntityTypeMapping TypeName="Models.blog_category">
               <MappingFragment StoreEntitySet="blog_category">
                 <ScalarProperty Name="TaggedBlogCount" ColumnName="TaggedBlogCount" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="newsletter_sub">
+            <EntityTypeMapping TypeName="Models.newsletter_sub">
+              <MappingFragment StoreEntitySet="newsletter_sub">
+                <ScalarProperty Name="Un_SubscribedDate" ColumnName="Un_SubscribedDate" />
+                <ScalarProperty Name="SubscribedDate" ColumnName="SubscribedDate" />
+                <ScalarProperty Name="IsSubscribed" ColumnName="IsSubscribed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
