@@ -9,5 +9,6 @@ namespace WebAPI.Repositories.Interfaces
     {
         Task<string> AddSubscriber(newsletter_sub subscriber);
         Task<ICollection<newsletter_sub>> GetAllSubscribers();
+        Task<bool> Unsubscribe(int id, string emailKey);
     }
 }

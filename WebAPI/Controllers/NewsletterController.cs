@@ -23,5 +23,13 @@ namespace WebAPI.Controllers
         {
             return Ok(await newsLetRepo.AddSubscriber(subscriber));
         }
+
+        [HttpPost]
+        [Route("api/Newsletter/UnSub")]
+        [ResponseType(typeof(bool))]
+        public async Task<IHttpActionResult> UnSubscribe(int d, string em)
+        {
+            return Ok(await newsLetRepo.Unsubscribe(d, em));
+        }
     }
 }
