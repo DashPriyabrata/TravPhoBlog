@@ -6,7 +6,7 @@
                 addSubscriber: function (subscriberData) {
                     var def = $q.defer();
 
-                    $http.post(apiRoot + "AddSub", userData)
+                    $http.post(apiRoot + "AddSub", subscriberData)
                         .then(function (response) {
                             def.resolve(response.data);
                         }, def.reject);

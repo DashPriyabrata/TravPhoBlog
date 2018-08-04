@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("api/Newsletter/AddSub")]
-        [ResponseType(typeof(blog_user))]
+        [ResponseType(typeof(string))]
         public async Task<IHttpActionResult> AddSubscriber([FromBody] newsletter_sub subscriber)
         {
             return Ok(await newsLetRepo.AddSubscriber(subscriber));

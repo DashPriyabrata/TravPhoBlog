@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using WebAPI.Common;
 using WebAPI.Models;
 using WebAPI.Repositories.Interfaces;
 
@@ -18,23 +18,24 @@ namespace WebAPI.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<newsletter_sub> AddSubscriber(newsletter_sub subscriber)
+        public async Task<string> AddSubscriber(newsletter_sub subscriber)
         {
             var _existingsub = await dbContext.newsletter_sub.Where(x => x.Email == subscriber.Email).FirstOrDefaultAsync();
 
             if (_existingsub != null)
             {
-                return _existingsub;
+                return Constants.NEWSLETTER_EXIST_MSG;
             }
             else
             {
+                subscriber.IsSubscribed = true;
                 var _newSub = dbContext.newsletter_sub.Add(subscriber);
                 var success = await dbContext.SaveChangesAsync();
 
                 if (success > 0)
-                    return _newSub;
+                    return Constants.NEWSLETTER_THANK_MSG;
                 else
-                    return null;
+                    return Constants.NEWSLETTER_FAIL_MSG;
             }
         }
 
