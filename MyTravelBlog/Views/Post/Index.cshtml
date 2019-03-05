@@ -56,9 +56,13 @@
                                     <i class="fa fa-clock-o"></i>
                                     {{blogData.PostDate | date :  "MMMM d, yyyy"}}
                                 </span>
+                                <span class="post-readtime">
+                                    <i class="fa fa-hourglass-start"></i>
+                                    {{blogData.ReadingTime}}
+                                </span>
                                 <span class="post-comment">
                                     <i class="fa fa-comments"></i>
-                                    <a href="Post?blogId={{blogData.BlogId}}#comments" class="comments-link">
+                                    <a href="" class="comments-link" onclick="goToByScroll('fb-comments')">
                                         <span>03</span>
                                     </a>
                                 </span>
@@ -197,7 +201,7 @@
                         </div>
                     </div><!-- Related post end -->
                     <!-- Post comment start -->
-                    <div class="fb-comments" data-href="http://travphoblog.com/Post/{{blogData.NavUrlString}}/{{blogData.BlogId}}" data-numposts="5" data-width="1140" data-mobile="true" data-order-by="reverse_time"></div>
+                    <div id="fb-comments" class="fb-comments" data-href="http://travphoblog.com/Post/{{blogData.NavUrlString}}/{{blogData.BlogId}}" data-numposts="5" data-width="1140" data-mobile="true" data-order-by="reverse_time"></div>
                     <br /><br />
                     <h5 class="title-normal">Don't want to use Facebook? Use our <a onclick="goToByScroll('comment-form')" href="">Comment Form</a> instead.</h5>
                     <div id="comments" class="comments-area">

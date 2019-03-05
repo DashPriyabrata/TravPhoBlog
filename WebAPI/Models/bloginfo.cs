@@ -29,10 +29,7 @@ namespace WebAPI.Models
         public int? ContentId { get; set; }
         public int BlogTagId { get; set; }
         public string NavUrlString { get; set; }
-        //Custom properties
-        public string RelatedTagName { get; set; }
-        public string Introduction { get; set; }
-        public int TotalBlogCount { get; set; }
+        public string ReadingTime { get; set; }
 
         public virtual blogger blogger { get; set; }
     }

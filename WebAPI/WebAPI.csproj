@@ -131,6 +131,7 @@
     <Compile Include="Models\bloginfo.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlogInfoModel.cs" />
     <Compile Include="Models\blog_category.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>

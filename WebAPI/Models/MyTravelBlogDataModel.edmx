@@ -83,6 +83,7 @@
           <Property Name="ContentId" Type="int" />
           <Property Name="BlogTagId" Type="int" Nullable="false" />
           <Property Name="NavUrlString" Type="varchar" MaxLength="100" />
+          <Property Name="ReadingTime" Type="varchar" MaxLength="15"/>
         </EntityType>
         <EntityType Name="postcontent">
           <Key>
@@ -261,14 +262,14 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="JoinDate" Type="DateTime" />
           <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="role" Relationship="Models.FK_RoleId" FromRole="blogger" ToRole="role" />
+          <!--<NavigationProperty Name="role" Relationship="Models.FK_RoleId" FromRole="blogger" ToRole="role" />-->
           <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Instagram" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="GooglePlus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Pinterest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Behance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="bloginfoes" Relationship="Models.FK_BloggerId" FromRole="blogger" ToRole="bloginfo" />
+          <!--<NavigationProperty Name="bloginfoes" Relationship="Models.FK_BloggerId" FromRole="blogger" ToRole="bloginfo" />-->
         </EntityType>
         <Association Name="FK_RoleId">
           <End Type="Models.role" Role="role" Multiplicity="1" />
@@ -376,6 +377,7 @@
           <Property Name="ContentId" Type="Int32" />
           <Property Name="BlogTagId" Type="Int32" Nullable="false" />
           <Property Name="NavUrlString" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReadingTime" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="blogger" Relationship="Models.FK_BloggerId" FromRole="bloginfo" ToRole="blogger" />
         </EntityType>
         <Association Name="FK_BloggerId">
@@ -516,6 +518,7 @@
           <EntitySetMapping Name="bloginfoes">
             <EntityTypeMapping TypeName="Models.bloginfo">
               <MappingFragment StoreEntitySet="bloginfo">
+                <ScalarProperty Name="ReadingTime" ColumnName="ReadingTime" />
                 <ScalarProperty Name="NavUrlString" ColumnName="NavUrlString" />
                 <ScalarProperty Name="BlogTagId" ColumnName="BlogTagId" />
                 <ScalarProperty Name="ContentId" ColumnName="ContentId" />
