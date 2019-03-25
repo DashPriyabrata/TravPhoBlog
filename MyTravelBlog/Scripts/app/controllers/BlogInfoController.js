@@ -7,9 +7,10 @@
         requireBase: true
     });
 }]);
-app.controller('BlogInfoController', ['blogInfoService', 'userService', '$scope', '$location', BlogInfoController]);
+app.controller('BlogInfoController', ['blogInfoService', 'userService', '$scope', '$location', '$filter', BlogInfoController]);
 
-function BlogInfoController(blogInfoService, userService, $scope, $location) {
+
+function BlogInfoController(blogInfoService, userService, $scope, $location, $filter) {
     'use strict';
     $scope.blogData = [];
     $scope.postContent = [];
@@ -22,6 +23,7 @@ function BlogInfoController(blogInfoService, userService, $scope, $location) {
     $scope.relatedPosts = [];
     $scope.user = {};
     $scope.parentId = 0;
+    $scope.jsonLD = {};
     var _self = this;
     _self.comment = "";
 
@@ -50,6 +52,32 @@ function BlogInfoController(blogInfoService, userService, $scope, $location) {
         blogInfoService.getComments(blogId).then(function (data) {
             $scope.comments = data;
         });
+
+        $scope.jsonLD = {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "headline": $scope.blogData.Title,
+            "description": $scope.blogData.NavUrlString.replace(/\-/g, ' '),
+            "datePublished": $filter('date')($scope.blogData.PostDate, "MMMM d, yyyy"),
+            "image": {
+                "@type": "imageObject",
+                "url": $location.protocol() + "://" + $location.host() + "/Images/Post/" + $scope.blogData.TitleImage,
+                "height": "1000",
+                "width": "360"
+            },
+            "genre": "search engine optimization",
+            "keywords": $scope.blogData.Category + " " + $scope.blogData.City + " " + $scope.blogData.Country,
+            "url": $location.absUrl(),
+            "articleBody": $scope.postContent.Introduction,
+            "author": {
+                "@type": "Person",
+                "name": $scope.blogData.blogger.FirstName + " " + $scope.blogData.blogger.LastName,
+                "photo": {
+                    "@type": "imageObject",
+                    "url": $location.protocol() + "://" + $location.host() + "/Images/Blogger/" + $scope.blogData.blogger.Photo
+                }
+            }
+        };
     });
 
     blogInfoService.getPrevPost(blogId).then(function (data) {
@@ -85,3 +113,21 @@ function BlogInfoController(blogInfoService, userService, $scope, $location) {
         });
     }
 }
+
+app.directive('jsonld', ['$filter', '$sce', function ($filter, $sce) {
+    return {
+        restrict: 'E',
+        template: function () {
+            return '<' + 'script type="application/ld+json" ng-bind-html="onGetJson()">' + '<' + '/script>';
+        },
+        scope: {
+            json: '=json'
+        },
+        link: function (scope, element, attrs) {
+            scope.onGetJson = function () {
+                return $sce.trustAsHtml($filter('json')(scope.json));
+            }
+        },
+        replace: true
+    };
+}]);
