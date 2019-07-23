@@ -17,7 +17,7 @@ namespace WebAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public blogger()
         {
-            this.bloginfoes = new HashSet<bloginfo>();
+            //this.bloginfoes = new HashSet<bloginfo>();
         }
     
         public int BloggerId { get; set; }
@@ -37,8 +37,8 @@ namespace WebAPI.Models
         public string Pinterest { get; set; }
         public string Behance { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<bloginfo> bloginfoes { get; set; }
-        public virtual role role { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<bloginfo> bloginfoes { get; set; }
+        //public virtual role role { get; set; }
     }
 }

@@ -20,6 +20,7 @@
 
     <!--Local Scripts-->
     <script src="~/Scripts/app/services/SocialConnectService.js"></script>
+    <script src="~/Scripts/app/services/NewsletterService.js"></script>
     <script src="~/Scripts/app/controllers/SocialConnectController.js"></script>
     <script src="~/Scripts/app/controllers/LayoutController.js"></script>
 </head>
@@ -66,8 +67,8 @@
                                     <span class="social-icon"><i class="fa fa-twitter"></i></span>
                                 </a>
                                 @*<a title="Google+" href="#">
-                                    <span class="social-icon"><i class="fa fa-google-plus"></i></span>
-                                </a>*@
+                                        <span class="social-icon"><i class="fa fa-google-plus"></i></span>
+                                    </a>*@
                                 <a title="behance" href="#">
                                     <span class="social-icon"><i class="fa fa-instagram"></i></span>
                                 </a>
@@ -177,17 +178,21 @@
         </section>
         <!-- Instagram end -->
         <!-- Footer start -->
-        <footer id="footer" class="footer">
+        <footer id="footer" class="footer" ng-controller="LayoutController">
             <div class="container">
 
-                <div class="newsletter text-center">
+                <div class="newsletter text-center" ng-show="subscriptionMsg.length == 0">
                     <h3 class="title-normal">Subscribe To Our Newsletter</h3>
-                    <form action="#" method="post" id="newsletter-form" class="newsletter-form">
+                    <form id="newsletter-form" class="newsletter-form" ng-submit="addSubscriber()">
                         <div class="form-group">
-                            <input type="email" name="email" id="newsletter-form-email" class="form-control form-control-lg" placeholder="Your Email Here" autocomplete="off">
-                            <button class="btn btn-primary">Subscribe</button>
+                            <input type="email" name="email" id="newsletter-form-email" class="form-control form-control-lg" placeholder="Your Email Here" autocomplete="off"
+                                   ng-model="subscriber.Email">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
                         </div>
                     </form>
+                </div>
+                <div class="newsletter text-center" ng-show="subscriptionMsg.length > 0">
+                    <h3 class="title-normal">{{subscriptionMsg}}</h3>
                 </div><!-- Newsletter end -->
 
                 <div class="footer-social text-center">

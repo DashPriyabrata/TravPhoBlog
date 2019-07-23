@@ -198,6 +198,7 @@
     <Content Include="Scripts\app\controllers\BlogInfoController.js" />
     <Content Include="Scripts\app\controllers\HomeController.js" />
     <Content Include="Scripts\app\controllers\SocialConnectController.js" />
+    <Content Include="Scripts\app\services\NewsletterService.js" />
     <Content Include="Scripts\app\services\PagerService.js" />
     <Content Include="Scripts\app\services\BloggerService.js" />
     <Content Include="Scripts\app\services\BlogHomeService.js" />

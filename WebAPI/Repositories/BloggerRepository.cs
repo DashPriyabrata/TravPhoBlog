@@ -16,6 +16,7 @@ namespace WebAPI.Repositories
         {
             this.dbContext = dbContext;
         }
+
         public async Task<blogger> GetBlogger(int bloggerId)
         {
             var blogger = await dbContext.bloggers.Where(x => x.BloggerId == bloggerId).FirstOrDefaultAsync();
