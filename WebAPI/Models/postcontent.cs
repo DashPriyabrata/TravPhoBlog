@@ -20,12 +20,16 @@ namespace WebAPI.Models
         public string Quote { get; set; }
         public string Description_Start { get; set; }
         public string Image_BeforeHighlights { get; set; }
+        public string ImageStartAlt { get; set; }
         public string Highlights { get; set; }
         public string Image_AfterHighlights { get; set; }
+        public string ImageUpperMidAlt { get; set; }
         public string Description_End { get; set; }
         public string Image_End { get; set; }
+        public string ImageLowerMidAlt { get; set; }
         public string Closing_Statements { get; set; }
         public string Image_Direction { get; set; }
+        public string ImageDirectionAlt { get; set; }
         public string Direction { get; set; }
         public string ArrivingHere { get; set; }
         public string Attractions { get; set; }

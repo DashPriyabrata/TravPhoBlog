@@ -93,13 +93,17 @@
           <Property Name="Introduction" Type="varchar" MaxLength="2000" />
           <Property Name="Quote" Type="varchar" MaxLength="500" />
           <Property Name="Description_Start" Type="varchar" MaxLength="3000" />
-          <Property Name="Image_BeforeHighlights" Type="varchar" MaxLength="45" />
+          <Property Name="Image_BeforeHighlights" Type="varchar" MaxLength="150" />
+          <Property Name="ImageStartAlt" Type="varchar" MaxLength="50" />
           <Property Name="Highlights" Type="varchar" MaxLength="2000" />
-          <Property Name="Image_AfterHighlights" Type="varchar" MaxLength="45" />
+          <Property Name="Image_AfterHighlights" Type="varchar" MaxLength="150" />
+          <Property Name="ImageUpperMidAlt" Type="varchar" MaxLength="50" />
           <Property Name="Description_End" Type="varchar" MaxLength="3000" />
-          <Property Name="Image_End" Type="varchar" MaxLength="45" />
+          <Property Name="Image_End" Type="varchar" MaxLength="150" />
+          <Property Name="ImageLowerMidAlt" Type="varchar" MaxLength="50" />
           <Property Name="Closing_Statements" Type="varchar" MaxLength="2000" />
-          <Property Name="Image_Direction" Type="varchar" MaxLength="45" />
+          <Property Name="Image_Direction" Type="varchar" MaxLength="150" />
+          <Property Name="ImageDirectionAlt" Type="varchar" MaxLength="50" />
           <Property Name="Direction" Type="varchar" MaxLength="500" />
           <Property Name="ArrivingHere" Type="varchar" MaxLength="500" />
           <Property Name="Attractions" Type="varchar" MaxLength="500" />
@@ -291,13 +295,17 @@
           <Property Name="Introduction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="Quote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Description_Start" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="Image_BeforeHighlights" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Image_BeforeHighlights" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageStartAlt" Type="String" MaxLength="50" FixedLength="false" Unicode="false"/>
           <Property Name="Highlights" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Image_AfterHighlights" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Image_AfterHighlights" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageUpperMidAlt" Type="String" MaxLength="50" FixedLength="false" Unicode="false"/>
           <Property Name="Description_End" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="Image_End" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Image_End" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageLowerMidAlt" Type="String" MaxLength="50" FixedLength="false" Unicode="false"/>
           <Property Name="Closing_Statements" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Image_Direction" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Image_Direction" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageDirectionAlt" Type="String" MaxLength="50" FixedLength="false" Unicode="false"/>
           <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="ArrivingHere" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Attractions" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
@@ -446,12 +454,16 @@
                 <ScalarProperty Name="ArrivingHere" ColumnName="ArrivingHere" />
                 <ScalarProperty Name="Direction" ColumnName="Direction" />
                 <ScalarProperty Name="Image_Direction" ColumnName="Image_Direction" />
+                <ScalarProperty Name="ImageDirectionAlt" ColumnName="ImageDirectionAlt" />
                 <ScalarProperty Name="Closing_Statements" ColumnName="Closing_Statements" />
                 <ScalarProperty Name="Image_End" ColumnName="Image_End" />
+                <ScalarProperty Name="ImageLowerMidAlt" ColumnName="ImageLowerMidAlt" />
                 <ScalarProperty Name="Description_End" ColumnName="Description_End" />
                 <ScalarProperty Name="Image_AfterHighlights" ColumnName="Image_AfterHighlights" />
+                <ScalarProperty Name="ImageUpperMidAlt" ColumnName="ImageUpperMidAlt" />
                 <ScalarProperty Name="Highlights" ColumnName="Highlights" />
                 <ScalarProperty Name="Image_BeforeHighlights" ColumnName="Image_BeforeHighlights" />
+                <ScalarProperty Name="ImageStartAlt" ColumnName="ImageStartAlt" />
                 <ScalarProperty Name="Description_Start" ColumnName="Description_Start" />
                 <ScalarProperty Name="Quote" ColumnName="Quote" />
                 <ScalarProperty Name="Introduction" ColumnName="Introduction" />
