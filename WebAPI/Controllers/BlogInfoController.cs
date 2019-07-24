@@ -42,16 +42,16 @@ namespace WebAPI.Controllers
             return Ok(blogTagRepo.GetTags(blogTagId));
         }
 
-        [ResponseType(typeof(blog_user))]
+        [ResponseType(typeof(bloginfo))]
         [Route("api/BlogInfo/PrevPost/{blogId}")]
-        public async Task<IHttpActionResult> GetPrevUser(int blogId)
+        public async Task<IHttpActionResult> GetPrevPost(int blogId)
         {
             return Ok(await blogInfoRepo.GetPrevPost(blogId));
         }
 
-        [ResponseType(typeof(blog_user))]
+        [ResponseType(typeof(bloginfo))]
         [Route("api/BlogInfo/NextPost/{blogId}")]
-        public async Task<IHttpActionResult> GetNextUser(int blogId)
+        public async Task<IHttpActionResult> GetNextPost(int blogId)
         {
             return Ok(await blogInfoRepo.GetNextPost(blogId));
         }
