@@ -18,6 +18,8 @@
         <AssociationConnector Association="Models.FK_BloggerId" />
         <EntityTypeShape EntityType="Models.blog_category" Width="1.5" PointX="9.875" PointY="3.125" />
         <EntityTypeShape EntityType="Models.newsletter_sub" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="Models.panorama" Width="1.5" PointX="5.375" PointY="7.75" />
+        <AssociationConnector Association="Models.FK_PanoramaId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

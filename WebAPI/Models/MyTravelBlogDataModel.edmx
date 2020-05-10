@@ -95,20 +95,17 @@
           <Property Name="Quote" Type="varchar" MaxLength="500" />
           <Property Name="Description_Start" Type="varchar" MaxLength="3000" />
           <Property Name="Image_BeforeHighlights" Type="varchar" MaxLength="150" />
-          <Property Name="ImageStartAlt" Type="varchar" MaxLength="50" />
           <Property Name="Highlights" Type="varchar" MaxLength="2000" />
           <Property Name="Image_AfterHighlights" Type="varchar" MaxLength="150" />
-          <Property Name="ImageUpperMidAlt" Type="varchar" MaxLength="50" />
           <Property Name="Description_End" Type="varchar" MaxLength="3000" />
           <Property Name="Image_End" Type="varchar" MaxLength="150" />
-          <Property Name="ImageLowerMidAlt" Type="varchar" MaxLength="50" />
           <Property Name="Closing_Statements" Type="varchar" MaxLength="2000" />
           <Property Name="Image_Direction" Type="varchar" MaxLength="150" />
-          <Property Name="ImageDirectionAlt" Type="varchar" MaxLength="50" />
           <Property Name="Direction" Type="varchar" MaxLength="500" />
           <Property Name="ArrivingHere" Type="varchar" MaxLength="500" />
           <Property Name="Attractions" Type="varchar" MaxLength="500" />
           <Property Name="Accommodation" Type="varchar" MaxLength="500" />
+          <Property Name="PanoramaId" Type="int" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -135,6 +132,20 @@
           <Property Name="SubscribedDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
           <Property Name="Un_SubscribedDate" Type="datetime" Precision="0" />
         </EntityType>
+        <EntityType Name="panorama">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageSrc" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Caption" Type="varchar" MaxLength="100" />
+          <Property Name="FullWidth" Type="int" />
+          <Property Name="FullHeight" Type="int" />
+          <Property Name="CroppedWidth" Type="int" />
+          <Property Name="CroppedHeight" Type="int" />
+          <Property Name="CroppedX" Type="int" />
+          <Property Name="CroppedY" Type="int" />
+        </EntityType>
         <Association Name="FK_BloggerId">
           <End Role="blogger" Type="Self.blogger" Multiplicity="1" />
           <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="*" />
@@ -156,6 +167,18 @@
             </Principal>
             <Dependent Role="blogger">
               <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanoramaId">
+          <End Role="panorama" Type="Self.panorama" Multiplicity="0..1" />
+          <End Role="postcontent" Type="Self.postcontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="panorama">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="postcontent">
+              <PropertyRef Name="PanoramaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -204,6 +227,11 @@
             <End Role="blog_comment" EntitySet="blog_comment" />
           </AssociationSet>
           <EntitySet Name="newsletter_sub" EntityType="Self.newsletter_sub" Schema="travphoblog" store:Type="Tables" />
+          <EntitySet Name="panorama" EntityType="Self.panorama" Schema="travphoblog" store:Type="Tables" />
+          <AssociationSet Name="FK_PanoramaId" Association="Self.FK_PanoramaId">
+            <End Role="panorama" EntitySet="panorama" />
+            <End Role="postcontent" EntitySet="postcontent" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -243,6 +271,10 @@
           </AssociationSet>
           <EntitySet Name="blog_category" EntityType="Models.blog_category" />
           <EntitySet Name="newsletter_sub" EntityType="Models.newsletter_sub" />
+          <EntitySet Name="panoramas" EntityType="Models.panorama" />
+          <AssociationSet Name="FK_PanoramaId" Association="Models.FK_PanoramaId">
+            <End Role="panorama" EntitySet="panoramas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="role">
           <Key>
@@ -310,20 +342,18 @@
           <Property Name="Quote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Description_Start" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
           <Property Name="Image_BeforeHighlights" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ImageStartAlt" Type="String" MaxLength="50" FixedLength="false" Unicode="false"/>
           <Property Name="Highlights" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="Image_AfterHighlights" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ImageUpperMidAlt" Type="String" MaxLength="50" FixedLength="false" Unicode="false"/>
           <Property Name="Description_End" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
           <Property Name="Image_End" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ImageLowerMidAlt" Type="String" MaxLength="50" FixedLength="false" Unicode="false"/>
           <Property Name="Closing_Statements" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="Image_Direction" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ImageDirectionAlt" Type="String" MaxLength="50" FixedLength="false" Unicode="false"/>
           <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="ArrivingHere" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Attractions" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Accommodation" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PanoramaId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Panorama" Relationship="Models.FK_PanoramaId" FromRole="postcontent" ToRole="panorama" />
         </EntityType>
         <EntityType Name="blog_tag">
           <Key>
@@ -418,6 +448,32 @@
           <Property Name="SubscribedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Un_SubscribedDate" Type="DateTime" />
         </EntityType>
+        <EntityType Name="panorama">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageSrc" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Caption" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FullWidth" Type="Int32" />
+          <Property Name="FullHeight" Type="Int32" />
+          <Property Name="CroppedWidth" Type="Int32" />
+          <Property Name="CroppedHeight" Type="Int32" />
+          <Property Name="CroppedX" Type="Int32" />
+          <Property Name="CroppedY" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_PanoramaId">
+          <End Type="Models.panorama" Role="panorama" Multiplicity="0..1" />
+          <End Type="Models.postcontent" Role="postcontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="panorama">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="postcontent">
+              <PropertyRef Name="PanoramaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -465,6 +521,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="panoramas">
+            <EntityTypeMapping TypeName="Models.panorama">
+              <MappingFragment StoreEntitySet="panorama">
+                <ScalarProperty Name="CroppedY" ColumnName="CroppedY" />
+                <ScalarProperty Name="CroppedX" ColumnName="CroppedX" />
+                <ScalarProperty Name="CroppedHeight" ColumnName="CroppedHeight" />
+                <ScalarProperty Name="CroppedWidth" ColumnName="CroppedWidth" />
+                <ScalarProperty Name="FullHeight" ColumnName="FullHeight" />
+                <ScalarProperty Name="FullWidth" ColumnName="FullWidth" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SP_NextPost" FunctionName="Models.Store.SP_NextPost">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_PrevPost" FunctionName="Models.Store.SP_PrevPost">
@@ -474,21 +545,18 @@
           <EntitySetMapping Name="postcontents">
             <EntityTypeMapping TypeName="Models.postcontent">
               <MappingFragment StoreEntitySet="postcontent">
+                <ScalarProperty Name="PanoramaId" ColumnName="PanoramaId" />
                 <ScalarProperty Name="Accommodation" ColumnName="Accommodation" />
                 <ScalarProperty Name="Attractions" ColumnName="Attractions" />
                 <ScalarProperty Name="ArrivingHere" ColumnName="ArrivingHere" />
                 <ScalarProperty Name="Direction" ColumnName="Direction" />
                 <ScalarProperty Name="Image_Direction" ColumnName="Image_Direction" />
-                <ScalarProperty Name="ImageDirectionAlt" ColumnName="ImageDirectionAlt" />
                 <ScalarProperty Name="Closing_Statements" ColumnName="Closing_Statements" />
                 <ScalarProperty Name="Image_End" ColumnName="Image_End" />
-                <ScalarProperty Name="ImageLowerMidAlt" ColumnName="ImageLowerMidAlt" />
                 <ScalarProperty Name="Description_End" ColumnName="Description_End" />
                 <ScalarProperty Name="Image_AfterHighlights" ColumnName="Image_AfterHighlights" />
-                <ScalarProperty Name="ImageUpperMidAlt" ColumnName="ImageUpperMidAlt" />
                 <ScalarProperty Name="Highlights" ColumnName="Highlights" />
                 <ScalarProperty Name="Image_BeforeHighlights" ColumnName="Image_BeforeHighlights" />
-                <ScalarProperty Name="ImageStartAlt" ColumnName="ImageStartAlt" />
                 <ScalarProperty Name="Description_Start" ColumnName="Description_Start" />
                 <ScalarProperty Name="Quote" ColumnName="Quote" />
                 <ScalarProperty Name="Introduction" ColumnName="Introduction" />
