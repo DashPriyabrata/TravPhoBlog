@@ -79,6 +79,7 @@
           <Property Name="Category" Type="varchar" MaxLength="25" />
           <Property Name="IsFeatured" Type="bool" />
           <Property Name="IsCommentsEnabled" Type="bool" />
+          <Property Name="IsFavourite" Type="bool" />
           <Property Name="Views" Type="int" />
           <Property Name="ContentId" Type="int" />
           <Property Name="BlogTagId" Type="int" Nullable="false" />
@@ -411,6 +412,7 @@
           <Property Name="Category" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="IsFeatured" Type="Boolean" />
           <Property Name="IsCommentsEnabled" Type="Boolean" />
+          <Property Name="IsFavourite" Type="Boolean" />
           <Property Name="Views" Type="Int32" />
           <Property Name="ContentId" Type="Int32" />
           <Property Name="BlogTagId" Type="Int32" Nullable="false" />
@@ -603,6 +605,7 @@
                 <ScalarProperty Name="BlogTagId" ColumnName="BlogTagId" />
                 <ScalarProperty Name="ContentId" ColumnName="ContentId" />
                 <ScalarProperty Name="Views" ColumnName="Views" />
+                <ScalarProperty Name="IsFavourite" ColumnName="IsFavourite" />
                 <ScalarProperty Name="IsCommentsEnabled" ColumnName="IsCommentsEnabled" />
                 <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
                 <ScalarProperty Name="Category" ColumnName="Category" />

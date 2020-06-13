@@ -60,5 +60,12 @@ namespace WebAPI.Controllers
         {
             return Ok(await blogHomeRepo.GetAllCategoriesWithBlogCount());
         }
+
+        [ResponseType(typeof(List<bloginfo>))]
+        [Route("api/BlogHome/Favourite")]
+        public async Task<IHttpActionResult> GetFavouritePosts()
+        {
+            return Ok(await blogHomeRepo.GetFavouritePosts());
+        }
     }
 }

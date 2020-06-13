@@ -25,6 +25,7 @@ namespace WebAPI.Models
         public string Category { get; set; }
         public bool? IsFeatured { get; set; }
         public bool? IsCommentsEnabled { get; set; }
+        public bool? IsFavourite { get; set; }
         public int? Views { get; set; }
         public int? ContentId { get; set; }
         public int BlogTagId { get; set; }

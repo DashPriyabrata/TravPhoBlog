@@ -12,5 +12,6 @@ namespace WebAPI.Repositories.Interfaces
         Task<IEnumerable<bloginfo>> GetFeaturedPosts();
         Task<IEnumerable<bloginfo>> GetTrendingPosts();
         Task<IEnumerable<blog_category>> GetAllCategoriesWithBlogCount();
+        Task<IEnumerable<bloginfo>> GetFavouritePosts();
     }
 }
