@@ -117,6 +117,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controllers\BloggerController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\BlogHomeController.cs" />
     <Compile Include="Controllers\BlogInfoController.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
@@ -189,10 +190,12 @@
     <Compile Include="Repositories\Interfaces\IBlogInfoRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBloggerRepository.cs" />
     <Compile Include="Repositories\Interfaces\INewsletterRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISearchRepository.cs" />
     <Compile Include="Repositories\Interfaces\ISocialConnectRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBlogTagRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\NewsletterRepository.cs" />
+    <Compile Include="Repositories\SearchRepository.cs" />
     <Compile Include="Repositories\SocialConnectRepository.cs" />
     <Compile Include="Repositories\BlogTagRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
