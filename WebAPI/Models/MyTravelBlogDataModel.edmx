@@ -72,6 +72,7 @@
           <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TitleImage" Type="varchar" MaxLength="45" />
           <Property Name="PostDate" Type="date" Nullable="false" />
+          <Property Name="Summary" Type="varchar" MaxLength="300" />
           <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bool" Nullable="false" />
@@ -85,6 +86,7 @@
           <Property Name="BlogTagId" Type="int" Nullable="false" />
           <Property Name="NavUrlString" Type="varchar" MaxLength="100" />
           <Property Name="ReadingTime" Type="varchar" MaxLength="15"/>
+          <Property Name="UpdateDate" Type="date" />
         </EntityType>
         <EntityType Name="postcontent">
           <Key>
@@ -405,6 +407,7 @@
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TitleImage" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="PostDate" Type="DateTime" Nullable="false" />
+          <Property Name="Summary" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
@@ -418,6 +421,7 @@
           <Property Name="BlogTagId" Type="Int32" Nullable="false" />
           <Property Name="NavUrlString" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ReadingTime" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" />
           <NavigationProperty Name="blogger" Relationship="Models.FK_BloggerId" FromRole="bloginfo" ToRole="blogger" />
         </EntityType>
         <Association Name="FK_BloggerId">
@@ -600,6 +604,7 @@
           <EntitySetMapping Name="bloginfoes">
             <EntityTypeMapping TypeName="Models.bloginfo">
               <MappingFragment StoreEntitySet="bloginfo">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="ReadingTime" ColumnName="ReadingTime" />
                 <ScalarProperty Name="NavUrlString" ColumnName="NavUrlString" />
                 <ScalarProperty Name="BlogTagId" ColumnName="BlogTagId" />
@@ -613,6 +618,7 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
                 <ScalarProperty Name="PostDate" ColumnName="PostDate" />
                 <ScalarProperty Name="TitleImage" ColumnName="TitleImage" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

@@ -27,10 +27,10 @@ namespace WebAPI.Repositories
         public async Task<IEnumerable<bloginfo>> GetPrecisePosts(int skippedCount, int requiredCount)
         {
             var posts = await dbContext.bloginfoes.Where(x => x.IsActive).OrderByDescending(x => x.PostDate).Skip(skippedCount).Take(requiredCount).ToListAsync();
-            foreach (var post in posts)
-            {
-                post.Introduction = dbContext.postcontents.Where(x => x.Id == post.ContentId).FirstOrDefaultAsync().Result.Introduction;
-            }
+            //foreach (var post in posts)
+            //{
+            //    post.Introduction = dbContext.postcontents.Where(x => x.Id == post.ContentId).FirstOrDefaultAsync().Result.Introduction;
+            //}
 
             return posts;
         }

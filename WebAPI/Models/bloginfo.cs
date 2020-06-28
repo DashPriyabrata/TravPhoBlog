@@ -17,7 +17,8 @@ namespace WebAPI.Models
         public int BlogId { get; set; }
         public string Title { get; set; }
         public string TitleImage { get; set; }
-        public System.DateTime PostDate { get; set; }
+        public DateTime PostDate { get; set; }
+        public string Summary { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public bool IsActive { get; set; }
@@ -31,6 +32,7 @@ namespace WebAPI.Models
         public int BlogTagId { get; set; }
         public string NavUrlString { get; set; }
         public string ReadingTime { get; set; }
+        public DateTime? UpdateDate { get; set; }
 
         public virtual blogger blogger { get; set; }
     }
