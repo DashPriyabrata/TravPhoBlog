@@ -24,5 +24,12 @@ namespace WebAPI.Controllers
         {
             return Ok(await searchRepo.GetAllCountryBlogs(countryName).ToListAsync());
         }
+
+        [ResponseType(typeof(List<bloginfo>))]
+        [Route("api/Search/City/{cityName}")]
+        public async Task<IHttpActionResult> GetAllBlogsOfCity(string cityName)
+        {
+            return Ok(await searchRepo.GetAllCityBlogs(cityName).ToListAsync());
+        }
     }
 }
