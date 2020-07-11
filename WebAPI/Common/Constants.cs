@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace WebAPI.Common
 {
     public static class Constants
     {
-        public const string INSTAGRAM_ACCESS_TOKEN = "4777731695.df49e45.98c4d75ec4bc4abdbb5ee18055d94a83";
+        public const string INSTAGRAM_USER_ID = "17841404670877216";
+        public const string INSTAGRAM_ROOT_URL = "https://graph.instagram.com/";
+        public const string INSTAGRAM_ACCESS_TOKEN = "IGQVJYWmVEcHcxSVRxOURnSE9COGFDZAmVCdE9IanRSRklmWlIyZAkpoc042VFZAsUkJjM2RZAMy13Nlp6SEJPVHBoRlVYMWR2a2FPWWZAjaUJCVDlGeFNIVExXeFp2ZA2hmbGxTMzFGYm1n";
         public const string GRAVATAR_BASE_URL = "http://gravatar.com/avatar/";
         public const string NEWSLETTER_UNSUB_BASE_URL = "api/Newsletter/UnSub?";
 

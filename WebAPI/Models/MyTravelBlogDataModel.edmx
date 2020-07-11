@@ -149,6 +149,18 @@
           <Property Name="CroppedX" Type="int" />
           <Property Name="CroppedY" Type="int" />
         </EntityType>
+        <EntityType Name="instagram">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Media_Url" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="Caption" Type="varchar" MaxLength="200" Nullable="true"/>
+          <Property Name="Media_Type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Timestamp" Type="date" />
+          <Property Name="Permalink" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Thumbnail_Url" Type="varchar" MaxLength="250" />
+        </EntityType>
         <Association Name="FK_BloggerId">
           <End Role="blogger" Type="Self.blogger" Multiplicity="1" />
           <End Role="bloginfo" Type="Self.bloginfo" Multiplicity="*" />
@@ -235,6 +247,7 @@
             <End Role="panorama" EntitySet="panorama" />
             <End Role="postcontent" EntitySet="postcontent" />
           </AssociationSet>
+          <EntitySet Name="instagram" EntityType="Self.instagram" Schema="travphoblog" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -278,6 +291,7 @@
           <AssociationSet Name="FK_PanoramaId" Association="Models.FK_PanoramaId">
             <End Role="panorama" EntitySet="panoramas" />
           </AssociationSet>
+          <EntitySet Name="instagram" EntityType="Models.instagram" />
         </EntityContainer>
         <EntityType Name="role">
           <Key>
@@ -480,6 +494,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="instagram">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Media_Url" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="Caption" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Media_Type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Timestamp" Type="DateTime" />
+          <Property Name="Permalink" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -538,6 +564,19 @@
                 <ScalarProperty Name="FullWidth" ColumnName="FullWidth" />
                 <ScalarProperty Name="Caption" ColumnName="Caption" />
                 <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="instagram">
+            <EntityTypeMapping TypeName="Models.instagram">
+              <MappingFragment StoreEntitySet="instagram">
+                <ScalarProperty Name="Thumbnail_Url" ColumnName="Thumbnail_Url" />
+                <ScalarProperty Name="Permalink" ColumnName="Permalink" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Media_Type" ColumnName="Media_Type" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="Media_Url" ColumnName="Media_Url" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

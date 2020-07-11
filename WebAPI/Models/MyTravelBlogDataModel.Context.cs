@@ -38,6 +38,7 @@ namespace WebAPI.Models
         public virtual DbSet<blog_category> blog_category { get; set; }
         public virtual DbSet<newsletter_sub> newsletter_sub { get; set; }
         public virtual DbSet<panorama> panoramas { get; set; }
+        public virtual DbSet<instagram> instagram { get; set; }
     
         public virtual ObjectResult<bloginfo> SP_NextPost(Nullable<int> postId)
         {

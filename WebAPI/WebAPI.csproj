@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Scheduler.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controllers\BloggerController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -143,6 +144,9 @@
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_user.cs">
+      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\instagram.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InstagramPost.cs" />

@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
             socialRepo = new SocialConnectRepository(new MyTravelBlogEntities());
         }
 
-        [ResponseType(typeof(InstagramPost))]
+        [ResponseType(typeof(ICollection<instagram>))]
         [Route("api/Social/Instagram/RecentMedia")]
         public async Task<IHttpActionResult> GetRecentInstagramMedia()
         {

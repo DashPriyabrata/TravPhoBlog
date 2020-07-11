@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPI.Models;
 
@@ -9,6 +6,6 @@ namespace WebAPI.Repositories.Interfaces
 {
     interface ISocialConnectRepository
     {
-        Task<InstagramPost> GetInstagramRecentMedia();
+        Task<ICollection<instagram>> GetInstagramRecentMedia();
     }
 }

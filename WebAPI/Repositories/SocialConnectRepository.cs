@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data.Entity;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Web;
+using System.Timers;
 using WebAPI.Common;
 using WebAPI.Models;
 using WebAPI.Repositories.Interfaces;
@@ -22,21 +22,50 @@ namespace WebAPI.Repositories
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Scheduler.Instance.Timer.Elapsed += WriteInstagramFeedToDB;
         }
 
-        public async Task<InstagramPost> GetInstagramRecentMedia()
+        public async Task<ICollection<instagram>> GetInstagramRecentMedia()
         {
-            InstagramPost instagramMedia = null;
-            var response = await httpClient.GetAsync("https://api.instagram.com/v1/users/self/media/recent/?access_token=" + Constants.INSTAGRAM_ACCESS_TOKEN);
-            if (response.IsSuccessStatusCode)
+            var instagramFeedColl = await dbContext.instagram.ToListAsync();
+            return instagramFeedColl;
+        }
+
+        /// <summary>
+        /// The recent Graph API implementation by Instagram limits the no of call one can make per hour.
+        /// Due to this it's now not possible to call the Graph API everytime the Instagram component loads since it'll eat up the quota in few calls.
+        /// To workaround this the result from Graph API is getting stored in database, from where we'll fetch the data to show in website.
+        /// A scheduled task will call this method every 1hr to get the updated content from Graph API and store in database.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private async void WriteInstagramFeedToDB(object source, ElapsedEventArgs e)
+        {
+            var mediaIDResponse = await httpClient.GetAsync(Constants.INSTAGRAM_ROOT_URL + Constants.INSTAGRAM_USER_ID + "/media/?access_token=" + Constants.INSTAGRAM_ACCESS_TOKEN);
+            if (mediaIDResponse.IsSuccessStatusCode)
             {
-                instagramMedia = await response.Content.ReadAsAsync<InstagramPost>();
+                var instagramMediaColl = new List<instagram>();
+                var media = await mediaIDResponse.Content.ReadAsAsync<Media>();
+                foreach (var post in media.Data)
+                {
+                    var response = await httpClient.GetAsync(Constants.INSTAGRAM_ROOT_URL + post.Id + "?access_token=" + Constants.INSTAGRAM_ACCESS_TOKEN
+                                + "&fields=id,media_url,caption,media_type,timestamp,permalink,thumbnail_url");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        instagramMediaColl.Add(await response.Content.ReadAsAsync<instagram>());
+                    }
+                }
+
+                if (instagramMediaColl.Count > 0)
+                {
+                    dbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE travphotblog.instagram");
+                    dbContext.instagram.AddRange(instagramMediaColl);
+                    var success = dbContext.SaveChanges();
+                }
             }
-            return instagramMedia;
         }
 
         private bool isDisposed;
-
         protected virtual void Dispose(bool isDisposing)
         {
             if (!isDisposed)
