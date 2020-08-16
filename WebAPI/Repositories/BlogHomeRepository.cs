@@ -50,7 +50,7 @@ namespace WebAPI.Repositories
         public async Task<IEnumerable<bloginfo>> GetTrendingPosts()
         {
             var trendingPosts = dbContext.SP_GetLastFiveCommentedPosts();
-            return trendingPosts.ToList();
+            return trendingPosts.Take(2).ToList();
         }
 
         public async Task<IEnumerable<blog_category>> GetAllCategoriesWithBlogCount()
