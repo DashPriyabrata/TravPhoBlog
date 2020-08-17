@@ -146,6 +146,9 @@
     <Compile Include="Models\blog_user.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\contactus.cs">
+      <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\instagram.cs">
       <DependentUpon>MyTravelBlogDataModel.tt</DependentUpon>
     </Compile>

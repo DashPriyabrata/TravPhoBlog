@@ -88,6 +88,17 @@
           <Property Name="ReadingTime" Type="varchar" MaxLength="15"/>
           <Property Name="UpdateDate" Type="date" />
         </EntityType>
+        <EntityType Name="contactus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="500" />
+          <Property Name="IsAdminRead" Type="bool" />
+          <Property Name="IsActive" Type="bool" />
+        </EntityType>
         <EntityType Name="postcontent">
           <Key>
             <PropertyRef Name="Id" />
@@ -226,6 +237,7 @@
           <EntitySet Name="blog_user" EntityType="Self.blog_user" Schema="mytravelblog" store:Type="Tables" />
           <EntitySet Name="blogger" EntityType="Self.blogger" Schema="mytravelblog" store:Type="Tables" />
           <EntitySet Name="bloginfo" EntityType="Self.bloginfo" Schema="mytravelblog" store:Type="Tables" />
+          <EntitySet Name="contactus" EntityType="Self.contactus" Schema="travphotblog" store:Type="Tables" />
           <EntitySet Name="postcontent" EntityType="Self.postcontent" Schema="mytravelblog" store:Type="Tables" />
           <EntitySet Name="role" EntityType="Self.role" Schema="mytravelblog" store:Type="Tables" />
           <EntitySet Name="tag_mapper" EntityType="Self.tag_mapper" Schema="mytravelblog" store:Type="Tables" />
@@ -292,6 +304,7 @@
             <End Role="panorama" EntitySet="panoramas" />
           </AssociationSet>
           <EntitySet Name="instagram" EntityType="Models.instagram" />
+          <EntitySet Name="contactus" EntityType="Models.contactus" />
         </EntityContainer>
         <EntityType Name="role">
           <Key>
@@ -506,6 +519,17 @@
           <Property Name="Permalink" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Thumbnail_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="contactus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdminRead" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -662,6 +686,18 @@
                 <ScalarProperty Name="TitleImage" ColumnName="TitleImage" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contactus">
+            <EntityTypeMapping TypeName="Models.contactus">
+              <MappingFragment StoreEntitySet="contactus">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsAdminRead" ColumnName="IsAdminRead" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

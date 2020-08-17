@@ -33,12 +33,13 @@ namespace WebAPI.Models
         public virtual DbSet<postcontent> postcontents { get; set; }
         public virtual DbSet<blog_tag> blog_tag { get; set; }
         public virtual DbSet<tag_mapper> tag_mapper { get; set; }
-        public virtual DbSet<bloginfo> bloginfoes { get; set; }
         public virtual DbSet<blog_comment> blog_comment { get; set; }
+        public virtual DbSet<bloginfo> bloginfoes { get; set; }
         public virtual DbSet<blog_category> blog_category { get; set; }
         public virtual DbSet<newsletter_sub> newsletter_sub { get; set; }
         public virtual DbSet<panorama> panoramas { get; set; }
         public virtual DbSet<instagram> instagram { get; set; }
+        public virtual DbSet<contactus> contactus { get; set; }
     
         public virtual ObjectResult<bloginfo> SP_NextPost(Nullable<int> postId)
         {

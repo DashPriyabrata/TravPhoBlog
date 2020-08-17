@@ -21,6 +21,7 @@
         <EntityTypeShape EntityType="Models.panorama" Width="1.5" PointX="5.5" PointY="6.5" />
         <AssociationConnector Association="Models.FK_PanoramaId" />
         <EntityTypeShape EntityType="Models.instagram" Width="1.5" PointX="11.625" PointY="3.125" />
+        <EntityTypeShape EntityType="Models.contactus" Width="1.5" PointX="9.875" PointY="5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
