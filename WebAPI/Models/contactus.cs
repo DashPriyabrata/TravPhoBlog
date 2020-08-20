@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 namespace WebAPI.Models
 {    
     public partial class contactus
@@ -15,6 +17,7 @@ namespace WebAPI.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
+        public DateTime? Date { get; set; }
         public bool? IsAdminRead { get; set; }
         public bool? IsActive { get; set; }
     }

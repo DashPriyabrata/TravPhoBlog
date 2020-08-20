@@ -96,6 +96,7 @@
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="Message" Type="varchar" MaxLength="500" />
+          <Property Name="Date" Type="datetime" Precision="0" />
           <Property Name="IsAdminRead" Type="bool" />
           <Property Name="IsActive" Type="bool" />
         </EntityType>
@@ -527,6 +528,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" />
           <Property Name="IsAdminRead" Type="Boolean" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
@@ -694,6 +696,7 @@
               <MappingFragment StoreEntitySet="contactus">
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsAdminRead" ColumnName="IsAdminRead" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

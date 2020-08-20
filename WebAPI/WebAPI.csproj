@@ -118,6 +118,7 @@
     <Compile Include="Common\Scheduler.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controllers\BloggerController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\BlogHomeController.cs" />
     <Compile Include="Controllers\BlogInfoController.cs" />
@@ -193,9 +194,11 @@
     <Compile Include="Repositories\BloggerRepository.cs" />
     <Compile Include="Repositories\BlogHomeRepository.cs" />
     <Compile Include="Repositories\BlogInfoRepository.cs" />
+    <Compile Include="Repositories\ContactUsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBlogHomeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBlogInfoRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBloggerRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactUsRepository.cs" />
     <Compile Include="Repositories\Interfaces\INewsletterRepository.cs" />
     <Compile Include="Repositories\Interfaces\ISearchRepository.cs" />
     <Compile Include="Repositories\Interfaces\ISocialConnectRepository.cs" />
