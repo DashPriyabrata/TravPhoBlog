@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
         [HttpPatch]
         [Route("api/ContactUs/Update/AdminRead")]
         [ResponseType(typeof(bool?))]
-        public async Task<IHttpActionResult> UpdateIsAdminReadProperty(int id)
+        public async Task<IHttpActionResult> UpdateIsAdminReadProperty([FromBody] int id)
         {
             var status = await contactUsRepo.UpdateIsAdminReadProperty(id);
             return status != null ? (IHttpActionResult)Ok(status) : BadRequest("No record found for the input id: " + id);
