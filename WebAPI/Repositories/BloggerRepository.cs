@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Apis.Auth;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -28,6 +29,44 @@ namespace WebAPI.Repositories
             var bloggers = await dbContext.bloggers.ToListAsync();
             return bloggers;
         }
+
+        public async Task<bool> CheckBlogger(string token)
+        {
+            try
+            {
+                var validPayload = await GoogleJsonWebSignature.ValidateAsync(token);
+                return await dbContext.bloggers.AnyAsync(x => x.Email == validPayload.Email);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //public async Task<bool> UpdateAuthToken(string email, string authToken)
+        //{
+        //    var blogger = await dbContext.bloggers.FirstAsync(x => x.Email == email);
+        //    //AuthToken should be null 
+        //    if (blogger != null && string.IsNullOrEmpty(blogger.AuthToken))
+        //    {
+        //        blogger.AuthToken = authToken;
+        //        var success = await dbContext.SaveChangesAsync();
+        //        return success > 0;
+        //    }
+        //    return false;
+        //}
+
+        //public async Task<bool> DeleteAuthToken(string email, string authToken)
+        //{
+        //    var blogger = await dbContext.bloggers.FirstAsync(x => x.Email == email);
+        //    if (blogger != null)
+        //    {
+        //        blogger.AuthToken = null;
+        //        var success = await dbContext.SaveChangesAsync();
+        //        return success > 0;
+        //    }
+        //    return false;
+        //}
 
         private bool isDisposed;
 

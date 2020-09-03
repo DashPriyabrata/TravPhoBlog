@@ -11,5 +11,6 @@ namespace WebAPI.Repositories.Interfaces
     {
         Task<blogger> GetBlogger(int bloggerId);
         Task<ICollection<blogger>> GetAll();
+        Task<bool> CheckBlogger(string token);
     }
 }

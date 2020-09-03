@@ -30,15 +30,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetTestData()
+        [ResponseType(typeof(bool))]
+        [Route("api/Blogger/Validate")]
+        public async Task<IHttpActionResult> CheckBloggerPresence(string token)
         {
-            var testData = new List<object>();
-            testData.Add(new { Name = "Test Name 1", Account = "Microsoft", Designation = "SE" });
-            testData.Add(new { Name = "Test Name 2", Account = "Puma", Designation = "SSE" });
-            testData.Add(new { Name = "Test Name 3", Account = "EOL", Designation = "Consultant" });
-            testData.Add(new { Name = "Test Name 4", Account = "eLIMS NG", Designation = "Lead" });
-
-            return Ok(testData);
+            return Ok(await bloggerRepo.CheckBlogger(token));
         }
 
         [HttpGet]
